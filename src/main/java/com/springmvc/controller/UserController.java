@@ -79,16 +79,45 @@ public class UserController {
         // VALIDATION START
         boolean anyErrors = false;
         if (!Validation.lettersMin(user.getFirstName(), 2)) {
-            model.addAttribute("errorName", true);
+            model.addAttribute("errorFirstName", true);
+            anyErrors = true;
+        }
+        if (!Validation.lettersMin(user.getLastName(), 2)) {
+            model.addAttribute("errorLastName", true);
             anyErrors = true;
         }
         if (!Validation.email(user.getEmail())) {
             model.addAttribute("errorEmail", true);
             anyErrors = true;
         }
+        if (!Validation.lettersMin(user.getStreetName(), 2)) {
+            model.addAttribute("errorStreetName", true);
+            anyErrors = true;
+        }
+        if (!Validation.numbersMin(Integer.toString(user.getStreetNumber()), 1)) {
+            model.addAttribute("errorStreetNumber", true);
+            anyErrors = true;
+        }
+
+        if (!Validation.postalCode(user.getPostalCode())) {
+            model.addAttribute("errorPostalCode", true);
+            anyErrors = true;
+        }
+        if (!Validation.lettersMin(user.getCity(), 2)) {
+            model.addAttribute("errorCity", true);
+            anyErrors = true;
+        }
+        if (!Validation.phoneNumber("0"+Integer.toString(user.getPhoneNumber()))) {
+            model.addAttribute("errorPhoneNumber", true);
+            anyErrors = true;
+        }
+        if (!Validation.password(user.getPassword())) {
+            model.addAttribute("errorPassword", true);
+            anyErrors = true;
+        }
         if (anyErrors) {
             model.addAttribute("pageTitle", "Register");
-            model.addAttribute("message", "Not all fields were entered correctly");
+            model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             return "user_register";
         }
@@ -113,9 +142,12 @@ public class UserController {
     // UPDATE PERMISSION LEVEL
     @RequestMapping(value = "/update_permission_level/{id}/{permissionLevel}")
     public String updatePermissionLevel(@PathVariable int id, @PathVariable int permissionLevel, Model model) throws IOException {
+        User u = userService.getUser(id);
+        u.setPermissionLevel(permissionLevel);
+        userService.updateUser(u);
         model.addAttribute("pageTitle", "Users");
         model.addAttribute("users", userService.getUsers());
-        model.addAttribute("message", "user" + id + permissionLevel);
+        model.addAttribute("message", u.getFirstName()+" " + u.getLastName()+ " now has permission level: "+permissionLevel);
         model.addAttribute("type", "success");
         return "user_list";
     }

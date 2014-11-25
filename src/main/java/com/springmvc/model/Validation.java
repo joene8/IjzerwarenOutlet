@@ -67,7 +67,7 @@ public class Validation {
         return password.matches("^.{6,}$");
     }
 
-    public static boolean postalCOde(String postalCode) {
+    public static boolean postalCode(String postalCode) {
         return postalCode.matches("^\\d{4} ?[a-zA-Z]{2}$");
     }
 

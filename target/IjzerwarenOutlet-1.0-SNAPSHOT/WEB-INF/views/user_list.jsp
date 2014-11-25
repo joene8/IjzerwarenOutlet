@@ -16,19 +16,19 @@
             <table class="table table-striped">
                 <tr>
                     <td>
-                        <strong>First Name</strong>
+                        <strong>First name</strong>
                     </td>
                     <td>
-                        <strong>Last Name</strong>
+                        <strong>Last name</strong>
                     </td>
                     <td>
                         <strong>Email</strong>
                     </td>
                     <td>
-                        <strong>Phone Number</strong>
+                        <strong>Phone nmber</strong>
                     </td>
                     <td>
-                        <strong>Permission Level</strong>
+                        <strong>Permission level</strong>
                     </td>
 
                 </tr>

@@ -37,6 +37,9 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/product/add">Add Product</a>
                             </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/user/list">Users</a>
+                            </li>
                             <form:form class="navbar-form navbar-left"  action="${pageContext.request.contextPath}/product/search"  method="GET" role="search">
                                 <div class="form-group">
                                     <input type="text" id="search" name="search" class="form-control" placeholder="Search">
