@@ -94,7 +94,7 @@
                 <div id="field_phoneNumber" class="form-group <c:if test="${errorPhoneNumber}">has-error</c:if>">
                     <label for="phoneNumber" class="col-sm-2 control-label">Phone number</label>
                     <div class="col-sm-4">
-                    <form:input required="required" onblur="validate(\"phoneNumber\",/^0\\d{9}$/)" path="phoneNumber" placeholder="0612345678" class="form-control" id="phoneNumber" /> 
+                    <form:input required="required" onblur="validate(\"phoneNumber\",/^0\\d{9}$/)" type="number" path="phoneNumber" placeholder="0612345678" class="form-control" id="phoneNumber" /> 
                     <c:if test="${errorPhoneNumber}"><span class="help-block">Must have 10 digits</span></c:if>
                     </div>
                 </div>
