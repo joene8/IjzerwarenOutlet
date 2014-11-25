@@ -21,10 +21,18 @@ public class EstablishmentController {
 
     @Autowired
     private EstablishmentService establishmentService;
+    
+    // LIST
+     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) throws IOException {
+        model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("establishments", establishmentService.getEstablishments());
+        return "establishment_list";
+    }
 
     // ADD LOAD
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String loadRegister(Model model) throws IOException {
+    public String loadAdd(Model model) throws IOException {
         model.addAttribute("pageTitle", "Add establishment");
         model.addAttribute("establishment", new Establishment());
         return "establishment_add";
@@ -32,7 +40,7 @@ public class EstablishmentController {
 
     // ADD SUBMIT
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String submitRegister(Model model, Establishment establishment, HttpServletRequest request) throws IOException {
+    public String submitAdd(Model model, Establishment establishment, HttpServletRequest request) throws IOException {
         // VALIDATION START
         boolean anyErrors = false;
         if (!Validation.lettersMin(establishment.getName(), 2)) {
@@ -69,9 +77,9 @@ public class EstablishmentController {
         // VALIDATION END
         establishmentService.addEstablishment(establishment);
         request.getSession().setAttribute("currentUser", establishment);
-        model.addAttribute("pageTitle", "Establishment");
+        model.addAttribute("pageTitle", "Establishments");
         model.addAttribute("message", establishment.getName()+" was succesfully added." );
         model.addAttribute("type", "success");
-        return "index";
+        return "establishment_list";
     }
 }

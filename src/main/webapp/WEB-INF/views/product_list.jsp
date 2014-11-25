@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
@@ -8,7 +9,6 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message></t:title_and_message>
-
             <table class="table table-striped">
                 <tr>
                     <td>
@@ -30,7 +30,7 @@
                             <td>${product.name}</td>
                             <td>${product.description}</td>
                             <td><a href="${pageContext.request.contextPath}/product/edit/${product.id}">Edit</a> |
-                                <a href="${pageContext.request.contextPath}/product/remove/${product.id}">Remove</a>
+                              <a onclick="confirm_click()" href="${pageContext.request.contextPath}/product/remove/${product.id}">Remove</a>
                             </td>
                         </tr>
                     </c:forEach>
