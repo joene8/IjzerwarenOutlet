@@ -41,3 +41,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+src/main/resources/application.properties
+target/classes/application.properties
+src/main/webapp/WEB-INF/views/user_register.jsp
+target/IjzerwarenOutlet-1.0-SNAPSHOT/WEB-INF/views/user_register.jsp
