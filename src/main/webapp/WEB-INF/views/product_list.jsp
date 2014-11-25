@@ -12,42 +12,23 @@
             <table class="table table-striped">
                 <tr>
                     <td>
-                        <strong>Id</strong>
-                    </td>
-                    <td>
                         <strong>Name</strong>
-                    </td>
-                    <td>
-                        <strong>Price</strong>
-                    </td>
-                    <td>
-                        <strong>Location</strong>
-                    </td>
-                    <td>
-                        <strong>Weight</strong>
                     </td>
                     <td>
                         <strong>Description</strong>
                     </td>
                     <td>
                     </td>
-
-
                 </tr>
             <c:choose>
                 <c:when test="${products.size() != 0}">
-                    <!-- Wanneer er gebruikers opgeslagen zijn, worden ze hier getoond -->
+                    <!-- When there are users, the will be shown below -->
 
                     <c:forEach var="product" items="${products}">
-                        <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
+                        <!-- Per product a row will be made with it's values -->
                         <tr>
-                            <td>${product.id}</td>
                             <td>${product.name}</td>
-                            <td>${product.price}</td>
-                            <td>${product.location}</td>
-                            <td>${product.weight}</td>
                             <td>${product.description}</td>
-
                             <td><a href="${pageContext.request.contextPath}/product/edit/${product.id}">Edit</a> |
                                 <a href="${pageContext.request.contextPath}/product/remove/${product.id}">Remove</a>
                             </td>
