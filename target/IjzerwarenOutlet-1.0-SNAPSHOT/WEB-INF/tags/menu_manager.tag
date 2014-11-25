@@ -47,30 +47,18 @@
                                 <button type="submit" class="btn btn-default">Submit</button>
                             </form:form>
                             <ul class="nav navbar-nav navbar-right">
-                                <c:choose>
-                                    <c:when test="${not empty currentUser}">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${currentUser.name} <span class="caret"></span></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="${pageContext.request.contextPath}/user/account">My account</a></li>
-                                                <li><a href="#">My order history</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="${pageContext.request.contextPath}/user/logout">Logout</a></li>
-                                                </c:when>
-                                                <c:otherwise>
-                                                <li>
-                                                    <a href="${pageContext.request.contextPath}/user/login">Login</a>
-                                                </li>
-                                                <li>
-                                                    <a href="${pageContext.request.contextPath}/user/register">Register</a>
-                                                </li>
-                                            </c:otherwise>
-
-                                        </c:choose>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${currentUser.firstName} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="${pageContext.request.contextPath}/user/view">My account</a></li>
+                                        <li><a href="#">My order history</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="${pageContext.request.contextPath}/user/logout">Logout</a></li>
 
                                     </ul>
                             </ul>
                         </ul>
+
                     </div><!--/.nav-collapse -->
                 </div>
             </div>

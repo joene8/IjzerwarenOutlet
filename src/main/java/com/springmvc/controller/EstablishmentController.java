@@ -47,7 +47,7 @@ public class EstablishmentController {
             model.addAttribute("errorFirstName", true);
             anyErrors = true;
         }
-        if (!Validation.lettersMin(establishment.getStreetName(), 2)) {
+        if (!Validation.streetAndCity(establishment.getStreetName())) {
             model.addAttribute("errorStreetName", true);
             anyErrors = true;
         }
@@ -60,7 +60,7 @@ public class EstablishmentController {
             model.addAttribute("errorPostalCode", true);
             anyErrors = true;
         }
-        if (!Validation.lettersMin(establishment.getCity(), 2)) {
+        if (!Validation.streetAndCity(establishment.getCity())) {
             model.addAttribute("errorCity", true);
             anyErrors = true;
         }

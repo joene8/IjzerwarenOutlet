@@ -64,71 +64,79 @@ public class UserController {
         return "user_login";
     }
 
-    // REGISTER LOAD
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String loadRegister(Model model) throws IOException {
+    // ADD LOAD
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String loadAdd(Model model) throws IOException {
         model.addAttribute("pageTitle", "Register");
         model.addAttribute("pageDescription", "Please enter your information");
         model.addAttribute("user", new User());
-        return "user_register";
+        model.addAttribute("addEditOrView", "add");
+        return "user_add_edit_view";
     }
 
-    // REGISTER SUBMIT
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String submitRegister(Model model, User user, HttpServletRequest request) throws IOException {
+    // ADD SUBMIT
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String submitAdd(Model model, User user, HttpServletRequest request) throws IOException {
         // VALIDATION START
         boolean anyErrors = false;
-        if (!Validation.lettersMin(user.getFirstName(), 2)) {
-            model.addAttribute("errorFirstName", true);
-            anyErrors = true;
-        }
-        if (!Validation.lettersMin(user.getLastName(), 2)) {
-            model.addAttribute("errorLastName", true);
-            anyErrors = true;
-        }
-        if (!Validation.email(user.getEmail())) {
-            model.addAttribute("errorEmail", true);
-            anyErrors = true;
-        }
-        if (!Validation.lettersMin(user.getStreetName(), 2)) {
-            model.addAttribute("errorStreetName", true);
-            anyErrors = true;
-        }
-        if (!Validation.numbersMin(Integer.toString(user.getStreetNumber()), 1)) {
-            model.addAttribute("errorStreetNumber", true);
-            anyErrors = true;
-        }
-
-        if (!Validation.postalCode(user.getPostalCode())) {
-            model.addAttribute("errorPostalCode", true);
-            anyErrors = true;
-        }
-        if (!Validation.lettersMin(user.getCity(), 2)) {
-            model.addAttribute("errorCity", true);
-            anyErrors = true;
-        }
-        if (!Validation.phoneNumber("0"+Integer.toString(user.getPhoneNumber()))) {
-            model.addAttribute("errorPhoneNumber", true);
-            anyErrors = true;
-        }
-        if (!Validation.password(user.getPassword())) {
-            model.addAttribute("errorPassword", true);
-            anyErrors = true;
-        }
-        if (anyErrors) {
+        model = validate(model, user, anyErrors);
+        if (model.containsAttribute("anyErrors")) {
             model.addAttribute("pageTitle", "Register");
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
-            return "user_register";
+            model.addAttribute("addEditOrView", "add");
+            return "user_add_edit_view";
         }
         // VALIDATION END
-        user.setPermissionLevel((int) (Math.random() * 4) + 1);
         userService.addUser(user);
         request.getSession().setAttribute("currentUser", user);
         model.addAttribute("pageTitle", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("message", "Account was successfully registered.");
         model.addAttribute("type", "success");
         return "index";
+    }
+
+    // EDIT LOAD
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String loadEdit(Model model, HttpServletRequest request) throws IOException {
+        model.addAttribute("pageTitle", "Edit account");
+        model.addAttribute("pageDescription", "Please update your information");
+        model.addAttribute("user", (User) request.getSession().getAttribute("currentUser"));
+        model.addAttribute("addEditOrView", "edit");
+        return "user_add_edit_view";
+    }
+
+    // EDIT SUBMIT
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String submitEdit(Model model, User user, HttpServletRequest request) throws IOException {
+
+        // VALIDATION START
+        boolean anyErrors = false;
+        model = validate(model, user, anyErrors);
+        if (model.containsAttribute("anyErrors")) {
+            model.addAttribute("pageTitle", "Edit account");
+            model.addAttribute("message", "Not all fields were entered correctly.");
+            model.addAttribute("type", "danger");
+            model.addAttribute("addEditOrView", "edit");
+            return "user_add_edit_view";
+        }
+        // VALIDATION END
+        userService.updateUser(user);
+        request.getSession().setAttribute("currentUser", user);
+        model.addAttribute("pageTitle", "My account");
+        model.addAttribute("message", "Information was succesfully updated.");
+        model.addAttribute("type", "success");
+        model.addAttribute("addEditOrView", "view");
+        return "user_add_edit_view";
+    }
+
+    // VIEW LOAD
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String loadView(Model model, HttpServletRequest request) throws IOException {
+        model.addAttribute("pageTitle", "My account");
+        model.addAttribute("user", (User) request.getSession().getAttribute("currentUser"));
+        model.addAttribute("addEditOrView", "view");
+        return "user_add_edit_view";
     }
 
     // LIST
@@ -147,8 +155,53 @@ public class UserController {
         userService.updateUser(u);
         model.addAttribute("pageTitle", "Users");
         model.addAttribute("users", userService.getUsers());
-        model.addAttribute("message", u.getFirstName()+" " + u.getLastName()+ " now has permission level: "+permissionLevel);
+        model.addAttribute("message", u.getFirstName() + " " + u.getLastName() + " now has permission level: " + permissionLevel);
         model.addAttribute("type", "success");
         return "user_list";
+    }
+
+    // VALIDATE USER
+    public Model validate(Model model, User user, boolean anyErrors) {
+        if (!Validation.lettersMin(user.getFirstName(), 2)) {
+            model.addAttribute("errorFirstName", true);
+            anyErrors = true;
+        }
+        if (!Validation.lettersMin(user.getLastName(), 2)) {
+            model.addAttribute("errorLastName", true);
+            anyErrors = true;
+        }
+        if (!Validation.email(user.getEmail())) {
+            model.addAttribute("errorEmail", true);
+            anyErrors = true;
+        }
+        if (!Validation.streetAndCity(user.getStreetName())) {
+            model.addAttribute("errorStreetName", true);
+            anyErrors = true;
+        }
+        if (!Validation.numbersMin(Integer.toString(user.getStreetNumber()), 1)) {
+            model.addAttribute("errorStreetNumber", true);
+            anyErrors = true;
+        }
+
+        if (!Validation.postalCode(user.getPostalCode())) {
+            model.addAttribute("errorPostalCode", true);
+            anyErrors = true;
+        }
+        if (!Validation.streetAndCity(user.getCity())) {
+            model.addAttribute("errorCity", true);
+            anyErrors = true;
+        }
+        if (!Validation.phoneNumber("0" + Integer.toString(user.getPhoneNumber()))) {
+            model.addAttribute("errorPhoneNumber", true);
+            anyErrors = true;
+        }
+        if (!Validation.password(user.getPassword())) {
+            model.addAttribute("errorPassword", true);
+            anyErrors = true;
+        }
+        if (anyErrors) {
+            model.addAttribute("anyErrors", anyErrors);
+        }
+        return model;
     }
 }
