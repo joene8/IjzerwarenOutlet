@@ -78,8 +78,7 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String submitAdd(Model model, User user, HttpServletRequest request) throws IOException {
         // VALIDATION START
-        boolean anyErrors = false;
-        model = validate(model, user, anyErrors);
+        model = validate(model, user);
         if (model.containsAttribute("anyErrors")) {
             model.addAttribute("pageTitle", "Register");
             model.addAttribute("message", "Not all fields were entered correctly.");
@@ -97,11 +96,15 @@ public class UserController {
     }
 
     // EDIT LOAD
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String loadEdit(Model model, HttpServletRequest request) throws IOException {
-        model.addAttribute("pageTitle", "Edit account");
-        model.addAttribute("pageDescription", "Please update your information");
-        model.addAttribute("user", (User) request.getSession().getAttribute("currentUser"));
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String loadEdit(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+        if (id == ((User) request.getSession().getAttribute("currentUser")).getId()) {
+            model.addAttribute("pageTitle", "My account");
+            model.addAttribute("pageDescription", "Please update your information");
+        } else {
+            model.addAttribute("pageTitle", "Edit user");
+        }
+        model.addAttribute("user", userService.getUser(id));
         model.addAttribute("addEditOrView", "edit");
         return "user_add_edit_view";
     }
@@ -111,8 +114,7 @@ public class UserController {
     public String submitEdit(Model model, User user, HttpServletRequest request) throws IOException {
 
         // VALIDATION START
-        boolean anyErrors = false;
-        model = validate(model, user, anyErrors);
+        model = validate(model, user);
         if (model.containsAttribute("anyErrors")) {
             model.addAttribute("pageTitle", "Edit account");
             model.addAttribute("message", "Not all fields were entered correctly.");
@@ -122,19 +124,27 @@ public class UserController {
         }
         // VALIDATION END
         userService.updateUser(user);
-        request.getSession().setAttribute("currentUser", user);
-        model.addAttribute("pageTitle", "My account");
+        if (user.getId() == ((User) request.getSession().getAttribute("currentUser")).getId()) {
+            request.getSession().setAttribute("currentUser", user);
+            model.addAttribute("pageTitle", "My account");
+        } else {
+            model.addAttribute("pageTitle", "View user");
+        }
         model.addAttribute("message", "Information was succesfully updated.");
         model.addAttribute("type", "success");
         model.addAttribute("addEditOrView", "view");
         return "user_add_edit_view";
     }
 
-    // VIEW LOAD
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public String loadView(Model model, HttpServletRequest request) throws IOException {
-        model.addAttribute("pageTitle", "My account");
-        model.addAttribute("user", (User) request.getSession().getAttribute("currentUser"));
+    // VIEW
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    public String view(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+        if (id == ((User) request.getSession().getAttribute("currentUser")).getId()) {
+            model.addAttribute("pageTitle", "My account");
+        } else {
+            model.addAttribute("pageTitle", "View user");
+        }
+        model.addAttribute("user", (userService.getUser(id)));
         model.addAttribute("addEditOrView", "view");
         return "user_add_edit_view";
     }
@@ -147,21 +157,46 @@ public class UserController {
         return "user_list";
     }
 
-    // UPDATE PERMISSION LEVEL
-    @RequestMapping(value = "/update_permission_level/{id}/{permissionLevel}")
-    public String updatePermissionLevel(@PathVariable int id, @PathVariable int permissionLevel, Model model) throws IOException {
-        User u = userService.getUser(id);
-        u.setPermissionLevel(permissionLevel);
-        userService.updateUser(u);
+    // DELETE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String remove(@PathVariable int id, Model model, HttpServletRequest request) {
+        if (id == ((User) request.getSession().getAttribute("currentUser")).getId()) {
+            model.addAttribute("message", "You can not delete your own account.");
+            model.addAttribute("type", "danger");
+        } else {
+            User user = userService.getUser(id);
+            userService.deleteUser(id);
+
+            model.addAttribute("message", user.getFirstName() + " " + user.getLastName() + " was succesfully deleted.");
+            model.addAttribute("type", "success");
+        }
         model.addAttribute("pageTitle", "Users");
         model.addAttribute("users", userService.getUsers());
-        model.addAttribute("message", u.getFirstName() + " " + u.getLastName() + " now has permission level: " + permissionLevel);
-        model.addAttribute("type", "success");
+        return "user_list";
+    }
+
+    // UPDATE PERMISSION LEVEL
+    @RequestMapping(value = "/update_permission_level/{id}/{permissionLevel}")
+    public String updatePermissionLevel(@PathVariable int id, @PathVariable int permissionLevel, Model model, HttpServletRequest request) throws IOException {
+        if (id == ((User) request.getSession().getAttribute("currentUser")).getId()) {
+            model.addAttribute("message", "You can not update your own permission level.");
+            model.addAttribute("type", "danger");
+            model.addAttribute("users", userService.getUsers());
+        } else {
+            User u = userService.getUser(id);
+            u.setPermissionLevel(permissionLevel);
+            userService.updateUser(u);
+            model.addAttribute("users", userService.getUsers());
+            model.addAttribute("message", u.getFirstName() + " " + u.getLastName() + " now has permission level: " + permissionLevel);
+            model.addAttribute("type", "success");
+        }
+        model.addAttribute("pageTitle", "Users");
         return "user_list";
     }
 
     // VALIDATE USER
-    public Model validate(Model model, User user, boolean anyErrors) {
+    public Model validate(Model model, User user) {
+        boolean anyErrors = false;
         if (!Validation.lettersMin(user.getFirstName(), 2)) {
             model.addAttribute("errorFirstName", true);
             anyErrors = true;

@@ -26,26 +26,33 @@
                     <td>
                         <strong>Phone number</strong>
                     </td>
+                    <td></td>
                 </tr>
             <c:choose>
                 <c:when test="${establishments.size() != 0}">
                     <!-- When there are establishment, the will be shown below -->
 
                     <c:forEach var="establishment" items="${establishments}">
-                        <!-- Per product a row will be made with it's values -->
+                        <!-- Per establishment a row will be made with it's values -->
                         <tr>
-                            <td>${establishment.name}</td>
+                            <td><a href="${pageContext.request.contextPath}/establishment/view/${establishment.id}">${establishment.name}</a></td>
                             <td>${establishment.streetName} ${establishment.streetNumber} ${establishment.streetNumberSuffix}</td>
                             <td>${establishment.postalCode}</td>
                             <td>${establishment.city}</td>
                             <td>${establishment.phoneNumber}</td>
+                              <td>
+                                    <a href="${pageContext.request.contextPath}/establishment/view/${establishment.id}" class="btn btn-default">View</a>
+                                <a href="${pageContext.request.contextPath}/establishment/edit/${establishment.id}" class="btn btn-primary">Edit</a>
+                                <a href="${pageContext.request.contextPath}/establishment/delete/${establishment.id}" class="btn btn-danger">Delete</a>
+                            </td>
                         </tr>
                     </c:forEach>
 
                 </c:when>
             </c:choose>
             <tr>
-                <td colspan="7"><strong>Total establishments: ${establishments.size()}</stong></td>
+                <td colspan="5"><a href="${pageContext.request.contextPath}/establishment/add" class="btn btn-primary">Add establishment</a></td>
+                <td><em>Total establishments: ${establishments.size()}</em></td>       
             </tr>
         </table>
         <t:footer/>

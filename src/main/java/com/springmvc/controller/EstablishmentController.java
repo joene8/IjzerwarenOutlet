@@ -4,10 +4,10 @@ import com.springmvc.model.Establishment;
 import com.springmvc.model.Validation;
 import com.springmvc.service.EstablishmentService;
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,9 +21,9 @@ public class EstablishmentController {
 
     @Autowired
     private EstablishmentService establishmentService;
-    
+
     // LIST
-     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "Establishments");
         model.addAttribute("establishments", establishmentService.getEstablishments());
@@ -35,13 +35,84 @@ public class EstablishmentController {
     public String loadAdd(Model model) throws IOException {
         model.addAttribute("pageTitle", "Add establishment");
         model.addAttribute("establishment", new Establishment());
-        return "establishment_add";
+        model.addAttribute("addEditOrView", "add");
+        return "establishment_add_edit_view";
     }
 
     // ADD SUBMIT
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String submitAdd(Model model, Establishment establishment, HttpServletRequest request) throws IOException {
+    public String submitAdd(Model model, Establishment establishment) throws IOException {
         // VALIDATION START
+        model = validate(model, establishment);
+        if (model.containsAttribute("anyErrors")) {
+            model.addAttribute("pageTitle", "Add establishment");
+            model.addAttribute("message", "Not all fields were entered correctly.");
+            model.addAttribute("type", "danger");
+            model.addAttribute("addEditOrView", "add");
+            return "establishment_add_edit_view";
+        }
+        // VALIDATION END
+        establishmentService.addEstablishment(establishment);
+        model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("message", establishment.getName() + " was succesfully added.");
+        model.addAttribute("type", "success");
+        model.addAttribute("establishments", establishmentService.getEstablishments());
+        return "establishment_list";
+    }
+
+    // EDIT LOAD
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String loadEdit(Model model, @PathVariable int id) throws IOException {
+        model.addAttribute("pageTitle", "Edit establishment");
+        model.addAttribute("establishment", establishmentService.getEstablishment(id));
+        model.addAttribute("addEditOrView", "edit");
+        return "establishment_add_edit_view";
+    }
+
+    // EDIT SUBMIT
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String submitEdit(Model model, Establishment establishment) throws IOException {
+        // VALIDATION START
+        model = validate(model, establishment);
+        if (model.containsAttribute("anyErrors")) {
+            model.addAttribute("pageTitle", "Add establishment");
+            model.addAttribute("message", "Not all fields were entered correctly.");
+            model.addAttribute("type", "danger");
+            model.addAttribute("addEditOrView", "edit");
+            return "establishment_add_edit_view";
+        }
+        // VALIDATION END
+        establishmentService.updateEstablishment(establishment);
+        model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("message", "Information was successfully updated.");
+        model.addAttribute("type", "success");
+        model.addAttribute("addEditOrView", "view");
+        return "establishment_add_edit_view";
+    }
+
+    // VIEW
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    public String view(Model model, @PathVariable int id) throws IOException {
+        model.addAttribute("pageTitle", "View establishment");
+        model.addAttribute("establishment", establishmentService.getEstablishment(id));
+        model.addAttribute("addEditOrView", "view");
+        return "establishment_add_edit_view";
+    }
+
+    // DELETE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String remove(@PathVariable int id, Model model) {
+        Establishment establishment = establishmentService.getEstablishment(id);
+        establishmentService.deleteEstablishment(id);
+        model.addAttribute("message", establishment.getName() + " was succesfully deleted.");
+        model.addAttribute("type", "success");
+        model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("establishments", establishmentService.getEstablishments());
+        return "establishment_list";
+    }
+
+    // VALIDATE ESTABLISHMENT
+    public Model validate(Model model, Establishment establishment) {
         boolean anyErrors = false;
         if (!Validation.lettersMin(establishment.getName(), 2)) {
             model.addAttribute("errorFirstName", true);
@@ -69,17 +140,8 @@ public class EstablishmentController {
             anyErrors = true;
         }
         if (anyErrors) {
-            model.addAttribute("pageTitle", "Add establishment");
-            model.addAttribute("message", "Not all fields were entered correctly.");
-            model.addAttribute("type", "danger");
-            return "establishment_add";
+            model.addAttribute("anyErrors", anyErrors);
         }
-        // VALIDATION END
-        establishmentService.addEstablishment(establishment);
-        request.getSession().setAttribute("currentUser", establishment);
-        model.addAttribute("pageTitle", "Establishments");
-        model.addAttribute("message", establishment.getName()+" was succesfully added." );
-        model.addAttribute("type", "success");
-        return "establishment_list";
+        return model;
     }
 }

@@ -30,7 +30,7 @@
                             <td>${product.name}</td>
                             <td>${product.description}</td>
                             <td><a href="${pageContext.request.contextPath}/product/edit/${product.id}">Edit</a> |
-                              <a onclick="confirm_click()" href="${pageContext.request.contextPath}/product/remove/${product.id}">Remove</a>
+                              <a href="${pageContext.request.contextPath}/product/delete/${product.id}">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>

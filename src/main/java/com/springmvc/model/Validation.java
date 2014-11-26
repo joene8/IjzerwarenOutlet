@@ -58,6 +58,10 @@ public class Validation {
     public static boolean allExact(String name, int exact) {
         return name.matches("^.{" + exact + "}$");
     }
+    
+    public static boolean streetAndCity(String streetAndCity){
+        return streetAndCity.matches("^[a-zA-Z .']{2,}$");
+    }
 
     public static boolean email(String email) {
         return email.matches("^\\w+@\\w+\\.\\w{2,}$");

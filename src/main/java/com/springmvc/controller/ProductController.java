@@ -101,8 +101,8 @@ public class ProductController {
     }
 
     
-    // REMOVE
-    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+    // DELETE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable int id, Model model) {
         Product product = productService.getProduct(id);
         productService.deleteProduct(id);

@@ -25,11 +25,12 @@
                         <strong>Email</strong>
                     </td>
                     <td>
-                        <strong>Phone nmber</strong>
+                        <strong>Phone number</strong>
                     </td>
                     <td>
                         <strong>Permission level</strong>
                     </td>
+                    <td></td>
 
                 </tr>
             <c:choose>
@@ -42,22 +43,29 @@
                             <td>${user.email}</td>
                             <td>${user.phoneNumber}</td>
                             <td>
-                                <select class="form-control" id="permissionLevel${user.id}" onchange="updatePermissionLevel(1)">
+                                <select class="form-control" id="permissionLevel${user.id}" onchange="updatePermissionLevel(${user.id})">
                                     <option value="1" <c:if test="${user.permissionLevel==1}">selected</c:if>>1. User</option>
                                     <option value="2" <c:if test="${user.permissionLevel==2}">selected</c:if>>2. Employee</option>
                                     <option value="3" <c:if test="${user.permissionLevel==3}">selected</c:if>>3. Manager</option>
                                     <option value="4" <c:if test="${user.permissionLevel==4}">selected</c:if>>4. Admin</option>
                                     </select>
                                 </td>
-                            </tr>
+                                <td>
+                                    <a href="${pageContext.request.contextPath}/user/view/${user.id}" class="btn btn-default">View</a>
+                                <a href="${pageContext.request.contextPath}/user/edit/${user.id}" class="btn btn-primary">Edit</a>
+                                <a href="${pageContext.request.contextPath}/user/delete/${user.id}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
                     </c:forEach>
 
                 </c:when>
             </c:choose>
             <tr>
-                <td colspan="5"><strong>Total users: ${users.size()}</strong></td>
+                <td colspan="5"><a href="${pageContext.request.contextPath}/user/add" class="btn btn-primary">Add user</a></td>
+                <td><em>Total users: ${users.size()}</em></td>       
             </tr>
         </table>
+
         <t:footer/>
     </jsp:body>
 </t:menu>

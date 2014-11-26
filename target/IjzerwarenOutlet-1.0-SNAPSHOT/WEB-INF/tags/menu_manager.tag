@@ -50,7 +50,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${currentUser.firstName} <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="${pageContext.request.contextPath}/user/view">My account</a></li>
+                                                <li><a href="${pageContext.request.contextPath}/user/view/${currentUser.id}">My account</a></li>
                                         <li><a href="#">My order history</a></li>
                                         <li class="divider"></li>
                                         <li><a href="${pageContext.request.contextPath}/user/logout">Logout</a></li>
