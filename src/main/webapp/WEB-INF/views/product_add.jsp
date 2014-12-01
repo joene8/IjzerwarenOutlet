@@ -19,7 +19,7 @@
 
             <div id="field_name" class="form-group">
                 <label for="name" class="col-sm-2 control-label"><c:if test="${errorName}"></c:if>Name</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                     <form:input path="name" class="form-control" id="name" /> 
                     <c:if test="${errorName}"><span class="help-block">Name was not entered correctly</span></c:if>
                     </div>
@@ -35,7 +35,7 @@
                     
                                     <div id="field_price" class="form-group">
                     <label for="chosenPrice" class="col-sm-2 control-label"><c:if test="${errorChosenPrice}"></c:if>Price</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                     <form:input path="chosenPrice" class="form-control" id="chosenPrice" /> 
                     <c:if test="${errorChosenPrice}"><span class="help-block">Price was not entered correctly</span></c:if>
                     </div>
@@ -53,9 +53,15 @@
                 <div id="field_addition" class="form-group">
                     <label for="addition" class="col-sm-2 control-label"><c:if test="${errorAddition}"></c:if>Would you like to give addition information?</label>
                     <div class="col-sm-4">
-                    <form:radiobutton onchange="checkAddition()" name="addition" path="addition" value="yes"/><label for="yes">Yes</label><br>
-                    <form:radiobutton onchange="checkAddition()" name="addition" path="addition" value="no"/><label for="no">No</label>
+                        
+                       
+                        <div class="btn-group" data-toggle="buttons">
+                         <label class="btn btn-primary">
+                    <form:radiobutton onchange="checkAddition()" name="addition" path="addition" value="yes"/>Yes</label>
+                      <label class="btn btn-primary active">
+                    <form:radiobutton onchange="checkAddition()" name="addition" path="addition" value="no"/>No</label>
                 </div>    
+                    </div>
             </div>
 
                 <div id="hidden" style="visibility:hidden;">
@@ -69,7 +75,7 @@
 
                     <div id="field_discountPercentage" class="form-group">
                         <label for="discountPercentage" class="col-sm-2 control-label">Discount Percentage</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <div class="input-group">
                                 <span class="input-group-addon">%</span>    
                             <form:select path="discountPercentage" class="form-control" id="discountPercentage" >
