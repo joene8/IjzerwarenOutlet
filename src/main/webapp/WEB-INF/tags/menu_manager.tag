@@ -18,7 +18,7 @@
 
     <body>
         <div id="header">
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -32,10 +32,7 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="${pageContext.request.contextPath}/product/list">Show Products</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/product/add">Add Product</a>
+                                <a href="${pageContext.request.contextPath}/product/list">Products</a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/user/list">Users</a>

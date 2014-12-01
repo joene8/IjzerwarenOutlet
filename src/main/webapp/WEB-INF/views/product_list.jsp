@@ -9,17 +9,28 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message></t:title_and_message>
-            <table class="table table-striped">
+            <script type="text/javascript">
+                $(document).ready(function ()
+                {
+                    $("#table").tablesorter();
+                }
+                );
+            </script>
+
+            <table id="table" class="table table-striped table-hover">
+                <thead>
                 <tr>
-                    <td>
-                        <strong>Name</strong>
-                    </td>
-                    <td>
-                        <strong>Description</strong>
-                    </td>
-                    <td>
-                    </td>
+                    <th>
+                      Name <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                    </th>
+                    <th>
+                     Description <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                    </th>
+                    <th>
+                    </th>
                 </tr>
+                </thead>
+                <tbody>
             <c:choose>
                 <c:when test="${products.size() != 0}">
                     <!-- When there are users, the will be shown below -->
@@ -29,21 +40,23 @@
                         <tr>
                             <td>${product.name}</td>
                             <td>${product.description}</td>
-                            <td><a href="${pageContext.request.contextPath}/product/edit/${product.id}">Edit</a> |
-                              <a href="${pageContext.request.contextPath}/product/delete/${product.id}">Delete</a>
+                            <td>                                        <a href="${pageContext.request.contextPath}/product/view/${user.id}" class="btn btn-xs btn-default">View</a>
+                                    <a href="${pageContext.request.contextPath}/product/edit/${user.id}" class="btn btn-xs btn-default">Edit</a>
+                                    <a href="${pageContext.request.contextPath}/product/delete/${user.id}" class="btn btn-xs btn-danger">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
 
                 </c:when>
             </c:choose>
+                </tbody>
+                        <tfoot>
             <tr>
-                <td colspan="7"><strong>Total products: ${products.size()}</stong></td>
+                <td colspan="2"><a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-danger">Add product</a></td>
+                <td><em>Total products: ${products.size()}</em></td>       
             </tr>
+            </tfoot>
         </table>
-        <p>
-            <a href="${pageContext.request.contextPath}/product/add">Add a new product</a>
-        </p>
         <t:footer/>
     </jsp:body>
 </t:menu>

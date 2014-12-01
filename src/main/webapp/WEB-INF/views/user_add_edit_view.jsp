@@ -232,6 +232,7 @@
             </div>
             <!--Submit button end-->
         </form:form>
+                    <t:footer/>
     </jsp:body>
 </t:menu>
 

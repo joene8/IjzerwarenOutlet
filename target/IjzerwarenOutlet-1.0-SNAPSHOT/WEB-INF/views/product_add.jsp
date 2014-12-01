@@ -80,5 +80,6 @@
                     </div>
                 </div>
         </form:form>
+                        <t:footer/>
     </jsp:body>
 </t:menu>

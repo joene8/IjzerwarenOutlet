@@ -9,13 +9,15 @@
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
-        <h2>${pageTitle}</h2>
-        <h5>${pageDescription}</h5>
+        <h2 id="pageTitle">${pageTitle}</h2>
+        <br>
         <!--Start alert-->
         <c:if test="${not empty message}">
-            <div class="alert alert-${type} alert-dismissible" role="alert">
+            <div class="alert alert-${type} col-sm-4 alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 ${message}
             </div> 
         </c:if>
         <!--End alert-->
+                <div class="clearfix"></div>
+                        <h5>${pageDescription}</h5>

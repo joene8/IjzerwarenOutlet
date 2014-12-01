@@ -154,7 +154,7 @@
             </div>
             <!--Phone number end-->
 
-            
+
             <!--Submit button start-->
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -179,6 +179,7 @@
             <!--Submit button end-->
 
         </form:form>
+                    <t:footer/>
     </jsp:body>
 </t:menu>
 
