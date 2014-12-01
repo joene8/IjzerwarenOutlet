@@ -32,6 +32,23 @@
                     <c:if test="${errorDescription}"><span class="help-block">Description was not entered correctly</span></c:if>
                     </div>
                 </div>
+                    
+                                    <div id="field_price" class="form-group">
+                    <label for="chosenPrice" class="col-sm-2 control-label"><c:if test="${errorChosenPrice}"></c:if>Price</label>
+                    <div class="col-sm-4">
+                    <form:input path="chosenPrice" class="form-control" id="chosenPrice" /> 
+                    <c:if test="${errorChosenPrice}"><span class="help-block">Price was not entered correctly</span></c:if>
+                    </div>
+                </div>
+                    
+                                                        <div id="field_price" class="form-group">
+                    <label for="picture" class="col-sm-2 control-label"><c:if test="${errorPicture}"></c:if>Picture</label>
+                    <div class="col-sm-4">
+                    <form:input type="file" path="picture" class="form-control" id="picture" /> 
+                    <c:if test="${errorPicture}"><span class="help-block">Picture was not entered correctly</span></c:if>
+                    </div>
+                </div>
+
 
                 <div id="field_addition" class="form-group">
                     <label for="addition" class="col-sm-2 control-label"><c:if test="${errorAddition}"></c:if>Would you like to give addition information?</label>

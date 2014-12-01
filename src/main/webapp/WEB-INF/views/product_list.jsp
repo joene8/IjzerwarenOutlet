@@ -16,47 +16,116 @@
                 }
                 );
             </script>
+            
+             <div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+    <div class=" col-sm-3 col-md-2">
+        <p>Category A</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+        <a href=""><p>Example 5</p></a>
+        <a href=""><p>Example 6</p></a>
+        <a href=""><p>Example 7</p></a>
+    </div>
+        <div class=" col-sm-3 col-md-2">
+        <p>Category B</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+    </div>
+        <div class=" col-sm-3 col-md-2">
+        <p>Category C</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+        <a href=""><p>Example 5</p></a>
+    </div>
+        <div class=" col-sm-3 col-md-2">
+        <p>Category D</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+        <a href=""><p>Example 5</p></a>
+    </div>
+        <div class=" col-sm-3 col-md-2">
+        <p>Category E</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+    </div>
+        <div class=" col-sm-3 col-md-2">
+        <p>Category F</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+        <a href=""><p>Example 5</p></a>
+    </div>
+</div>
+<div class="row">
+        <div class=" col-sm-3 col-md-2">
+        <p>Category G</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+        <a href=""><p>Example 5</p></a>
+        <a href=""><p>Example 6</p></a>
+    </div>
+            <div class=" col-sm-3 col-md-2">
+        <p>Category H</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+        <a href=""><p>Example 5</p></a>
+        <a href=""><p>Example 6</p></a>
+    </div>
+            <div class=" col-sm-3 col-md-2">
+        <p>Category I</p>
+        <a href=""><p>Example 1</p></a>
+        <a href=""><p>Example 2</p></a>
+        <a href=""><p>Example 3</p></a>
+        <a href=""><p>Example 4</p></a>
+        <a href=""><p>Example 5</p></a>
+        <a href=""><p>Example 6</p></a>
+        <a href=""><p>Example 7</p></a>
+    </div>
+</div>
 
-            <table id="table" class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>
-                      Name <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-                    </th>
-                    <th>
-                     Description <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-                    </th>
-                    <th>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
+
+
+  </div>
+</div>
             <c:choose>
                 <c:when test="${products.size() != 0}">
                     <!-- When there are users, the will be shown below -->
 
                     <c:forEach var="product" items="${products}">
-                        <!-- Per product a row will be made with it's values -->
-                        <tr>
-                            <td>${product.name}</td>
-                            <td>${product.description}</td>
-                            <td>                                        <a href="${pageContext.request.contextPath}/product/view/${user.id}" class="btn btn-xs btn-default">View</a>
-                                    <a href="${pageContext.request.contextPath}/product/edit/${user.id}" class="btn btn-xs btn-default">Edit</a>
-                                    <a href="${pageContext.request.contextPath}/product/delete/${user.id}" class="btn btn-xs btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
+              <div class=" col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="https://dl.dropboxusercontent.com/u/35106986/img/${product.picture}" data-src="holder.js/200x200" alt="...">
+      <div class="caption">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <h3><span class="oldPrice">&euro;${product.chosenPrice*2}</span><br>&euro;${product.chosenPrice}</h3>
+        <p><a href="#" class="btn btn-default" role="button">Check stock</a> <a href="#" class="btn btn-primary" role="button">Add to cart</a></p>
+      </div>
+    </div>
+  </div>
+                                  </c:forEach>
 
                 </c:when>
             </c:choose>
-                </tbody>
-                        <tfoot>
-            <tr>
-                <td colspan="2"><a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-danger">Add product</a></td>
-                <td><em>Total products: ${products.size()}</em></td>       
-            </tr>
-            </tfoot>
-        </table>
+                    <div class="row"></div>
+                        <a href="${pageContext.request.contextPath}/product/table" class="clearfix btn btn-xs btn-primary">List View</a>
         <t:footer/>
     </jsp:body>
 </t:menu>

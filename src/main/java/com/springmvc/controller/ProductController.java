@@ -23,12 +23,20 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // LIST
+    // LIST THUMBNAILS
     @RequestMapping(value = "/list")
     public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "Products");
         model.addAttribute("products", productService.getProducts());
         return "product_list";
+    }
+    
+        // LIST TABLE
+    @RequestMapping(value = "/table")
+    public String listTable(Model model) throws IOException {
+        model.addAttribute("pageTitle", "Products");
+        model.addAttribute("products", productService.getProducts());
+        return "product_list_table";
     }
 
     // ADD LOAD

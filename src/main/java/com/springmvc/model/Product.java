@@ -17,9 +17,10 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private boolean addition;
+    private double chosenPrice;
     private String additionDescription;
     private int discountPercentage;
-    private String Picture;
+    private String picture;
     
     // Constructor
     public Product(){
@@ -76,12 +77,22 @@ public class Product implements Serializable {
     }
 
     public String getPicture() {
-        return Picture;
+        return picture;
     }
 
     public void setPicture(String Picture) {
-        this.Picture = Picture;
+        this.picture = Picture;
     }
+
+    public double getChosenPrice() {
+        return chosenPrice;
+    }
+
+    public void setChosenPrice(double chosenPrice) {
+        this.chosenPrice = chosenPrice;
+    }
+    
+    
     
     
 
