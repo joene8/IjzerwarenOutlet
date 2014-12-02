@@ -64,7 +64,7 @@ public class Validation {
     }
 
     public static boolean email(String email) {
-        return email.matches("^\\w+@\\w+\\.\\w{2,}$");
+        return email.matches("^[\\w.-]+@\\w+\\.[\\w.-]{2,}$");
     }
 
     public static boolean password(String password) {

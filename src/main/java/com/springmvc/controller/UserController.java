@@ -66,8 +66,12 @@ public class UserController {
 
     // ADD LOAD
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String loadAdd(Model model) throws IOException {
-        model.addAttribute("pageTitle", "Register");
+    public String loadAdd(Model model, HttpServletRequest request) throws IOException {
+        if (request.getSession().getAttribute("currentUser") != null) {
+            model.addAttribute("pageTitle", "Add user");
+        } else {
+            model.addAttribute("pageTitle", "Register");
+        }
         model.addAttribute("pageDescription", "Please enter your information");
         model.addAttribute("user", new User());
         model.addAttribute("addEditOrView", "add");
@@ -80,7 +84,11 @@ public class UserController {
         // VALIDATION START
         model = validate(model, user);
         if (model.containsAttribute("anyErrors")) {
-            model.addAttribute("pageTitle", "Register");
+            if (request.getSession().getAttribute("currentUser") != null) {
+                model.addAttribute("pageTitle", "Add user");
+            } else {
+                model.addAttribute("pageTitle", "Register");
+            }
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             model.addAttribute("addEditOrView", "add");
@@ -88,6 +96,13 @@ public class UserController {
         }
         // VALIDATION END
         userService.addUser(user);
+        if (request.getSession().getAttribute("currentUser") != null) {
+            model.addAttribute("users", userService.getUsers());
+            model.addAttribute("pageTitle", "Users");
+            model.addAttribute("message", "User was successfully added.");
+            model.addAttribute("type", "success");
+            return "user_list";
+        }
         request.getSession().setAttribute("currentUser", user);
         model.addAttribute("pageTitle", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("message", "Account was successfully registered.");
@@ -226,7 +241,7 @@ public class UserController {
             model.addAttribute("errorCity", true);
             anyErrors = true;
         }
-        if (!Validation.phoneNumber("0" + Integer.toString(user.getPhoneNumber()))) {
+        if (!Validation.phoneNumber(user.getPhoneNumber())) {
             model.addAttribute("errorPhoneNumber", true);
             anyErrors = true;
         }

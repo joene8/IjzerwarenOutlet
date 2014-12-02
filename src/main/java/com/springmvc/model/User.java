@@ -23,7 +23,7 @@ public class User implements Serializable {
     private String streetNumberSuffix;
     private String postalCode;
     private String city;
-    private int phoneNumber;
+    private String phoneNumber;
     private String password;
     private int permissionLevel;
     
@@ -108,11 +108,11 @@ public class User implements Serializable {
         this.city = city;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

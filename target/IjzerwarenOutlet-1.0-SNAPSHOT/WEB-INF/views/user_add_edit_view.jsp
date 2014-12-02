@@ -74,7 +74,7 @@
                             <p class="form-control-static">${user.email}</p>
                         </c:when>
                         <c:otherwise>
-                            <form:input type="email" required="required" onblur="validate(\"email\",/^\\w+@\\w+\\.\\w{2,}$/)" path="email" placeholder="someone@someplace.com" class="form-control" id="email" /> 
+                            <form:input type="email" required="required" onblur="validate(\"email\",/^[\\w.-]+@\\w+\\.[\\w.-]{2,}$/)" path="email" placeholder="someone@someplace.com" class="form-control" id="email" /> 
                             <span id="glyph_email" class=""></span>
                             <c:if test="${errorEmail}"><span class="help-block">Must be a correct email.</span></c:if>
                         </c:otherwise>
