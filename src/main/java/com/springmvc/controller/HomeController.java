@@ -11,14 +11,14 @@ public class HomeController {
     // HOME
     @RequestMapping(value = "/")
     public String home(Model model) throws IOException {
-        model.addAttribute("pageTitle", "Welcome to our site");
+        model.addAttribute("pageTitle", "Home");
         return "index";
     }
 
     // HOME
     @RequestMapping(value = "/index")
     public String index(Model model) throws IOException {
-        model.addAttribute("pageTitle", "Welcome to our site");
+        model.addAttribute("pageTitle", "Home");
         return "index";
     }
 

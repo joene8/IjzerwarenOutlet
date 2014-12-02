@@ -39,9 +39,9 @@
                         <tr>
                             <td>${product.name}</td>
                             <td>${product.description}</td>
-                            <td>                                        <a href="${pageContext.request.contextPath}/product/view/${user.id}" class="btn btn-xs btn-default">View</a>
-                                    <a href="${pageContext.request.contextPath}/product/edit/${user.id}" class="btn btn-xs btn-default">Edit</a>
-                                    <a href="${pageContext.request.contextPath}/product/delete/${user.id}" class="btn btn-xs btn-danger">Delete</a>
+                            <td>                                        <a href="${pageContext.request.contextPath}/product/view/${product.id}" class="btn btn-xs btn-default">View</a>
+                                    <a href="${pageContext.request.contextPath}/product/edit/${product.id}" class="btn btn-xs btn-default">Edit</a>
+                                    <a href="${pageContext.request.contextPath}/product/delete/${product.id}" class="btn btn-xs btn-danger">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
