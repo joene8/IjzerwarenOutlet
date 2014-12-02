@@ -45,7 +45,7 @@ public class UserController {
                 if (user.getPassword().equals(u.getPassword())) {
                     //Register Login TimeStamp
                     timeLogService.addTimeLog(t);
-                    timeLogService.updateLogin(t, user);
+                    timeLogService.updateLogin(t, u);
 
                     //Add attributes to the request object
                     model.addAttribute("pageTitle", "Welcome " + u.getFirstName() + " " + u.getLastName());
