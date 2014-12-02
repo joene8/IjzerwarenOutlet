@@ -89,29 +89,11 @@
   </div>
                                   </c:forEach>
 
-
                 </c:when>
-                                        <c:otherwise>
-                                            
-<div class="panel panel-default col-sm-9 col-md-9">
-  <h1>Sorry, no products were found.</h1>
-  <p>Please try again later.</p>
-        <c:if test="${currentUser != null}">
-            <c:if test="${currentUser.permissionLevel > 1}">
-                <p><a href="${pageContext.request.contextPath}/product/add" class="btn btn-lg btn-primary">Add product</a></p>
-        </c:if>
-        </c:if>
-</div>
-                        
-                    </c:otherwise>
             </c:choose>
                     <div class="row"></div>
                         <a href="${pageContext.request.contextPath}/product/table" class="clearfix btn btn-sm btn-primary">List View</a>
-        <c:if test="${currentUser != null}">
-            <c:if test="${currentUser.permissionLevel > 2}">
         <a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-primary">Add product</a>
-        </c:if>
-        </c:if>
         <t:footer/>
     </jsp:body>
 </t:menu>

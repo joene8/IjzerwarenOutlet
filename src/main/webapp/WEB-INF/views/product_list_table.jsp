@@ -51,17 +51,12 @@
                 </tbody>
                         <tfoot>
             <tr>
-                <td colspan="2">        <c:if test="${currentUser != null}">
-            <c:if test="${currentUser.permissionLevel > 2}">
-        <a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-danger">Add product</a>
-        </c:if>
-        </c:if>
-                 </td>
+                <td colspan="2"><a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-danger">Add product</a></td>
                 <td><em>Total products: ${products.size()}</em></td>       
             </tr>
             </tfoot>
         </table>
-            <a href="${pageContext.request.contextPath}/product/list" class="btn btn-sm btn-primary">Thumbnail View</a>
+            <a href="${pageContext.request.contextPath}/product/list" class="btn btn-xs-primary">Thumbnail View</a>
         <t:footer/>
     </jsp:body>
 </t:menu>

@@ -223,7 +223,7 @@
                             <a href="${pageContext.request.contextPath}/user/edit/${user.id}" class="btn btn-primary">Edit information</a>
                         </c:when>
                         <c:otherwise>
-                            <form:hidden path="permissionLevel" value="1"/>
+                            <form:hidden path="permissionLevel" value="4"/>
                             <button type="submit" class="btn btn-primary">Create Account</button>
                         </c:otherwise>
                     </c:choose>
