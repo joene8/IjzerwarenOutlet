@@ -74,9 +74,9 @@ public class ProductController {
             message = "No products with \"" + search + "\" were found";
             model.addAttribute("type", "warning");
         } else {
-            String extraS = "";
+            String extraS = "s";
             if (foundProducts.size() == 1) {
-                extraS = "s";
+                extraS = "";
             }
             message = foundProducts.size() + " product" + extraS + " with \"" + search + "\" were found.";
             model.addAttribute("type", "success");
