@@ -1,9 +1,12 @@
 package com.springmvc.controller;
 
+import com.springmvc.model.TimeLog;
 import com.springmvc.model.User;
 import com.springmvc.model.Validation;
+import com.springmvc.service.TimeLogService;
 import com.springmvc.service.UserService;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -20,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private TimeLogService timeLogService;
+    
 
     // LOGIN LOAD
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -38,6 +44,12 @@ public class UserController {
             if (u.getEmail().equals(user.getEmail())) {
                 if (user.getPassword().equals(u.getPassword())) {
                     //Add attributes to the request object
+                    TimeLog t = new TimeLog();
+                    timeLogService.addTimeLog(t);
+                    timeLogService.updateTimeLog(t, u);
+                    
+
+
                     model.addAttribute("pageTitle", "Welcome " + u.getFirstName() + " " + u.getLastName());
                     model.addAttribute("message", "Successfully logged in");
                     model.addAttribute("type", "success");

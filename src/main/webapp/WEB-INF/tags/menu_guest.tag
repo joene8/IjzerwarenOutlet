@@ -34,6 +34,7 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/product/list">Show Products</a>
                             </li>
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">STIHO Groep<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
