@@ -108,7 +108,7 @@
                     <div class="row"></div>
                         <a href="${pageContext.request.contextPath}/product/table" class="clearfix btn btn-sm btn-primary">List View</a>
         <c:if test="${currentUser != null}">
-            <c:if test="${currentUser.permissionLevel > 1}">
+            <c:if test="${currentUser.permissionLevel > 2}">
         <a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-primary">Add product</a>
         </c:if>
         </c:if>
