@@ -38,9 +38,6 @@
                                 <a href="${pageContext.request.contextPath}/user/list">Users</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/timelog/list">Show Timelog</a>
-                            </li>
-                            <li>
                                 <a href="${pageContext.request.contextPath}/establishment/list">Establishments</a>
                             </li>
                             <form:form class="navbar-form navbar-left"  action="${pageContext.request.contextPath}/product/search"  method="GET" role="search">
