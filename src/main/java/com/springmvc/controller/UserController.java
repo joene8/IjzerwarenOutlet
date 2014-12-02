@@ -22,9 +22,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    
     @Autowired
     private TimeLogService timeLogService;
+
+    TimeLog t = new TimeLog();
 
     // LOGIN LOAD
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -43,10 +44,9 @@ public class UserController {
             if (u.getEmail().equals(user.getEmail())) {
                 if (user.getPassword().equals(u.getPassword())) {
                     //Register Login TimeStamp
-                    TimeLog t = new TimeLog();
                     timeLogService.addTimeLog(t);
-                    timeLogService.updateTimeLog(t, u);
-                    
+                    timeLogService.updateLogin(t, user);
+
                     //Add attributes to the request object
                     model.addAttribute("pageTitle", "Welcome " + u.getFirstName() + " " + u.getLastName());
                     model.addAttribute("message", "Successfully logged in");
@@ -71,6 +71,8 @@ public class UserController {
         model.addAttribute("pageTitle", "Login");
         model.addAttribute("message", "Succesfully logged out.");
         model.addAttribute("type", "success");
+        //REGISTER LOGOUT
+        timeLogService.updateLogout(t);
         return "user_login";
     }
 
@@ -117,6 +119,10 @@ public class UserController {
         model.addAttribute("pageTitle", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("message", "Account was successfully registered.");
         model.addAttribute("type", "success");
+        //REGISTER LOGIN
+        timeLogService.addTimeLog(t);
+        timeLogService.updateLogin(t, user);
+        
         return "index";
     }
 

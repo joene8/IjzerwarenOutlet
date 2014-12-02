@@ -32,13 +32,23 @@ public class TimeLogDAO {
         getCurrentSession().save(timeLog);
     }
 
-    public void updateTimeLog(TimeLog timeLog, User user) {
+    public void updateLogin(TimeLog timeLog, User user) {
         TimeLog timeLogToUpdate = getTimeLog(timeLog.getId());
 
         java.util.Date date = new java.util.Date();
         Timestamp time = new Timestamp(date.getTime());
-        timeLogToUpdate.setTime(time);
+        timeLogToUpdate.setLogin(time);
         timeLogToUpdate.setUserID(user.getId());
+
+        getCurrentSession().update(timeLogToUpdate);
+    }
+    
+    public void updateLogout(TimeLog timeLog) {
+        TimeLog timeLogToUpdate = getTimeLog(timeLog.getId());
+
+        java.util.Date date = new java.util.Date();
+        Timestamp time = new Timestamp(date.getTime());
+        timeLogToUpdate.setLogout(time);
 
         getCurrentSession().update(timeLogToUpdate);
     }

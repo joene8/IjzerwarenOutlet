@@ -17,7 +17,10 @@ Author : How Fei Zheng
                     <strong>Id</strong>
                 </td>
                 <td>
-                    <strong>Time</strong>
+                    <strong>Login</strong>
+                </td>
+                <td>
+                    <strong>Logout</strong>
                 </td>
                 <td>
                     <strong>UserID</strong>
@@ -29,7 +32,8 @@ Author : How Fei Zheng
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                         <tr>
                             <td>${timelog.id}</td>
-                            <td>${timelog.time}</td>
+                            <td>${timelog.login}</td>
+                            <td>${timelog.logout}</td>
                             <td>${timelog.userID}</td>
                         </tr>
                     </c:forEach>

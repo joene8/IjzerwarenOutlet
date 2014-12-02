@@ -28,8 +28,12 @@ public class TimeLogService {
         timeLogDAO.addTimeLog(timeLog);
     }
     
-    public void updateTimeLog(TimeLog timeLog, User user){
-        timeLogDAO.updateTimeLog(timeLog, user);
+    public void updateLogin(TimeLog timeLog, User user){
+        timeLogDAO.updateLogin(timeLog, user);
+    }
+    
+    public void updateLogout(TimeLog timeLog){
+        timeLogDAO.updateLogout(timeLog);
     }
     
     public TimeLog getTimeLog(int id){

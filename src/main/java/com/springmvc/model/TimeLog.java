@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -25,7 +24,9 @@ public class TimeLog implements Serializable {
     @Id
     private int id;
     @NotNull
-    private Timestamp time;
+    private Timestamp login;
+    @NotNull
+    private Timestamp logout;
     
     @NotNull
     private int userID;
@@ -42,12 +43,20 @@ public class TimeLog implements Serializable {
         this.id = id;
     }
 
-    public Timestamp getTime() {
-        return time;
+    public Timestamp getLogin() {
+        return login;
     }
 
-    public void setTime(Timestamp time) {
-        this.time = time;
+    public void setLogin(Timestamp login) {
+        this.login = login;
+    }
+
+    public Timestamp getLogout() {
+        return logout;
+    }
+
+    public void setLogout(Timestamp logout) {
+        this.logout = logout;
     }
 
     public int getUserID() {
