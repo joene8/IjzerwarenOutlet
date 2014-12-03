@@ -15,6 +15,8 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message></t:title_and_message>
+                        <div class="panel panel-default">
+            <div class="panel-body">
         <form:form method="POST" class="form-horizontal" role="form" commandName="product" action="${pageContext.request.contextPath}/product/add">  
 
             <div id="field_name" class="form-group">
@@ -102,6 +104,8 @@
                         <button type="submit" class="btn btn-primary">Add product</button>
                     </div>
                 </div>
+            </div>
+                        </div>
         </form:form>
                         <t:footer/>
     </jsp:body>

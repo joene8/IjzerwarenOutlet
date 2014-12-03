@@ -26,6 +26,7 @@ public class EstablishmentController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
         model.addAttribute("establishments", establishmentService.getEstablishments());
         return "establishment_list";
     }
@@ -34,6 +35,7 @@ public class EstablishmentController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String loadAdd(Model model) throws IOException {
         model.addAttribute("pageTitle", "Add establishment");
+        model.addAttribute("pageDescription", "Enter the information for the new establishment.");
         model.addAttribute("establishment", new Establishment());
         model.addAttribute("addEditOrView", "add");
         return "establishment_add_edit_view";
@@ -46,6 +48,7 @@ public class EstablishmentController {
         model = validate(model, establishment);
         if (model.containsAttribute("anyErrors")) {
             model.addAttribute("pageTitle", "Add establishment");
+            model.addAttribute("pageDescription", "Enter the information for the new establishment.");
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             model.addAttribute("addEditOrView", "add");
@@ -54,6 +57,7 @@ public class EstablishmentController {
         // VALIDATION END
         establishmentService.addEstablishment(establishment);
         model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
         model.addAttribute("message", establishment.getName() + " was succesfully added.");
         model.addAttribute("type", "success");
         model.addAttribute("establishments", establishmentService.getEstablishments());
@@ -64,6 +68,7 @@ public class EstablishmentController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String loadEdit(Model model, @PathVariable int id) throws IOException {
         model.addAttribute("pageTitle", "Edit establishment");
+        model.addAttribute("pageDescription", "Update the information for this establishment.");
         model.addAttribute("establishment", establishmentService.getEstablishment(id));
         model.addAttribute("addEditOrView", "edit");
         return "establishment_add_edit_view";
@@ -75,7 +80,8 @@ public class EstablishmentController {
         // VALIDATION START
         model = validate(model, establishment);
         if (model.containsAttribute("anyErrors")) {
-            model.addAttribute("pageTitle", "Add establishment");
+            model.addAttribute("pageTitle", "Edit establishment");
+            model.addAttribute("pageDescription", "Update the information for this establishment.");
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             model.addAttribute("addEditOrView", "edit");
@@ -84,6 +90,7 @@ public class EstablishmentController {
         // VALIDATION END
         establishmentService.updateEstablishment(establishment);
         model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
         model.addAttribute("message", "Information was successfully updated.");
         model.addAttribute("type", "success");
         model.addAttribute("addEditOrView", "view");
@@ -94,6 +101,7 @@ public class EstablishmentController {
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(Model model, @PathVariable int id) throws IOException {
         model.addAttribute("pageTitle", "View establishment");
+        model.addAttribute("pageDescription", "All the information for this establishment.");
         model.addAttribute("establishment", establishmentService.getEstablishment(id));
         model.addAttribute("addEditOrView", "view");
         return "establishment_add_edit_view";
@@ -107,6 +115,7 @@ public class EstablishmentController {
         model.addAttribute("message", establishment.getName() + " was succesfully deleted.");
         model.addAttribute("type", "success");
         model.addAttribute("pageTitle", "Establishments");
+        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
         model.addAttribute("establishments", establishmentService.getEstablishments());
         return "establishment_list";
     }

@@ -13,6 +13,8 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message></t:title_and_message>
+                        <div class="panel panel-default">
+            <div class="panel-body">
             <script type="text/javascript">
                 $(document).ready(function ()
                 {
@@ -79,7 +81,7 @@
                 </tr>
             </tfoot>
         </table>
-
+                        </div></div>
         <t:footer/>
     </jsp:body>
 </t:menu>

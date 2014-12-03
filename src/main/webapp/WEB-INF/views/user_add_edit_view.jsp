@@ -27,6 +27,8 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
+        <div class="panel panel-default">
+            <div class="panel-body">
         <form:form method="POST" class="form-horizontal" role="form" commandName="user" action="${pageContext.request.contextPath}/user/${addEditOrView}">
 
             <!--First name start-->
@@ -223,7 +225,7 @@
                             <a href="${pageContext.request.contextPath}/user/edit/${user.id}" class="btn btn-primary">Edit information</a>
                         </c:when>
                         <c:otherwise>
-                            <form:hidden path="permissionLevel" value="4"/>
+                            <form:hidden path="permissionLevel" value="1"/>
                             <button type="submit" class="btn btn-primary">Create Account</button>
                         </c:otherwise>
                     </c:choose>
@@ -232,7 +234,9 @@
             </div>
             <!--Submit button end-->
         </form:form>
-                    <t:footer/>
+</div>
+        </div>
+        <t:footer/>
     </jsp:body>
 </t:menu>
 

@@ -9,6 +9,8 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
+                <div class="panel panel-default">
+            <div class="panel-body">
         <form:form method="POST" class="form-horizontal" role="form" commandName="user" action="${pageContext.request.contextPath}/user/login">  
 
             <div class="form-group">
@@ -27,6 +29,8 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
                 </div>
             </div>
         </form:form>

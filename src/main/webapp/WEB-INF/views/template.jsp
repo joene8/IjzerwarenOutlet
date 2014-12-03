@@ -8,7 +8,11 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
-        <!--The tag of your page-->
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <!--The tag of your page-->
+            </div>
+        </div>
         <t:footer/>
     </jsp:body>
 </t:menu>

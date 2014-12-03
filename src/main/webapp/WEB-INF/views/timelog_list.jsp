@@ -11,6 +11,8 @@ Author : How Fei Zheng
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
+                        <div class="panel panel-default">
+            <div class="panel-body">
         <table class="table table-striped">
             <tr>
                 <td>
@@ -43,6 +45,8 @@ Author : How Fei Zheng
                 <td colspan="7"><strong>Total logs ${timelogs.size()}</stong></td>
             </tr>
         </table>
+            </div>
+                        </div>
         <t:footer/>
     </jsp:body>
 </t:menu>

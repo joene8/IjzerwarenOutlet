@@ -27,6 +27,8 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
+                <div class="panel panel-default">
+            <div class="panel-body">
         <form:form method="POST" class="form-horizontal" role="form" commandName="establishment" action="${pageContext.request.contextPath}/establishment/${addEditOrView}">
 
             <!--Name start-->
@@ -179,6 +181,8 @@
             <!--Submit button end-->
 
         </form:form>
+            </div>
+                </div>
                     <t:footer/>
     </jsp:body>
 </t:menu>

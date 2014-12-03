@@ -8,10 +8,13 @@
 <%@tag description="menu" pageEncoding="UTF-8"%>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
-
-        <h2 id="pageTitle">${pageTitle}</h2>
-        <br>
-        <!--Start alert-->
+<div class="panel panel-gray" id="title">
+  <div class="panel-heading">
+    <span class="pageTitle">${pageTitle}</span>
+  </div>
+  <div class="panel-body">
+      <span class="pageDescription">${pageDescription}</span>
+            <!--Start alert-->
         <c:if test="${not empty message}">
             <div class="alert alert-${type} col-sm-4 alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -19,5 +22,7 @@
             </div> 
         </c:if>
         <!--End alert-->
-                <div class="clearfix"></div>
-                        <h5>${pageDescription}</h5>
+  </div>
+</div>
+
+                        
