@@ -27,22 +27,43 @@ public class ProductController {
     @RequestMapping(value = "/list")
     public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "Products");
+        model.addAttribute("pageDescription", "Browse through all of our poducts here.");
         model.addAttribute("products", productService.getProducts());
         return "product_list";
     }
-    
-        // LIST TABLE
+
+    // LIST TABLE
     @RequestMapping(value = "/table")
     public String listTable(Model model) throws IOException {
         model.addAttribute("pageTitle", "Products");
+        model.addAttribute("pageDescription", "Add, edit, delete or view a product.");
         model.addAttribute("products", productService.getProducts());
         return "product_list_table";
+    }
+
+    // ADD STEP 1 LOAD
+    @RequestMapping(value = "/add_step_1", method = RequestMethod.GET)
+    public String loadAddStep1(Model model) throws IOException {
+        model.addAttribute("pageTitle", "Add product");
+        model.addAttribute("pageDescription", "Enter the item number of the product you would like to add.");
+        return "product_add_step_1";
+    }
+
+    // ADD STEP 1 SUBMIT
+    @RequestMapping(value = "/add_step_1", method = RequestMethod.POST)
+    public String submitAddStep1(@RequestParam(value = "itemNumber") String itemNumber, Model model) throws IOException {
+        model.addAttribute("pageTitle", "Add product");
+        model.addAttribute("pageDescription", "Enter the item number of the product you would like to add.");
+        model.addAttribute("message", "No product with item number: " + itemNumber + " was found in the STIHO database.");
+        model.addAttribute("type", "danger");
+        return "product_add_step_1";
     }
 
     // ADD LOAD
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String loadAdd(Model model) throws IOException {
         model.addAttribute("pageTitle", "Add product");
+        model.addAttribute("pageDescription", "Enter the item number of the product you would like to add.");
         model.addAttribute("product", new Product());
         return "product_add";
     }
@@ -53,6 +74,7 @@ public class ProductController {
         productService.addProduct(product);
         model.addAttribute("products", productService.getProducts());
         model.addAttribute("pageTitle", "Products");
+        model.addAttribute("pageDescription", "Enter the item number of the product you would like to add.");
         model.addAttribute("message", "Product \"" + product.getName() + "\" was added succesfully.");
         model.addAttribute("type", "success");
         return "product_list";
@@ -83,32 +105,32 @@ public class ProductController {
 
         }
         model.addAttribute("pageTitle", "Products");
+        model.addAttribute("pageDescription", "All the products that matched your search criteria.");
         model.addAttribute("message", message);
         return "product_list";
     }
 
-    
     // EDIT LOAD
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editLoad(@PathVariable int id, Model model) {
         model.addAttribute("pageTitle", "Edit product");
+        model.addAttribute("pageDescription", "Update the information for this product.");
         model.addAttribute("product", productService.getProduct(id));
         return "product_edit";
     }
 
-    
     // EDIT SUBMIT
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editSubmit(@ModelAttribute("product") Product product, Model model) {
         productService.updateProduct(product);
         model.addAttribute("products", productService.getProducts());
         model.addAttribute("pageTitle", "Products");
+        model.addAttribute("pageDescription", "Add, edit, delete or view a product.");
         model.addAttribute("message", product.getName() + " was succesfully edited.");
         model.addAttribute("type", "success");
         return "product_list";
     }
 
-    
     // DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable int id, Model model) {
@@ -116,6 +138,7 @@ public class ProductController {
         productService.deleteProduct(id);
         model.addAttribute("products", productService.getProducts());
         model.addAttribute("pageTitle", "Products");
+        model.addAttribute("pageDescription", "Add, edit, delete or view a product.");
         model.addAttribute("message", product.getName() + " was succesfully deleted.");
         model.addAttribute("type", "success");
         return "product_list";

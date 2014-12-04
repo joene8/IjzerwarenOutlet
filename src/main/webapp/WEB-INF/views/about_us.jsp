@@ -8,7 +8,8 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
-        Our information etcetera
+        <!--Javascript menu activator-->
+        <script>activeMenu("about_us");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>

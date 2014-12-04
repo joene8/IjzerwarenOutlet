@@ -56,6 +56,8 @@
 
 
         </form:form>
+                <!--Javascript menu activator-->
+        <script>activeMenu("products");</script>
                 <t:footer/>
     </jsp:body>
 </t:menu>

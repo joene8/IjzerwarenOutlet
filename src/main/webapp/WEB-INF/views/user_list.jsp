@@ -82,6 +82,8 @@
             </tfoot>
         </table>
                         </div></div>
+                                        <!--Javascript menu activator-->
+        <script>activeMenu("users");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>

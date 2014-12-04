@@ -31,7 +31,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loadLogin(Model model) throws IOException {
         model.addAttribute("pageTitle", "Login");
-        model.addAttribute("pageDescription", "Please enter your email and password");
+        model.addAttribute("pageDescription", "Enter your email and password.");
         model.addAttribute("user", new User());
         return "user_login";
     }
@@ -49,15 +49,17 @@ public class UserController {
 
                     //Add attributes to the request object
                     model.addAttribute("pageTitle", "Welcome " + u.getFirstName() + " " + u.getLastName());
-                    model.addAttribute("message", "Successfully logged in");
+                    model.addAttribute("message", "Successfully logged in.");
                     model.addAttribute("type", "success");
                     request.getSession().setAttribute("currentUser", u);
                     return "index";
                 }
             }
         }
+        user.setPassword("");
         model.addAttribute("pageTitle", "Login");
-        model.addAttribute("message", "Email/password was incorrect");
+        model.addAttribute("pageDescription", "Enter your email and password.");
+        model.addAttribute("message", "The combination of email and password was incorrect.");
         model.addAttribute("type", "danger");
         return "user_login";
 
@@ -81,10 +83,12 @@ public class UserController {
     public String loadAdd(Model model, HttpServletRequest request) throws IOException {
         if (request.getSession().getAttribute("currentUser") != null) {
             model.addAttribute("pageTitle", "Add user");
+            model.addAttribute("pageDescription", "Enter the information for the new user.");
         } else {
             model.addAttribute("pageTitle", "Register");
+            model.addAttribute("pageDescription", "Enter your information.");
         }
-        model.addAttribute("pageDescription", "Please enter your information");
+        
         model.addAttribute("user", new User());
         model.addAttribute("addEditOrView", "add");
         return "user_add_edit_view";
@@ -98,9 +102,12 @@ public class UserController {
         if (model.containsAttribute("anyErrors")) {
             if (request.getSession().getAttribute("currentUser") != null) {
                 model.addAttribute("pageTitle", "Add user");
+                model.addAttribute("pageDescription", "Enter the information for the new user.");
             } else {
                 model.addAttribute("pageTitle", "Register");
+                model.addAttribute("pageDescription", "Enter your information.");
             }
+            user.setPassword("");
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             model.addAttribute("addEditOrView", "add");
@@ -111,6 +118,7 @@ public class UserController {
         if (request.getSession().getAttribute("currentUser") != null) {
             model.addAttribute("users", userService.getUsers());
             model.addAttribute("pageTitle", "Users");
+            model.addAttribute("pageDescription", "Add, edit, delete or view a user.<br>You can also give a user new permissions or change their establishment.");
             model.addAttribute("message", "User was successfully added.");
             model.addAttribute("type", "success");
             return "user_list";
@@ -118,6 +126,7 @@ public class UserController {
         request.getSession().setAttribute("currentUser", user);
         model.addAttribute("pageTitle", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("message", "Account was successfully registered.");
+        model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
         model.addAttribute("type", "success");
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
@@ -130,10 +139,11 @@ public class UserController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String loadEdit(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
         if (id == ((User) request.getSession().getAttribute("currentUser")).getId()) {
-            model.addAttribute("pageTitle", "My account");
-            model.addAttribute("pageDescription", "Please update your information");
+            model.addAttribute("pageTitle", "Edit account");
+            model.addAttribute("pageDescription", "Update your information.");
         } else {
             model.addAttribute("pageTitle", "Edit user");
+            model.addAttribute("pageDescription", "Update the information for this product.");
         }
         model.addAttribute("user", userService.getUser(id));
         model.addAttribute("addEditOrView", "edit");
@@ -147,7 +157,13 @@ public class UserController {
         // VALIDATION START
         model = validate(model, user);
         if (model.containsAttribute("anyErrors")) {
-            model.addAttribute("pageTitle", "Edit account");
+                     if (request.getSession().getAttribute("currentUser") != null) {
+                model.addAttribute("pageTitle", "Edit user");
+                model.addAttribute("pageDescription", "Enter the information for the new user.");
+            } else {
+                model.addAttribute("pageTitle", "Edit account");
+                model.addAttribute("pageDescription", "Enter your information.");
+            }
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             model.addAttribute("addEditOrView", "edit");
@@ -158,8 +174,10 @@ public class UserController {
         if (user.getId() == ((User) request.getSession().getAttribute("currentUser")).getId()) {
             request.getSession().setAttribute("currentUser", user);
             model.addAttribute("pageTitle", "My account");
+            model.addAttribute("pageDescription", "All your information.");
         } else {
             model.addAttribute("pageTitle", "View user");
+            model.addAttribute("pageDescription", "All the information for this establishment.");
         }
         model.addAttribute("message", "Information was succesfully updated.");
         model.addAttribute("type", "success");
@@ -172,8 +190,10 @@ public class UserController {
     public String view(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
         if (id == ((User) request.getSession().getAttribute("currentUser")).getId()) {
             model.addAttribute("pageTitle", "My account");
+            model.addAttribute("pageDescription", "All your information.");
         } else {
             model.addAttribute("pageTitle", "View user");
+            model.addAttribute("pageDescription", "All the information for this establishment.");
         }
         model.addAttribute("user", (userService.getUser(id)));
         model.addAttribute("addEditOrView", "view");
@@ -184,6 +204,7 @@ public class UserController {
     @RequestMapping(value = "/list")
     public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "Users");
+        model.addAttribute("pageDescription", "Add, edit, delete or view a user.<br>You can also give a user new permissions or change their establishment.");
         model.addAttribute("users", userService.getUsers());
         return "user_list";
     }
@@ -202,6 +223,7 @@ public class UserController {
             model.addAttribute("type", "success");
         }
         model.addAttribute("pageTitle", "Users");
+        model.addAttribute("pageDescription", "Add, edit, delete or view a user.<br>You can also give a user new permissions or change their establishment.");
         model.addAttribute("users", userService.getUsers());
         return "user_list";
     }
@@ -222,6 +244,7 @@ public class UserController {
             model.addAttribute("type", "success");
         }
         model.addAttribute("pageTitle", "Users");
+        model.addAttribute("pageDescription", "Add, edit, delete or view a user.<br>You can also give a user new permissions or change their establishment.");
         return "user_list";
     }
 

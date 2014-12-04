@@ -94,6 +94,8 @@
                     <div class="row"></div>
                         <a href="${pageContext.request.contextPath}/product/table" class="clearfix btn btn-sm btn-primary">List View</a>
         <a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-primary">Add product</a>
+                        <!--Javascript menu activator-->
+        <script>activeMenu("products");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>

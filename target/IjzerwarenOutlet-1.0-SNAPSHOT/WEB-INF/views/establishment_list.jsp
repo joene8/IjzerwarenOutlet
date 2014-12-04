@@ -72,6 +72,8 @@
         </table>
                 </div>
         </div>
+                    <!--Javascript menu activator-->
+        <script>activeMenu("establishments");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>

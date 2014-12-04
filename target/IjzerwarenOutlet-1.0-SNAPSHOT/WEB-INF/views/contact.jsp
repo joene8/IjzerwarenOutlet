@@ -826,6 +826,8 @@
   </div> 
         </div>
             </div>
+               <!--Javascript menu activator-->
+        <script>activeMenu("contact");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>

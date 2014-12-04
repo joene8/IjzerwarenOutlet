@@ -12,6 +12,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
         <script src="https://dl.dropboxusercontent.com/u/35106986/jquery.tablesorter.js"></script>
         <script src="https://dl.dropboxusercontent.com/u/35106986/js/vendor/modernizr.js"></script>
+        <script src="https://dl.dropboxusercontent.com/u/35106986/js/our_script.js"></script>
         
         
                 <!-- Bootstrap -->

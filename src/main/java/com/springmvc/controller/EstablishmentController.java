@@ -26,7 +26,7 @@ public class EstablishmentController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "Establishments");
-        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
+        model.addAttribute("pageDescription", "Add, edit, delete or view an establishments.");
         model.addAttribute("establishments", establishmentService.getEstablishments());
         return "establishment_list";
     }
@@ -57,7 +57,7 @@ public class EstablishmentController {
         // VALIDATION END
         establishmentService.addEstablishment(establishment);
         model.addAttribute("pageTitle", "Establishments");
-        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
+        model.addAttribute("pageDescription", "Add, edit, delete or view an establishments.");
         model.addAttribute("message", establishment.getName() + " was succesfully added.");
         model.addAttribute("type", "success");
         model.addAttribute("establishments", establishmentService.getEstablishments());
@@ -90,7 +90,7 @@ public class EstablishmentController {
         // VALIDATION END
         establishmentService.updateEstablishment(establishment);
         model.addAttribute("pageTitle", "Establishments");
-        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
+        model.addAttribute("pageDescription", "Add, edit, delete or view an establishments.");
         model.addAttribute("message", "Information was successfully updated.");
         model.addAttribute("type", "success");
         model.addAttribute("addEditOrView", "view");
@@ -115,7 +115,7 @@ public class EstablishmentController {
         model.addAttribute("message", establishment.getName() + " was succesfully deleted.");
         model.addAttribute("type", "success");
         model.addAttribute("pageTitle", "Establishments");
-        model.addAttribute("pageDescription", "Add, edit or view all our Establishments.");
+        model.addAttribute("pageDescription", "Add, edit, delete or view an establishments.");
         model.addAttribute("establishments", establishmentService.getEstablishments());
         return "establishment_list";
     }

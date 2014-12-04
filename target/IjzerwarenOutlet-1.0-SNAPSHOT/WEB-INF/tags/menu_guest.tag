@@ -31,7 +31,7 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li>
+                            <li id="products">
                                 <a href="${pageContext.request.contextPath}/product/list">Products</a>
                             </li>
                             <li class="dropdown">
@@ -43,10 +43,10 @@
                                     <li><a href="http://www.bouwmaat.nl/">Bouwmaat</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li id="about_us">
                                 <a href="${pageContext.request.contextPath}/about_us">About us</a>
                             </li>
-                            <li>
+                            <li id="contact">
                                 <a href="${pageContext.request.contextPath}/contact">Contact</a>
                             </li>
                             <form:form class="navbar-form navbar-left"  action="${pageContext.request.contextPath}/product/search"  method="GET" role="search">
@@ -55,15 +55,14 @@
                                 </div>
                                 <button type="submit" class="btn btn-default">Submit</button>
                             </form:form>
-                            <ul class="nav navbar-nav navbar-right">
-                                                <li>
-                                                    <a href="${pageContext.request.contextPath}/user/login">Login</a>
-                                                </li>
-                                                <li>
-                                                    <a href="${pageContext.request.contextPath}/user/add">Register</a>
-                                                </li>
-                                    </ul>
-                            </ul>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li id="login">
+                                <a href="${pageContext.request.contextPath}/user/login">Login</a>
+                            </li>
+                            <li id="register">
+                                <a href="${pageContext.request.contextPath}/user/add">Register</a>
+                            </li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>

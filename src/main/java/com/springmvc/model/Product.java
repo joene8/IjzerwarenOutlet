@@ -80,8 +80,8 @@ public class Product implements Serializable {
         return picture;
     }
 
-    public void setPicture(String Picture) {
-        this.picture = Picture;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public double getChosenPrice() {

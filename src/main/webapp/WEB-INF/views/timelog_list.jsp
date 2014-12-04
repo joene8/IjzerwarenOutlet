@@ -47,6 +47,8 @@ Author : How Fei Zheng
         </table>
             </div>
                         </div>
+                            <!--Javascript menu activator-->
+        <script>activeMenu("timelogs");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>

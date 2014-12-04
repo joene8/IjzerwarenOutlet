@@ -31,11 +31,8 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/product/list">Products</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/user/list">Users</a>
+                            <li id="products">
+                                <a href="${pageContext.request.contextPath}/product/table">Products</a>
                             </li>
                             <form:form class="navbar-form navbar-left"  action="${pageContext.request.contextPath}/product/search"  method="GET" role="search">
                                 <div class="form-group">
@@ -43,18 +40,20 @@
                                 </div>
                                 <button type="submit" class="btn btn-default">Submit</button>
                             </form:form>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${currentUser.firstName} <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                                <li><a href="${pageContext.request.contextPath}/user/view/${currentUser.id}">My account</a></li>
-                                        <li><a href="#">My order history</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="${pageContext.request.contextPath}/user/logout">Logout</a></li>
-
-                                    </ul>
-                            </ul>
                         </ul>
+                        <!--Account begin-->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${currentUser.firstName} <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="${pageContext.request.contextPath}/user/view/${currentUser.id}">My account</a></li>
+                                    <li><a href="#">My order history</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="${pageContext.request.contextPath}/user/logout">Logout</a></li>
+
+                                </ul>
+                        </ul>
+                        <!--Account end-->
 
                     </div><!--/.nav-collapse -->
                 </div>

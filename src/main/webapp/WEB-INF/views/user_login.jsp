@@ -9,31 +9,33 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
-                <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-body">
-        <form:form method="POST" class="form-horizontal" role="form" commandName="user" action="${pageContext.request.contextPath}/user/login">  
+                <form:form method="POST" class="form-horizontal" role="form" commandName="user" action="${pageContext.request.contextPath}/user/login">  
 
-            <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-2">
-                    <form:input required="required" path="email" class="form-control" id="email"/> 
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-2">
+                            <form:input required="required" path="email" class="form-control" id="email"/> 
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="password" class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-2">
-                    <form:input required="required" path="password" class="form-control" id="password" type="password"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-2">
+                            <form:input required="required" path="password" class="form-control" id="password" type="password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form:form>
-            <t:footer/>
+        <!--Javascript menu activator-->
+        <script>activeMenu("login");</script>
+        <t:footer/>
     </jsp:body>        
 </t:menu>

@@ -57,6 +57,8 @@
             </tfoot>
         </table>
             <a href="${pageContext.request.contextPath}/product/list" class="btn btn-xs-primary">Thumbnail View</a>
+                            <!--Javascript menu activator-->
+        <script>activeMenu("products");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>
