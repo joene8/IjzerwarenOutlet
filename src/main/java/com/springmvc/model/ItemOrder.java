@@ -2,6 +2,7 @@ package com.springmvc.model;
 
 import java.util.Calendar;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.TimeZone;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,16 @@ public class ItemOrder implements Serializable {
     private float totalPrice;
     private float shippingCosts;
     private Calendar date;
-    private User user;
+    private Time time;
+    private boolean delivery;
+    private String destination;
+    private boolean ready;
+    private String handledBy;
+    private int user;
+    private int product;
+    private int establishment;
+
+
 //    @ManyToOne
 //    private ProductEstablishment productEstablishment;
 
@@ -37,14 +47,6 @@ public class ItemOrder implements Serializable {
     }
 
     // Getters and setters for the different attributes of this model 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public int getId() {
         return id;
     }
@@ -85,11 +87,68 @@ public class ItemOrder implements Serializable {
         date = Calendar.getInstance(tz);
     }
 
-//    public ProductEstablishment getProductEstablishment() {
-//        return productEstablishment;
-//    }
-//
-//    public void setProductEstablishment(ProductEstablishment productEstablishment) {
-//        this.productEstablishment = productEstablishment;
-//    }    
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public boolean isDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(boolean delivery) {
+        this.delivery = delivery;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
+
+    public String getHandledBy() {
+        return handledBy;
+    }
+
+    public void setHandledBy(String handledBy) {
+        this.handledBy = handledBy;
+    }
+
+    public int getUser() {
+        return user;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
+    }
+
+    public int getProduct() {
+        return product;
+    }
+
+    public void setProduct(int product) {
+        this.product = product;
+    }
+
+    public int getEstablishment() {
+        return establishment;
+    }
+
+    public void setEstablishment(int establishment) {
+        this.establishment = establishment;
+    }
+
 }

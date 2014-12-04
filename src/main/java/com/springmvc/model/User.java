@@ -26,9 +26,13 @@ public class User implements Serializable {
     private String phoneNumber;
     private String password;
     private int permissionLevel;
+    private int establishment;
+
     
     @ManyToOne
     private Role role;
+    
+    
 
     // Constructor
     public User() {
@@ -139,4 +143,13 @@ public class User implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public int getEstablishment() {
+        return establishment;
+    }
+
+    public void setEstablishment(int establishment) {
+        this.establishment = establishment;
+    }
+   
 }

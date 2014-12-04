@@ -14,6 +14,7 @@ public class Product implements Serializable {
     @Id
     private int id;
     @NotNull
+    private int artikelNummer;
     private String name;
     private String description;
     private boolean addition;
@@ -21,6 +22,11 @@ public class Product implements Serializable {
     private String additionDescription;
     private int discountPercentage;
     private String picture;
+    private Double netThickness;
+    private Double netWidth;
+    private Double productLength;
+    private Double grossWeight;
+    private Double standardSalePrice;
     
     // Constructor
     public Product(){
@@ -91,13 +97,52 @@ public class Product implements Serializable {
     public void setChosenPrice(double chosenPrice) {
         this.chosenPrice = chosenPrice;
     }
-    
-    
-    
-    
 
-    
-    
+    public int getArtikelNummer() {
+        return artikelNummer;
+    }
 
+    public void setArtikelNummer(int artikelNummer) {
+        this.artikelNummer = artikelNummer;
+    }
 
+    public Double getNetThickness() {
+        return netThickness;
+    }
+
+    public void setNetThickness(Double netThickness) {
+        this.netThickness = netThickness;
+    }
+
+    public Double getNetWidth() {
+        return netWidth;
+    }
+
+    public void setNetWidth(Double netWidth) {
+        this.netWidth = netWidth;
+    }
+
+    public Double getProductLength() {
+        return productLength;
+    }
+
+    public void setProductLength(Double productLength) {
+        this.productLength = productLength;
+    }
+
+    public Double getGrossWeight() {
+        return grossWeight;
+    }
+
+    public void setGrossWeight(Double grossWeight) {
+        this.grossWeight = grossWeight;
+    }
+
+    public Double getStandardSalePrice() {
+        return standardSalePrice;
+    }
+
+    public void setStandardSalePrice(Double standardSalePrice) {
+        this.standardSalePrice = standardSalePrice;
+    }
 }

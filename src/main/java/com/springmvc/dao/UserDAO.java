@@ -35,7 +35,7 @@ public class UserDAO {
         userToUpdate.setPhoneNumber(user.getPhoneNumber());
         userToUpdate.setPassword(user.getPassword());
         userToUpdate.setPermissionLevel(user.getPermissionLevel());
-
+        userToUpdate.setEstablishment(user.getEstablishment());
         getCurrentSession().update(userToUpdate);
 
     }

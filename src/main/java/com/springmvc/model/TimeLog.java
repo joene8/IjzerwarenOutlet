@@ -29,7 +29,7 @@ public class TimeLog implements Serializable {
     private Timestamp logout;
     
     @NotNull
-    private int userID;
+    private int user;
 
     public TimeLog() {
 
@@ -60,11 +60,11 @@ public class TimeLog implements Serializable {
     }
 
     public int getUserID() {
-        return userID;
+        return user;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserID(int user) {
+        this.user = user;
     }
 
     

@@ -28,7 +28,6 @@ public class EstablishmentDAO {
 
     public void updateEstablishment(Establishment establishment) {
         Establishment establishmentToUpdate = getEstablishment(establishment.getId());
-        establishmentToUpdate.setId(establishment.getId());
         establishmentToUpdate.setName(establishment.getName());
         establishmentToUpdate.setCity(establishment.getCity());
         establishmentToUpdate.setPhoneNumber(establishment.getPhoneNumber());
@@ -36,7 +35,6 @@ public class EstablishmentDAO {
         establishmentToUpdate.setStreetName(establishment.getStreetName());
         establishmentToUpdate.setStreetNumber(establishment.getStreetNumber());
         establishmentToUpdate.setStreetNumberSuffix(establishment.getStreetNumberSuffix());
-//        establishmentToUpdate.setProductEstablishment(establishment.getProductEstablishment());
         
         getCurrentSession().update(establishmentToUpdate);
     }

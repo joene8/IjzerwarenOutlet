@@ -95,11 +95,4 @@ public class Establishment implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-//    public ProductEstablishment getProductEstablishment() {
-//        return productEstablishment;
-//    }
-//
-//    public void setProductEstablishment(ProductEstablishment productEstablishment) {
-//        this.productEstablishment = productEstablishment;
-//    }
 }

@@ -28,12 +28,18 @@ public class ItemOrderDAO {
 
     public void updateItemOrder(ItemOrder itemOrder) {
         ItemOrder itemOrderToUpdate = getItemOrder(itemOrder.getId());
-        itemOrderToUpdate.setUser(itemOrder.getUser());
-        itemOrderToUpdate.setId(itemOrder.getId());
         itemOrderToUpdate.setDate();
         itemOrderToUpdate.setAmount(itemOrder.getAmount());
         itemOrderToUpdate.setTotalPrice(itemOrder.getTotalPrice());
         itemOrderToUpdate.setShippingCosts(itemOrder.getShippingCosts());
+        itemOrderToUpdate.setDelivery(itemOrder.isDelivery());
+        itemOrderToUpdate.setDestination(itemOrder.getDestination());
+        itemOrderToUpdate.setReady(itemOrder.isReady());
+        itemOrderToUpdate.setHandledBy(itemOrder.getHandledBy());
+        itemOrderToUpdate.setUser(itemOrder.getUser());
+        itemOrderToUpdate.setProduct(itemOrder.getProduct());
+        itemOrderToUpdate.setEstablishment(itemOrder.getEstablishment());
+        
 //        itemOrderToUpdate.setProductEstablishment(order.getProductEstablishment());
         getCurrentSession().update(itemOrderToUpdate);
     }
