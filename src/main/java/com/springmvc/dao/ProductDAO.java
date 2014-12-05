@@ -26,9 +26,6 @@ public class ProductDAO {
         productToUpdate.setArtikelNummer(product.getArtikelNummer());
         productToUpdate.setName(product.getName());
         productToUpdate.setDescription(product.getDescription());
-        productToUpdate.setAddition(product.isAddition());
-        productToUpdate.setAdditionDescription(product.getAdditionDescription());
-        productToUpdate.setDiscountPercentage(product.getDiscountPercentage());
         productToUpdate.setPicture(product.getPicture());
         productToUpdate.setNetThickness(product.getNetThickness());
         productToUpdate.setNetWidth(product.getNetWidth());

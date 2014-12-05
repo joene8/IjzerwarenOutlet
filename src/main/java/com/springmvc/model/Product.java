@@ -17,10 +17,6 @@ public class Product implements Serializable {
     private int artikelNummer;
     private String name;
     private String description;
-    private boolean addition;
-    private double chosenPrice;
-    private String additionDescription;
-    private int discountPercentage;
     private String picture;
     private Double netThickness;
     private Double netWidth;
@@ -58,44 +54,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public boolean isAddition() {
-        return addition;
-    }
-
-    public void setAddition(boolean addition) {
-        this.addition = addition;
-    }
-
-    public String getAdditionDescription() {
-        return additionDescription;
-    }
-
-    public void setAdditionDescription(String additionDescription) {
-        this.additionDescription = additionDescription;
-    }
-
-    public int getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public void setDiscountPercentage(int discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
     public String getPicture() {
         return picture;
     }
 
     public void setPicture(String picture) {
         this.picture = picture;
-    }
-
-    public double getChosenPrice() {
-        return chosenPrice;
-    }
-
-    public void setChosenPrice(double chosenPrice) {
-        this.chosenPrice = chosenPrice;
     }
 
     public int getArtikelNummer() {
