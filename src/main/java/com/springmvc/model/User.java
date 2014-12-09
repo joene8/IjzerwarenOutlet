@@ -1,11 +1,13 @@
 package com.springmvc.model;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,7 +30,8 @@ public class User implements Serializable {
     private int permissionLevel;
     private int establishment;
 
-    
+    @OneToMany(mappedBy="user")
+    private Set<TimeLog> timeLog;
     @ManyToOne
     private Role role;
     
@@ -150,6 +153,14 @@ public class User implements Serializable {
 
     public void setEstablishment(int establishment) {
         this.establishment = establishment;
+    }
+
+    public Set<TimeLog> getTimeLog() {
+        return timeLog;
+    }
+
+    public void setTimeLog(Set<TimeLog> timeLog) {
+        this.timeLog = timeLog;
     }
    
 }

@@ -8,6 +8,7 @@ package com.springmvc.dao;
 import com.springmvc.model.TimeLog;
 import com.springmvc.model.User;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,10 +36,10 @@ public class TimeLogDAO {
     public void updateLogin(TimeLog timeLog, User user) {
         TimeLog timeLogToUpdate = getTimeLog(timeLog.getId());
 
-        java.util.Date date = new java.util.Date();
+        Date date = new Date();
         Timestamp time = new Timestamp(date.getTime());
         timeLogToUpdate.setLogin(time);
-        timeLogToUpdate.setUserID(user.getId());
+        timeLogToUpdate.setUser(user);
 
         getCurrentSession().update(timeLogToUpdate);
     }
@@ -46,7 +47,7 @@ public class TimeLogDAO {
     public void updateLogout(TimeLog timeLog) {
         TimeLog timeLogToUpdate = getTimeLog(timeLog.getId());
 
-        java.util.Date date = new java.util.Date();
+        Date date = new Date();
         Timestamp time = new Timestamp(date.getTime());
         timeLogToUpdate.setLogout(time);
         

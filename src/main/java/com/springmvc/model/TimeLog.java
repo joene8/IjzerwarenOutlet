@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -31,7 +33,9 @@ public class TimeLog implements Serializable {
     private String duration;
     
     @NotNull
-    private int user;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     public TimeLog() {
 
@@ -69,14 +73,12 @@ public class TimeLog implements Serializable {
         this.duration = duration;
     }
 
-    public int getUserID() {
+    public User getUser() {
         return user;
     }
 
-    public void setUserID(int user) {
+    public void setUser(User user) {
         this.user = user;
     }
-
-    
 
 }
