@@ -25,6 +25,9 @@ Author : How Fei Zheng
                     <strong>Logout</strong>
                 </td>
                 <td>
+                    <strong>Duration</strong>
+                </td>
+                <td>
                     <strong>UserID</strong>
                 </td> </tr>
             <c:choose>
@@ -36,6 +39,7 @@ Author : How Fei Zheng
                             <td>${timelog.id}</td>
                             <td>${timelog.login}</td>
                             <td>${timelog.logout}</td>
+                            <td>${timelog.duration}</td>
                             <td>${timelog.userID}</td>
                         </tr>
                     </c:forEach>

@@ -49,7 +49,18 @@ public class TimeLogDAO {
         java.util.Date date = new java.util.Date();
         Timestamp time = new Timestamp(date.getTime());
         timeLogToUpdate.setLogout(time);
-
+        
+        Timestamp login = timeLogToUpdate.getLogin();
+        long diff = Math.abs(login.getTime() - time.getTime());
+        
+        long second = (diff / 1000) % 60;
+        long minute = (diff / (1000 * 60)) % 60;
+        long hour = (diff / (1000 * 60 * 60)) % 24;
+        long day = (diff / (1000 * 60 * 60 * 24));
+        String toString = String.format("%02dd:%02dh:%02dm:%02ds", day, hour, minute, second, diff);
+        timeLogToUpdate.setDuration(toString);
+        
+        
         getCurrentSession().update(timeLogToUpdate);
     }
 

@@ -27,6 +27,8 @@ public class TimeLog implements Serializable {
     private Timestamp login;
     @NotNull
     private Timestamp logout;
+    @NotNull
+    private String duration;
     
     @NotNull
     private int user;
@@ -57,6 +59,14 @@ public class TimeLog implements Serializable {
 
     public void setLogout(Timestamp logout) {
         this.logout = logout;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public int getUserID() {

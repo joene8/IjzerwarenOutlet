@@ -6,6 +6,7 @@ import com.springmvc.model.Validation;
 import com.springmvc.service.TimeLogService;
 import com.springmvc.service.UserService;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -75,6 +76,7 @@ public class UserController {
         model.addAttribute("type", "success");
         //REGISTER LOGOUT
         timeLogService.updateLogout(t);
+        
         return "user_login";
     }
 
@@ -88,7 +90,7 @@ public class UserController {
             model.addAttribute("pageTitle", "Register");
             model.addAttribute("pageDescription", "Enter your information.");
         }
-        
+
         model.addAttribute("user", new User());
         model.addAttribute("addEditOrView", "add");
         return "user_add_edit_view";
@@ -131,7 +133,7 @@ public class UserController {
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
         timeLogService.updateLogin(t, user);
-        
+
         return "index";
     }
 
@@ -157,7 +159,7 @@ public class UserController {
         // VALIDATION START
         model = validate(model, user);
         if (model.containsAttribute("anyErrors")) {
-                     if (request.getSession().getAttribute("currentUser") != null) {
+            if (request.getSession().getAttribute("currentUser") != null) {
                 model.addAttribute("pageTitle", "Edit user");
                 model.addAttribute("pageDescription", "Enter the information for the new user.");
             } else {
