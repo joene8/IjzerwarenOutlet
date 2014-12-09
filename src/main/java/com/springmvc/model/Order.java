@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -30,9 +31,12 @@ public class Order implements Serializable {
     private String destination;
     private boolean ready;
     private String handledBy;
-    private int user;
     private int product;
     private int establishment;
+    
+    @ManyToOne
+    @JoinColumn(name="user")
+    private User user;
 
 
 //    @ManyToOne
@@ -127,14 +131,6 @@ public class Order implements Serializable {
         this.handledBy = handledBy;
     }
 
-    public int getUser() {
-        return user;
-    }
-
-    public void setUser(int user) {
-        this.user = user;
-    }
-
     public int getProduct() {
         return product;
     }
@@ -149,6 +145,14 @@ public class Order implements Serializable {
 
     public void setEstablishment(int establishment) {
         this.establishment = establishment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

@@ -32,6 +32,8 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy="user")
     private Set<TimeLog> timeLog;
+    @OneToMany(mappedBy="user")
+    private Set<Order> order;
     @ManyToOne
     private Role role;
     
@@ -161,6 +163,14 @@ public class User implements Serializable {
 
     public void setTimeLog(Set<TimeLog> timeLog) {
         this.timeLog = timeLog;
+    }
+
+    public Set<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order) {
+        this.order = order;
     }
    
 }
