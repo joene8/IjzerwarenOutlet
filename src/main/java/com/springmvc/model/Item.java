@@ -6,42 +6,61 @@
 package com.springmvc.model;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author jaron
  */
-@Entity @IdClass(ItemPK.class)
+@Entity
 public class Item implements Serializable {
+
     @Id
-    private int product;
-    @Id
-    private int establishment;
+    @GeneratedValue
+    private int id;
     private float chosenPrice;
     private int stock;
     private boolean addition;
     private String additionDescription;
     private int discountPercentage;
 
+    @ManyToOne
+    private Product product;
+    @ManyToOne
+    private Establishment establishment;
+    
+    @OneToMany(mappedBy="item")
+    private Set<ItemOrder> itemOrder;
+
     public Item() {
     }
 
-    public int getProduct() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(int product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
-    public int getEstablishment() {
+    public Establishment getEstablishment() {
         return establishment;
     }
 
-    public void setEstablishment(int establishment) {
+    public void setEstablishment(Establishment establishment) {
         this.establishment = establishment;
     }
 
@@ -60,7 +79,7 @@ public class Item implements Serializable {
     public void setStock(int stock) {
         this.stock = stock;
     }
-    
+
     public boolean isAddition() {
         return addition;
     }
@@ -84,5 +103,13 @@ public class Item implements Serializable {
     public void setDiscountPercentage(int discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
-    
+
+    public Set<ItemOrder> getItemOrder() {
+        return itemOrder;
+    }
+
+    public void setItemOrder(Set<ItemOrder> itemOrder) {
+        this.itemOrder = itemOrder;
+    }
+
 }

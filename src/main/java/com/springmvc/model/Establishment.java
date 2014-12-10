@@ -1,10 +1,12 @@
 package com.springmvc.model;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,9 +25,9 @@ public class Establishment implements Serializable {
     private String postalCode;
     private String city;
     private int phoneNumber;
-//    @OneToMany
-//    private ProductEstablishment productEstablishment;
-
+    
+    @OneToMany(mappedBy="establishment")
+    private Set<User> user;
     // Constructor
     public Establishment() {
     }
@@ -94,5 +96,14 @@ public class Establishment implements Serializable {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public Set<User> getUser() {
+        return user;
+    }
+
+    public void setUser(Set<User> user) {
+        this.user = user;
+    }
+
 
 }

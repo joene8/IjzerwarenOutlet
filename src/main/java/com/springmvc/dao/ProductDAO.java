@@ -23,7 +23,7 @@ public class ProductDAO {
 
     public void updateProduct(Product product) {
         Product productToUpdate = getProduct(product.getId());
-        productToUpdate.setArtikelNummer(product.getArtikelNummer());
+        productToUpdate.setProductNumber(product.getProductNumber());
         productToUpdate.setName(product.getName());
         productToUpdate.setDescription(product.getDescription());
         productToUpdate.setPicture(product.getPicture());

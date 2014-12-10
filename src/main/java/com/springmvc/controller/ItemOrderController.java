@@ -1,8 +1,8 @@
 package com.springmvc.controller;
 
 
-import com.springmvc.model.Order;
-import com.springmvc.service.OrderService;
+import com.springmvc.model.ItemOrder;
+import com.springmvc.service.ItemOrderService;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -19,19 +19,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-@RequestMapping(value = "/order")
-public class OrderController {
+@RequestMapping(value = "/itemOrder")
+public class ItemOrderController {
 
     @Autowired
-    private OrderService orderService;
+    private ItemOrderService itemOrderService;
 
     // HISTORY
     @RequestMapping(value = "/history", method = RequestMethod.GET)
     public String history(Model model) throws IOException {
-        model.addAttribute("pageTitle", "Order History");
-        model.addAttribute("pageDescription", "View or delete your orders.");
-//        model.addAttribute("orders", orderService.getOrders());
-        model.addAttribute("orders", new ArrayList<Order>());
-        return "order_history";
+        model.addAttribute("pageTitle", "ItemOrder History");
+        model.addAttribute("pageDescription", "View or delete your itemOrders.");
+//        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+        model.addAttribute("itemOrders", new ArrayList<ItemOrder>());
+        return "itemOrder_history";
     }
 }

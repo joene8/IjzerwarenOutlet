@@ -28,12 +28,13 @@ public class User implements Serializable {
     private String phoneNumber;
     private String password;
     private int permissionLevel;
-    private int establishment;
 
     @OneToMany(mappedBy="user")
     private Set<TimeLog> timeLog;
     @OneToMany(mappedBy="user")
-    private Set<Order> order;
+    private Set<ItemOrder> itemOrder;
+    @ManyToOne
+    private Establishment establishment;
     @ManyToOne
     private Role role;
     
@@ -149,12 +150,12 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public int getEstablishment() {
-        return establishment;
+    public Set<ItemOrder> getItemOrder() {
+        return itemOrder;
     }
 
-    public void setEstablishment(int establishment) {
-        this.establishment = establishment;
+    public void setItemOrder(Set<ItemOrder> itemOrder) {
+        this.itemOrder = itemOrder;
     }
 
     public Set<TimeLog> getTimeLog() {
@@ -165,12 +166,16 @@ public class User implements Serializable {
         this.timeLog = timeLog;
     }
 
-    public Set<Order> getOrder() {
-        return order;
+
+
+    public Establishment getEstablishment() {
+        return establishment;
     }
 
-    public void setOrder(Set<Order> order) {
-        this.order = order;
+    public void setEstablishment(Establishment establishment) {
+        this.establishment = establishment;
     }
+
+
    
 }

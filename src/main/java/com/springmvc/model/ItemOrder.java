@@ -1,14 +1,12 @@
 package com.springmvc.model;
 
-import java.util.Calendar;
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 import java.util.TimeZone;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -17,7 +15,7 @@ import javax.persistence.Transient;
  * @author gebak_000
  */
 @Entity
-public class Order implements Serializable {
+public class ItemOrder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,29 +23,25 @@ public class Order implements Serializable {
     private int amount;
     private float totalPrice;
     private float shippingCosts;
-    private Calendar date;
-    private Time time;
+    private Date date;
     private boolean delivery;
     private String destination;
     private boolean ready;
     private String handledBy;
-    private int product;
-    private int establishment;
     
     @ManyToOne
-    @JoinColumn(name="user")
     private User user;
+    
+    @ManyToOne
+    private Item item;
 
-
-//    @ManyToOne
-//    private ProductEstablishment productEstablishment;
 
     /*the TimeZone is no attribute for the order but is needed to get the current date.*/
     @Transient
     private TimeZone tz = TimeZone.getTimeZone("Europe/Amsterdam");
 
     // Constructor
-    public Order() {
+    public ItemOrder() {
     }
 
     // Getters and setters for the different attributes of this model 
@@ -83,20 +77,12 @@ public class Order implements Serializable {
         this.shippingCosts = shippingCosts;
     }
 
-    public Calendar getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate() {
-        date = Calendar.getInstance(tz);
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public boolean isDelivery() {
@@ -131,28 +117,20 @@ public class Order implements Serializable {
         this.handledBy = handledBy;
     }
 
-    public int getProduct() {
-        return product;
-    }
-
-    public void setProduct(int product) {
-        this.product = product;
-    }
-
-    public int getEstablishment() {
-        return establishment;
-    }
-
-    public void setEstablishment(int establishment) {
-        this.establishment = establishment;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
 }

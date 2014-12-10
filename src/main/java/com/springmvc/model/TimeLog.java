@@ -34,7 +34,6 @@ public class TimeLog implements Serializable {
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name="user")
     private User user;
 
     public TimeLog() {

@@ -16,30 +16,30 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ItemService {
     @Autowired
-    private ItemDAO productEstablishmentDAO;
+    private ItemDAO itemDAO;
     
     
-    public void addProductEstablishment(Item productEstablishment) {
-        productEstablishmentDAO.addProductEstablishment(productEstablishment);
+    public void addItem(Item item) {
+        itemDAO.addItem(item);
     }
 
-    public void updateProductEstablishment(Item productEstablishment) {
-        productEstablishmentDAO.updateProductEstablishment(productEstablishment);
+    public void updateItem(Item item) {
+        itemDAO.updateItem(item);
     }
 
-    public Item getProductEstablishment(int id) {
-        return productEstablishmentDAO.getProductEstablishment(id);
+    public Item getItem(int id) {
+        return itemDAO.getItem(id);
     }
 
-    public void deleteProductEstablishment(int id) {
-        productEstablishmentDAO.deleteProductEstablishment(id);
+    public void deleteItem(int id) {
+        itemDAO.deleteItem(id);
     }
 
-    public List<Item> getProductEstablishments() {
-        return productEstablishmentDAO.getProductEstablishments();
+    public List<Item> getItems() {
+        return itemDAO.getItems();
     }
 
-    public void storeAllProductEstablishments(List<Item> productEstablishments) {
-        productEstablishmentDAO.StoreAllProductEstablishments(productEstablishments);
+    public void storeAllItems(List<Item> items) {
+        itemDAO.StoreAllItems(items);
     }
 }

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +22,9 @@ public class StihoArtikel {
     private double artikelLengte;
     private double brutoGewicht;
     private double standaardVerkoopprijs;
+    
+    @OneToOne(mappedBy = "productNumber")
+    private Product product;
 
     // Constructor
     public StihoArtikel() {
@@ -83,5 +87,15 @@ public class StihoArtikel {
     public void setStandaardVerkoopprijs(double standaardVerkoopprijs) {
         this.standaardVerkoopprijs = standaardVerkoopprijs;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    
+    
 
 }

@@ -24,39 +24,43 @@ public class ItemDAO {
      private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
-      public void addProductEstablishment(Item ProductEstablishment) {
-        getCurrentSession().save(ProductEstablishment);
+      public void addItem(Item Item) {
+        getCurrentSession().save(Item);
     }
-      public void updateProductEstablishment(Item ProductEstablishment){
-          Item productEstablishmentToUpdate = getProductEstablishment(ProductEstablishment.getProduct());
-          productEstablishmentToUpdate.setEstablishment(ProductEstablishment.getEstablishment());
-          productEstablishmentToUpdate.setProduct(ProductEstablishment.getProduct());
-          productEstablishmentToUpdate.setStock(ProductEstablishment.getStock());
+      public void updateItem(Item item){
+           Item itemToUpdate = getItem(item.getId());
+          itemToUpdate.setProduct(item.getProduct());
+          itemToUpdate.setEstablishment(item.getEstablishment());
+          itemToUpdate.setChosenPrice(item.getChosenPrice());
+          itemToUpdate.setStock(item.getStock());
+          itemToUpdate.setAddition(item.isAddition());
+          itemToUpdate.setAdditionDescription(item.getAdditionDescription());
+          itemToUpdate.setDiscountPercentage(item.getDiscountPercentage());
           
-          getCurrentSession().update(productEstablishmentToUpdate);
+          getCurrentSession().update(itemToUpdate);
       }
       
-    public Item getProductEstablishment(int id) {
-        Item productEstablishment = (Item) getCurrentSession().get(Item.class, id);
-        return productEstablishment;
+    public Item getItem(int id) {
+        Item item = (Item) getCurrentSession().get(Item.class, id);
+        return item;
     }
 
-    public void deleteProductEstablishment(int id) {
-        Item productEstablishmentToDelete = getProductEstablishment(id);
-        if (productEstablishmentToDelete != null) {
-            getCurrentSession().delete(productEstablishmentToDelete);
+    public void deleteItem(int id) {
+        Item itemToDelete = getItem(id);
+        if (itemToDelete != null) {
+            getCurrentSession().delete(itemToDelete);
         }
 
     }
 
-    public List<Item> getProductEstablishments() {
-        return getCurrentSession().createQuery("from ProductEstablishment").list();
+    public List<Item> getItems() {
+        return getCurrentSession().createQuery("from Item").list();
     }
 
-    public void StoreAllProductEstablishments(List<Item> productEstablishments) {
+    public void StoreAllItems(List<Item> items) {
 
-        for (Item productEstablishment : productEstablishments) {
-            getCurrentSession().save(productEstablishment);
+        for (Item item : items) {
+            getCurrentSession().save(item);
         }
     }
 }

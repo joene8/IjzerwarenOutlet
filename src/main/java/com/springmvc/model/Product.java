@@ -6,6 +6,7 @@ import javax.validation.constraints.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Product implements Serializable {
@@ -14,7 +15,6 @@ public class Product implements Serializable {
     @Id
     private int id;
     @NotNull
-    private int artikelNummer;
     private String name;
     private String description;
     private String picture;
@@ -23,6 +23,9 @@ public class Product implements Serializable {
     private Double productLength;
     private Double grossWeight;
     private Double standardSalePrice;
+    
+    @OneToOne
+    private StihoArtikel productNumber;
     
     // Constructor
     public Product(){
@@ -60,14 +63,6 @@ public class Product implements Serializable {
 
     public void setPicture(String picture) {
         this.picture = picture;
-    }
-
-    public int getArtikelNummer() {
-        return artikelNummer;
-    }
-
-    public void setArtikelNummer(int artikelNummer) {
-        this.artikelNummer = artikelNummer;
     }
 
     public Double getNetThickness() {
@@ -109,4 +104,15 @@ public class Product implements Serializable {
     public void setStandardSalePrice(Double standardSalePrice) {
         this.standardSalePrice = standardSalePrice;
     }
+
+    public StihoArtikel getProductNumber() {
+        return productNumber;
+    }
+
+    public void setProductNumber(StihoArtikel productNumber) {
+        this.productNumber = productNumber;
+    }
+
+    
+    
 }
