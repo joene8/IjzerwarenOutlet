@@ -40,7 +40,7 @@ Author : How Fei Zheng
                             <td>${timelog.login}</td>
                             <td>${timelog.logout}</td>
                             <td>${timelog.duration}</td>
-                            <td>${timelog.userID}</td>
+                            <td>${timelog.user.id}</td>
                         </tr>
                     </c:forEach>
                 </c:when>
