@@ -18,9 +18,9 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private String picture;
-    private Double netThickness;
-    private Double netWidth;
-    private Double productLength;
+    private int netThickness;
+    private int netWidth;
+    private int productLength;
     private Double grossWeight;
     private Double standardSalePrice;
     
@@ -65,27 +65,27 @@ public class Product implements Serializable {
         this.picture = picture;
     }
 
-    public Double getNetThickness() {
+    public int getNetThickness() {
         return netThickness;
     }
 
-    public void setNetThickness(Double netThickness) {
+    public void setNetThickness(int netThickness) {
         this.netThickness = netThickness;
     }
 
-    public Double getNetWidth() {
+    public int getNetWidth() {
         return netWidth;
     }
 
-    public void setNetWidth(Double netWidth) {
+    public void setNetWidth(int netWidth) {
         this.netWidth = netWidth;
     }
 
-    public Double getProductLength() {
+    public int getProductLength() {
         return productLength;
     }
 
-    public void setProductLength(Double productLength) {
+    public void setProductLength(int productLength) {
         this.productLength = productLength;
     }
 

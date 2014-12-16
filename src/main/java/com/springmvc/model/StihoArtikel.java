@@ -17,9 +17,9 @@ public class StihoArtikel {
     @Id
     private int artikelnummer;
     private String categorie;
-    private double nettoDikte;
-    private double nettoBreedte;
-    private double artikelLengte;
+    private int nettoDikte;
+    private int nettoBreedte;
+    private int artikelLengte;
     private double brutoGewicht;
     private double standaardVerkoopprijs;
     
@@ -48,27 +48,27 @@ public class StihoArtikel {
         this.categorie = categorie;
     }
 
-    public double getNettoDikte() {
+    public int getNettoDikte() {
         return nettoDikte;
     }
 
-    public void setNettoDikte(double nettoDikte) {
+    public void setNettoDikte(int nettoDikte) {
         this.nettoDikte = nettoDikte;
     }
 
-    public double getNettoBreedte() {
+    public int getNettoBreedte() {
         return nettoBreedte;
     }
 
-    public void setNettoBreedte(double nettoBreedte) {
+    public void setNettoBreedte(int nettoBreedte) {
         this.nettoBreedte = nettoBreedte;
     }
 
-    public double getArtikelLengte() {
+    public int getArtikelLengte() {
         return artikelLengte;
     }
 
-    public void setArtikelLengte(double artikelLengte) {
+    public void setArtikelLengte(int artikelLengte) {
         this.artikelLengte = artikelLengte;
     }
 

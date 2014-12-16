@@ -1,7 +1,11 @@
 package com.springmvc.controller;
 
 import com.springmvc.model.Product;
+import com.springmvc.model.StihoArtikel;
+import com.springmvc.model.User;
+import com.springmvc.model.Validation;
 import com.springmvc.service.ProductService;
+import com.springmvc.service.StihoArtikelService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private StihoArtikelService stihoArtikelService;
 
     // LIST THUMBNAILS
     @RequestMapping(value = "/list")
@@ -53,10 +60,49 @@ public class ProductController {
     @RequestMapping(value = "/add_step_1", method = RequestMethod.POST)
     public String submitAddStep1(@RequestParam(value = "itemNumber") String itemNumber, Model model) throws IOException {
         model.addAttribute("pageTitle", "Add product");
-        model.addAttribute("pageDescription", "Enter the item number of the product you would like to add.");
-        model.addAttribute("message", "No product with item number: " + itemNumber + " was found in the STIHO database.");
-        model.addAttribute("type", "danger");
-        return "product_add_step_1";
+        int number = Integer.parseInt(itemNumber);
+        StihoArtikel sa = stihoArtikelService.getStihoArtikel(number);
+        if (sa == null) {
+            model.addAttribute("pageDescription", "Enter the item number of the product you would like to add.");
+            model.addAttribute("message", "No product with item number: " + itemNumber + " was found in the STIHO database.");
+            model.addAttribute("type", "danger");
+            return "product_add_step_1";
+        }
+        Product p = new Product();
+        List<Product> products = productService.getProducts();
+        for (Product product : products) {
+            if (product.getProductNumber().getArtikelnummer() == number) {
+                p = product;
+                model.addAttribute("existingProduct", true);
+                break;
+            }
+        }
+        if (p.getId()==0) {
+            p.setProductNumber(sa);
+            p.setNetWidth(sa.getNettoBreedte());
+            p.setProductLength(sa.getArtikelLengte());
+            p.setNetThickness(sa.getNettoDikte());
+            p.setGrossWeight(sa.getBrutoGewicht());
+            p.setStandardSalePrice(sa.getStandaardVerkoopprijs());
+        }
+        model.addAttribute("pageDescription", "Enter all the information for this product.");
+        model.addAttribute("product", p);
+        return "product_add_step_2";
+    }
+    
+    // ADD STEP 2 SUBMIT
+    @RequestMapping(value = "/add_step_2", method = RequestMethod.POST)
+    public String submitAddStep2(Product product, Model model) throws IOException {
+        model.addAttribute("pageTitle", "Add product");
+                // VALIDATION START
+        model = validate(model, product);
+        if (model.containsAttribute("anyErrors")) {
+            model.addAttribute("pageDescription", "Enter all the information for this product.");
+            model.addAttribute("message", "Not all fields were entered correctly.");
+            model.addAttribute("type", "danger");
+            return "product_add_step_2";
+        }
+        return "product_add_step_3";
     }
 
     // ADD LOAD
@@ -142,5 +188,21 @@ public class ProductController {
         model.addAttribute("message", product.getName() + " was succesfully deleted.");
         model.addAttribute("type", "success");
         return "product_list";
+    }
+    // VALIDATE PRODUCT
+        public Model validate(Model model, Product product) {
+        boolean anyErrors = false;
+        if (!Validation.lettersMin(product.getName(), 2)) {
+            model.addAttribute("nameError", true);
+            anyErrors = true;
+        }
+        if (!Validation.allMin(product.getDescription(), 6)) {
+            model.addAttribute("descriptionError", true);
+            anyErrors = true;
+        }
+                if (anyErrors) {
+            model.addAttribute("anyErrors", anyErrors);
+        }
+        return model;
     }
 }
