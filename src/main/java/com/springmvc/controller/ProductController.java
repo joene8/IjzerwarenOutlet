@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/product")
@@ -125,7 +126,18 @@ public class ProductController {
         model.addAttribute("type", "success");
         return "product_list";
     }
+    
+    // PRODUCT INFO LIST
+     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    public ModelAndView productInfo(@PathVariable int id) {
 
+        ModelAndView productInfoView = new ModelAndView("productInfo");
+        productInfoView.addObject("paginaTitel", "Dit is product A" );
+        productInfoView.addObject("product", productService.getProduct(id));
+
+        return productInfoView;
+    }     
+    
     // SEARCH
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(@RequestParam(value = "search") String search, Model model) throws IOException {
@@ -175,8 +187,8 @@ public class ProductController {
         model.addAttribute("message", product.getName() + " was succesfully edited.");
         model.addAttribute("type", "success");
         return "product_list";
-    }
-
+    }  
+    
     // DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable int id, Model model) {

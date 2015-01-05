@@ -83,7 +83,7 @@
         <h3>${product.name}</h3>
         <p>${product.description}</p>
         <h3><span class="oldPrice">&euro;${product.chosenPrice*2}</span><br>&euro;${product.chosenPrice}</h3>
-        <p><a href="#" class="btn btn-default" role="button">Check stock</a> <a href="#" class="btn btn-primary" role="button">Add to cart</a></p>
+        <p><a href="#" class="btn btn-default" role="button">Check stock</a> <a href="${pageContext.request.contextPath}/product/info/${product.id}" class="btn btn-primary" role="button">Add to cart</a></p>
       </div>
     </div>
   </div>
