@@ -8,8 +8,13 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
-        <!--Javascript menu activator-->
-        <script>activeMenu("about_us");</script>
+        <div class="panel panel-default">
+            <div class="panel-body">
+        We are selling high quality tools from contractors and the industry for really low prices.<br>
+        This outlet sells to both businesses and individuals. All outlet prices include VAT and are<br>
+        payable in cash or debit card.<br>
+        </div>
+        </div>
         <t:footer/>
     </jsp:body>
 </t:menu>

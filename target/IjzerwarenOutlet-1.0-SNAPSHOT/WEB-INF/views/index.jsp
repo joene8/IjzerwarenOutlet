@@ -8,6 +8,8 @@
     <jsp:body>
         <t:title_and_message/>
 <!-- Button trigger modal -->
+Language : <a href="?lang=en">English</a>|<a href="?lang=nl">Dutch</a>
+<spring:message code="label.welcome"></spring:message>
 <div class="jumbotron panel-default">
   <h1>Welcome to IJzerwarenOutlet</h1>
   <p>This site offers top quality products for affordable prices. Quickly check our products to see what we have to offer!</p>

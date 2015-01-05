@@ -8,8 +8,6 @@
 <t:menu>
     <jsp:body>
         <t:title_and_message/>
-                <div class="panel panel-default">
-            <div class="panel-body">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
@@ -22,29 +20,31 @@
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
           
-        De vestiging Stiho Alkmaar is verbouwd en nu op deze locatie gevestigd met Giebels (ijzerwaren en gereedschappen).
-        Een Stiho locatie met meerdere specialismen onder één dak wordt Stiho-bouwplein genoemd, dus ook op de gevel 
-        van Alkmaar vindt u de naam Stiho-bouwplein.
+            The establishment Stiho Alkmaar has been rebuilt and is located now at 
+            this location with Giebels (hardware and tools). Stiho a location with 
+            multiple specialties under one roof called Stiho-construction square, 
+            so you can also find it on the facade of the Alkmaar name Stiho-construction square.
         
         <div style="position: relative; width: 100%;" >
 
-         <h4>Diensten</h4>
+         <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
           
            
            
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met stenen, dakpannen en gevelbekleding<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met werkkleding en werkschoenen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren en deurbeslag<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verf mengen<br><br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with bricks, roof tiles and cladding<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with overalls and work boots<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors and door fittings<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+            
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Quantities author<br><br>
             </p>
           
           
-            Onze medewerkers hebben altijd betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Alkmaar heet u welkom!
+            Our employees always have reliable up-to-date knowledge of the building 
+            and can advise you. Stiho Alkmaar welcomes you!
           </div>
 
           <div style="position:relative; float: right; width: 40%; margin-left: 40px;" >
@@ -55,11 +55,11 @@
               F: (072) 540 28 85<br>
               E: stihoalkmaar@stiho.nl<br><br>  
             
-              <i>Openingstijden</i><br>
-              Maandag t/m vrijdag:<br>
-              06.30 - 17.00 uur<br><br>
-              Nu ook zaterdag open:<br>
-              08.00 - 12.00 uur<br><br>
+              <i>opening hours</i><br>
+              Monday till Friday:<br>
+              06.30 - 17.00 p.m<br><br>
+              Now also open on Saturday:<br>
+              08.00 - 12.00 p.m<br><br>
             </div>
           </div>
           <div style="clear:both;"></div>
@@ -81,29 +81,32 @@
         
         
           
-        Stiho is op deze locatie gevestigd met de bedrijven Giebels (ijzerwaren en gereedschappen) en Baars & 
-        Bloemhoff (decoratieve plaatmaterialen) in Stiho-bouwplein. De locatie biedt naast bouwmaterialen, 
-        hout en plaat, het volgende assortiment:<br><br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> IJzerwaren en gereedschappen<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Decoratieve plaatmaterialen<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Stucmateriaal<br><br>
+        Stiho is located at this location with the companies Giebels 
+        (hardware and tools) and Baars & Bloemhoff (decorative panels) 
+        in Stiho-construction square. The location offers not only building materials, 
+        wood and sheet, the following range:<br><br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Hardware and Tools<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Decorative panels<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> stucco material<br><br>
         
         <div style="position: relative; width: 100%" >
 
-        <h4>Diensten</h4>
+        <h4>Services</h4>
         <div style="position:relative; float: left; width: 50%;" >
           
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 900m2 showroom, met bouwmaterialen, hout, plaat, ijzerwaren en gereedschappen en decoratieve plaatmaterialen <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verzamelfactuur<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verf mengen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Aanhangwagen service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Containerverhuur<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 900m2 showroom, construction materials, wood, sheet, hardware and tools and decorative panels <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Collect Invoice<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Quantities author<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Trailer Service<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Container Rental<br><br>
         
-        Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Amsterdam Amstel heet u welkom!
+        Our employees always have a 
+        reliable up-to-date knowledge of the building and advise you. 
+        Stiho Amstel welcomes you!
         </div>
 
        <div style="position:relative; float: right; width: 40%; margin-left: 40px;" >
@@ -114,11 +117,11 @@
           F: 020 - 560 76 99<br>
           E: stihoamsterdamamstel@stiho.nl<br><br>  
           
-          <i>Openingstijden</i><br>
-          Maandag t/m vrijdag:<br>
-          06.30 - 17.00 uur<br><br>
-          Nu ook zaterdag open:<br>
-          08.00 - 12.00 uur<br><br>
+          <i>opening hours</i><br>
+          Monday / Friday:<br>
+          06.30 - 17.00 pm<br><br>
+          Now open on Saturday:<br>
+          08.00 - 12.00 p.m<br><br>
         </div>
         </div>
           <div style="clear:both;"></div>
@@ -139,31 +142,30 @@
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body">
           
-       De vestiging Stiho Amsterdam Houthavens is verbouwd. Vanaf heden is op deze locatie ook Giebels, 
-       ijzerwaren en gereedschappen gevestigd. Een Stiho locatie met meerdere specialismen onder één dak 
-       wordt Stiho-bouwplein genoemd, dus ook op de gevel van Amsterdam Houthavens vindt u de naam Stiho-bouwplein. <br><br>
-        <h4>Assortiment</h4>
-        Stiho is op deze locatie gevestigd met het bedrijf Giebels (ijzerwaren en gereedschappen) 
-        in Stiho-bouwplein. De locatie biedt naast bouwmaterialen, hout en plaat, ook het volgende assortiment:<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> IJzerwaren en gereedschappen<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Stucmateriaal<br>
+        The establishment Stiho Amsterdam Houthavens is rebuilt. From now on the Giebels hardware and tools are also located at the 
+        Stiho area. A location with multiple specialties under one roof called Stiho-square building, 
+        including on the facade of Amsterdam Houthavens you find the name Stiho-construction square. <br><br>
+        <h4>Assortment</h4>
+        Stiho is located at this location with the company Giebels (hardware and tools) in Stiho-construction square. The location offers not only building materials, wood and plate, also the following range:<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Hardware and Tools<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> stucco material<br>
         
         
       <div style="position: relative; width: 100%;" >
 
-        <h4>Diensten</h4>
+        <h4>Services</h4>
         <div style="position:relative; float: left; width: 50%" >
           
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Uitgebreide showroom met bouwmaterialen, hout, plaat, ijzerwaren en gereedschappen <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verzamelfactuur<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verf mengen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Extensive showroom with construction materials, wood, sheet, hardware and tools  <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Collect Invoice<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Quantities author<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br><br>
+          
          
           
-         Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Amsterdam Houthavens heet u welkom!
+         Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Amsterdam Houthavens welcomes you! 
         </div>
         
         <div style="position:relative; float: right; width: 40%; margin-left: 40px;" >
@@ -174,9 +176,9 @@
             F: (020) 581 85 09<br>
             E: stihoamsterdamhouthavens@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday till Friday::<br>
+            06.30 - 17.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -198,28 +200,28 @@
       <div class="panel-body">
           
         
-        De vestiging Stiho Beverwijk is verbouwd. Vanaf heden is op deze locatie ook Giebels, ijzerwaren en 
-        gereedschappen gevestigd. Een Stiho locatie met meerdere specialismen onder één dak wordt Stiho-bouwplein genoemd, 
-        dus ook op de gevel van Beverwijk vindt u de naam Stiho-bouwplein.<br><br>
+        The establishment Stiho Beverwijk is rebuilt. From now on this site too Giebels hardware and tools are located. 
+        Stiho a location with multiple specializations listed under one roof Stiho-construction square, 
+        so you can also find on the facade of Beverwijk name Stiho-construction square. <br><br>
         
-        Naast het assortiment bouwmaterialen, hout en plaat, heeft Stiho Beverwijk een breed assortiment:<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Stucmateriaal<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> (muur-) verf<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> IJzerwaren en gereedschap<br><br>
+        Besides the range of building materials, wood and sheet Stiho Beverwijk has a wide range:<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> stucco material<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> (Wall) paints<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Hardware and Tools<br><br>
         
         <div style="position: relative; width: 100%;" >
 
-                   <h4>Diensten</h4>
+                   <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren, beslag, tegels, ornamenten, wandprofielen, sierlijsten en wandafwerking <br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verf mengen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br><br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors, fittings, tiles, ornaments, wall profiles, moldings and wall finishes  <br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Quantities author<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br><br>
             
             
-            Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Beverwijk heet u welkom!
+            
+            Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Beverwijk welcomes you! 
             
           </div>
           
@@ -231,9 +233,9 @@
             F: (0251) 25 18 05<br>
             E: stihobeverwijk@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
             </div>
           </div>
           <div style="clear:both;"></div>
@@ -258,25 +260,24 @@
           
      
         <h4>Assortiment</h4>
-        Stiho is op deze locatie gevestigd met het bedrijf Baars & Bloemhoff (decoratieve plaatmaterialen). 
-        De locatie biedt naast bouwmaterialen, hout en plaat, het volgende assortiment:<br>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> IJzerwaren en gereedschappen<br><br>
+        Stiho is located at this location with the company Baars & Bloemhoff (decorative panels). The location offers not only building materials, wood and sheet, the following range:<br>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Hardware and Tools<br><br>
                 
 
          <div style="position: relative; width: 100%;" >
 
-        <h4>Diensten</h4>
+        <h4>Services</h4>
         <div style="position:relative; float: left; width: 50%" >
           
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren, beslag, vloeren, stenen en dakpannen <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verf mengen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors, fittings, floors, stone and tile  <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Quantities author<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Pitfalls in service<br><br>
           
           
-          Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Groningen heet u welkom! <br><br>
+          Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Groningen welcomes you! <br><br>
           
         </div>
         
@@ -288,9 +289,9 @@
             F: (050) 313 04 22<br>
             E: stihogroningen@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -316,26 +317,26 @@
           
           <h4>Assortiment</h4>
           
-          De vestiging Stiho Haarlem is verbouwd en nu op deze locatie gevestigd met Giebels (ijzerwaren en gereedschappen).
-          Een Stiho locatie met meerdere specialismen onder één dak wordt Stiho-bouwplein genoemd, dus ook op de gevel van Haarlem 
-          vindt u de naam Stiho-bouwplein.<br><br>
+          The establishment Stiho Haarlem has been rebuilt and is located now at this location with Giebels (hardware and tools). Stiho a location with multiple specialties 
+          under one roof called Stiho-construction square, so you can also find on the facade of Haarlem name Stiho-construction square.<br><br>
           
         <div style="position: relative; width: 100%;" >
 
-        <h4>Diensten</h4>
+        <h4>Services</h4>
         <div style="position:relative; float: left; width: 50%" >
           
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met stenen, dakpannen en gevelbekleding<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met werkkleding en werkschoenen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren en deurbeslag<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verf mengen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with bricks, roof tiles and cladding<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with overalls and work boots<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors and door fittings<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Quantities author<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Pitfalls in service<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br><br>
           
           
-          Onze medewerkers hebben altijd betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Haarlem heet u welkom!
+          Our employees always have reliable up-to-date knowledge of the building and advise you. Stiho Haarlem welcomes you! 
+
         </div>
         
         <div style="position:relative; float: right; width: 40%; margin-left: 40px;" >
@@ -346,11 +347,11 @@
             F: (023) 516 07 01<br>
             E: stihohaarlem@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
-            Zaterdag open:<br>
-            08.00 - 12.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday till Friday:<br>
+            06.30 - 17.00 p.m<br><br>
+            Satarday open:<br>
+            08.00 - 12.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -374,25 +375,24 @@
           
           
           <h4>Assortiment</h4>
-          De vestiging Stiho Haarlem Zuid is verbouwd en nu op deze locatie gevestigd met Giebels (ijzerwaren en gereedschappen).
-          Een Stiho locatie met meerdere specialismen onder één dak wordt Stiho-bouwplein genoemd, dus ook op de gevel van 
-          Haarlem Zuid vindt u de naam Stiho-bouwplein.<br><br>
+          The establishment Stiho Haarlem Zuid has been rebuilt and is located now at this location with Giebels (hardware and tools). Stiho a location with multiple specialties under one roof called Stiho-square building, 
+          including on the facade of Haarlem Zuid you find the name Stiho-construction square..<br><br>
        
       <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met stenen, dakpannen en gevelbekleding<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met werkkleding en werkschoenen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren en deurbeslag<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Verf mengen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Bouwafval goed geregeld<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with bricks, roof tiles and cladding<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with overalls and work boots<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors and door fittings<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+  
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> mixing paint<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Waste properly regulated<br><br>
           
-          Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Haarlem Zuid heet u welkom!
+          Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Haarlem South welcomes you! 
           
         </div>
         
@@ -404,9 +404,9 @@
             F: (023) 544 48 83<br>
             E: stihohaarlemzuid@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -430,14 +430,15 @@
           
         <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren, beslag, vloeren en stenen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors, fittings, floors and stone<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Pitfalls in service<br><br>
          
-          Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Helmond heet u welkom! 
+          Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Helmond welcomes you! 
+
         
         </div>
         
@@ -449,9 +450,9 @@
             F: (0492) 52 86 85<br>
             E: stihohelmond@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -472,24 +473,24 @@
       <div class="panel-body">
           
                     
-        <h4>Assortiment</h4>
-        De vestiging Stiho Hilversum is verbouwd. Vanaf heden is op deze locatie ook Giebels, ijzerwaren en gereedschappen gevestigd. 
-        Een Stiho locatie met meerdere specialismen onder één dak wordt Stiho-bouwplein genoemd, dus ook op de gevel 
-        van Hilversum vindt u de naam Stiho-bouwplein.<br><br>
+        <h4>Assortment</h4>
+        The establishment Stiho Hilversum is rebuilt. From now on  Giebels 
+        hardware and tools are also located in the Stiho-construction square. Stiho a location with multiple specialties under one roof called Stiho-construction square, 
+        so you can also find on the facade of Hilversum name Stiho-construction square.<br><br>
         
         <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met stenen, dakpannen en gevelbekleding<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met werkkleding en werkschoenen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren en deurbeslag<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with bricks, roof tiles and cladding<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with overalls and work boots<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors and door fittings<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Pitfalls in service<br><br>
    
-          Onze medewerkers hebben altijd betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Hilversum heet u welkom!
+          Our employees always have reliable up-to-date knowledge of the building and advise you. Stiho Hilversum welcomes you! 
           
         </div>
         
@@ -501,9 +502,9 @@
             F: (035) 626 10 62<br>
             E: stihohilversum@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -523,24 +524,24 @@
     <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
       <div class="panel-body">
 
-        </h4>Assortiment</h4>
-        De vestiging Stiho Nieuwegein is verbouwd. Vanaf heden is op deze locatie ook Giebels, 
-        ijzerwaren en gereedschappen gevestigd. Een Stiho locatie met meerdere specialismen onder één 
-        dak wordt Stiho-bouwplein genoemd, dus ook op de gevel van Nieuwegein vindt u de naam Stiho-bouwplein.<br><br>
+        </h4>Assortment </h4>
+        The establishment Stiho Nieuwegein is rebuilt. From now on this site Giebels 
+        hardware and tools are also located. Stiho a location with multiple specialties under one roof called Stiho-construction square, 
+        so you can also find on the facade of Nieuwegein name Stiho-construction square.<br><br>
         
       <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met stenen <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Aanhangwagen service<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with stones <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Trailer service<br><br>
          
           
-          Onze medewerkers hebben altijd betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Nieuwegein heet u welkom!
+          Our employees always have reliable up-to-date knowledge of the building and advise you. Stiho Nieuwegein welcomes you! 
           
         </div>
         
@@ -552,11 +553,11 @@
             F: (030) 280 82 39<br>
             E: stihonieuwegein@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
-            Zaterdag open:<br>
-            08.00 - 12.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
+            Saturday Open:<br>
+            08.00 - 12.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -578,22 +579,22 @@
     <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
       <div class="panel-body">
           
-        De vestiging Stiho Schiedam is verbouwd en nu op deze locatie gevestigd met de bedrijven Giebels (ijzerwaren en gereedschappen) en Baars & Bloemhoff (decoratieve plaatmaterialen). 
-        Een Stiho locatie met meerdere specialismen onder één dak wordt Stiho-bouwplein genoemd, dus ook op de gevel van Schiedam vindt u de naam Stiho-bouwplein.<br><br>
+        The establishment Stiho Schiedam is rebuilt and is located at this location with the companies Giebels (hardware and tools) and Baars & Bloemhoff (decorative panels). 
+        Stiho a location with multiple specialties under one roof called Stiho-construction square, so you can also find on the facade of Schiedam name Stiho-construction square.<br><br>
         
       <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met stenen, dakpannen en gevelbekleding <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met werkkleding en werkschoenen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren en deurbeslag<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with bricks, roof tiles and cladding <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with overalls and work boots<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors and door fittings<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Pitfalls in service<br>
          
-         Onze medewerkers hebben altijd betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Schiedam heet u welkom!
+         Our employees always have reliable up-to-date knowledge of the building and advise you. Stiho Schiedam welcomes you!
           
         </div>
         
@@ -605,9 +606,9 @@
             F: (010) 427 33 66<br>
             E: stihoschiedam@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -629,24 +630,24 @@
     <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve">
       <div class="panel-body">
                     
-       <h4>Assortiment</h4>
-       De vestiging Stiho Tilburg is verbouwd. Vanaf heden is op deze locatie ook Giebels, ijzerwaren en gereedschappen gevestigd.
-       Een Stiho locatie met meerdere specialismen onder één dak wordt Stiho-bouwplein genoemd, dus ook op de gevel van Tilburg vindt u de naam Stiho-bouwplein.<br><br>
+       <h4>Assortment</h4>
+       The establishment Stiho Tilburg has grown. From now on this site too Giebels, hardware and tools are located. 
+Stiho a location with multiple specialties under one roof called Stiho-construction square, so you can also find on the facade of Tilburg named Stiho-construction square.<br><br>
         
       <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met stenen, dakpannen en gevelbekleding <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met werkkleding en werkschoenen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom met deuren en deurbeslag<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with bricks, roof tiles and cladding  <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom with overalls and work boots<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Showroom doors and door fittings<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Pitfalls in service<br><br>
        
           
-          Onze medewerkers hebben altijd betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Tilburg heet u welkom!
+          Our employees always have reliable up-to-date knowledge of the building and advise you. Stiho Tilburg welcomes you! 
           
         </div>
         
@@ -659,9 +660,9 @@
             F: (013) 54 90 185<br>
             E: stihotilburg@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>Opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 - 17.00 p.m<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -682,24 +683,24 @@
     <div id="collapseThirteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThirteen">
       <div class="panel-body">
           
-        <h4>Distributiecentrum</h4>
-        Stiho Utrecht is een distributiecentrum die balieverkooppunten van Stiho bevoorraadt. 
-        Het is tevens mogelijk om materialen af te halen, maar er is een beperkte voorraad shopartikelen aanwezig.<br><br>
+        <h4>distribution center</h4>
+        Stiho Utrecht is a distribution that provides counter sales of Stiho. It is also possible to pick up the materials, but there is a limited supply of shop articles present.
+<br><br>
         
       <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Bezorgen <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Lossen op hoogte<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Spoedservice<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Uitgebreide bewerkingen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Containerverhuur<br><br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Deliver  <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Fix height<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Fast service<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Advanced Operations<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+     
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Container Rental<br><br>
           
-          Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Utrecht heet u welkom! 
+          Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Utrecht welcomes you! 
 
         </div>
         
@@ -711,11 +712,11 @@
             F: (030) 2 424 484<br>
             E: stihoutrecht@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
-            Zaterdag open:<br>
-            gesloten<br><br>
+            <i>Opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 a.m - 17.00 pm<br><br>
+            Saturday  closed<br>
+            <br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -738,15 +739,15 @@
                      
         <div style="position: relative; width: 100%;" >
 
-                 <h4>Diensten</h4>
+                 <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in balieverkooppunt <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen <br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Aanhangwagen service<br>
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><i>Bas, de beladen aanhanger service (NIEUW!!!)</i><br><br>
-          Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Wijchen heet u welkom!
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Drive-in counter sale <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing <br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> pitfalls in service<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Trailer Service<br>
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><i>Bass, the loaded trailer service (NEW !!!)</i><br><br>
+          Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Wijchen welcomes you!
           
         </div>
         
@@ -758,9 +759,9 @@
             F: (024) 64 88 100<br>
             E: stihowijchen@stiho.nl<br><br>  
             
-            <i>Openingstijden</i><br>
-            Maandag t/m vrijdag:<br>
-            06.30 - 17.00 uur<br><br>
+            <i>Opening hours</i><br>
+            Monday / Friday:<br>
+            06.30 a.m - 17.00 pm<br><br>
           </div>
         </div>
         <div style="clear:both;"></div>
@@ -780,26 +781,25 @@
     <div id="collapseFifteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFifteen">
       <div class="panel-body">
           
-        <h4>Distributiecentrum</h4>
-        Stiho Zwolle is een distributiecentrum die balieverkooppunten van Stiho bevoorraadt. 
-        Het is tevens mogelijk om materialen af te halen, maar er is een beperkte voorraad shopartikelen aanwezig.<br><br>
+        <h4>Distribution center</h4>
+        Stiho Zwolle is a distribution that provides counter sales of Stiho. It is also possible to pick up the materials, but there is a limited supply of shop articles present.<br><br>
         
         <div style="position: relative; width: 100%;" >
 
-                   <h4>Diensten</h4>
+                   <h4>Services</h4>
              <div style="position:relative; float: left; width: 40%;" >
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Bezorgen <br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Lossen op hoogte<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Spoedservice<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Uitgebreide bewerkingen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Beperkt balieverkooppunt voor shopartikelen
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Op maat zagen <br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Terugbrengen & omruilen<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Klaarzet service<br>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Aanhangwagen service
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Containerverhuur<br><br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Deliver  <br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Fix height<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Fast service<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>  Advanced Operations<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Limited counter sale for shop articles  Custom sawing<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Custom sawing <br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Return & Exchanges<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> pitfalls in service<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>trailer service<br>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> container Rental<br><br>
             
-            Onze medewerkers hebben altijd een betrouwbare up-to-date kennis van de bouw en adviseren u graag. Stiho Zwolle heet u welkom!
+           Our employees always have a reliable up-to-date knowledge of the building and advise you. Stiho Zwolle welcomes you! 
             
           </div>
           
@@ -811,11 +811,11 @@
               F: (038) 425 85 50<br>
               E: stihozwolle@stiho.nl<br><br>  
               
-              <i>Openingstijden</i><br>
-              Maandag t/m vrijdag:<br>
-              06.30 - 17.00 uur<br><br>
-              Zaterdag:<br>
-              gesloten<br><br>
+              <i>Opening hours</i><br>
+              Monday / Friday:<br>
+              06.30 a.m - 17.00 p.m<br><br>
+              Saturday: <br>
+              closed<br><br>
             </div>
           </div>
           <div style="clear:both;"></div>
@@ -824,10 +824,6 @@
       </div>
     </div>
   </div> 
-        </div>
-            </div>
-               <!--Javascript menu activator-->
-        <script>activeMenu("contact");</script>
         <t:footer/>
     </jsp:body>
 </t:menu>
