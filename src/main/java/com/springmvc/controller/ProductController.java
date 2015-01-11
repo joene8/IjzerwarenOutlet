@@ -4,6 +4,7 @@ import com.springmvc.model.Product;
 import com.springmvc.model.StihoArtikel;
 import com.springmvc.model.User;
 import com.springmvc.model.Validation;
+import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.ProductService;
 import com.springmvc.service.StihoArtikelService;
 import java.io.IOException;
@@ -30,6 +31,9 @@ public class ProductController {
 
     @Autowired
     private StihoArtikelService stihoArtikelService;
+    
+    @Autowired
+    private EstablishmentService establishmentService;
 
     // LIST THUMBNAILS
     @RequestMapping(value = "/list")
@@ -37,6 +41,7 @@ public class ProductController {
         model.addAttribute("pageTitle", "Products");
         model.addAttribute("pageDescription", "Browse through all of our poducts here.");
         model.addAttribute("products", productService.getProducts());
+        model.addAttribute("establishments", establishmentService.getEstablishments());
         return "product_list";
     }
 

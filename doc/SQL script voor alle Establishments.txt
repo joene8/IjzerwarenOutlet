@@ -1,0 +1,37 @@
+INSERT INTO `db_webshop`.`establishment`
+(`id`,
+`city`,
+`name`,
+`phoneNumber`,
+`postalCode`,
+`streetName`,
+`streetNumber`,
+`streetNumberSuffix`)
+VALUES(1,'Alkmaar','Alkmaar','0725471700','1812 RC','Diamantweg',9,NULL),
+	
+(2,'Amsterdam Amstel','Amsterdam Amstel','0205607666','1096 AM','Wenckebachweg',165,NULL),
+	
+(3,'Amsterdam Houthavens','Amsterdam Houthavens' ,'0205818508','1013 BB' ,'Rigakade',37,NULL),
+	
+(4,'Beverwijk','Beverwijk','0251250175','1945 TA','Laan van Meerestein',12,NULL),
+	
+(5,'Groningen','Groningen', '0503130433','9723 JV' ,'Verlengde Bremenweg',16,NULL),
+	
+(6,'Haarlem','Haarlem','0235160700','2031 BW' ,'Heringaweg',6,'-H'),
+	
+(7,'Haarlem Zuid','Haarlem Zuid','0235445066','2014 KC','Stephensonstraat',53,NULL),
+	
+(8,'Helmond','Helmond','0492506070','5705 CL','Vossenbeemd' ,100,NULL),	
+(9,'Hilversum','Hilversum','0356261061','1216 BT','Nieuwe Havenweg',28,NULL),
+	
+(10,'Nieuwegein','Nieuwegein','0302808237','3439 LK','Laagraven', 44,NULL),
+	
+(11,'Schiedam' ,'Schiedam' ,'0104273333','3115 JG','J. van Galenstraat',15,NULL),
+	
+(12,'Tilburg','Tilburg','0135490180','5048 AN','Zevenheuvelenweg',20,NULL),
+	
+(13,'Utrecht','Utrecht','0302424424','3542 AK','Uraniumweg',55,NULL),
+	
+(14,'Wijchen','Wijchen','0246488111','6603 BK','Nieuweweg' ,97,NULL),
+	
+(15,'Zwolle','Zwolle','0384258500','8041 AG','Gasthuisdijk',46,NULL);
