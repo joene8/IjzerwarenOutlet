@@ -18,55 +18,78 @@
             </script>
             <!--            Filter start-->
             <div class="col-sm-6 col-md-3">
-                <!--                    Category start-->
+                <!-- SearchBar start-->
                 <div class="panel panel-default ">
-                    <div class="panel-heading" role="tab" id="categoryHeader">
+                    <div class="panel-heading" role="tab" id="searchHeader">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#category" aria-expanded="true" aria-controls="category">
-                                Category&raquo;
+                            <a data-toggle="collapse" href="#search" aria-expanded="false" aria-controls="search">
+                                Search Bar&raquo;
                             </a>
                         </h4>
                     </div>
-                    <div id="category" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="categoryHeader">
+                    <div id="search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="searchHeader">
                         <div class="panel-body">
                             <div class=" col-sm-3 col-md-2">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Hout
-                                    </label>
+                                <form:form class="navbar-form navbar-left"  action="${pageContext.request.contextPath}/product/search"  method="GET" role="search">
+                                <div class="form-group">
+                                    <input type="text" id="search" name="search" class="form-control" placeholder="Search">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Metaal
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">IJzer 
-                                    </label>
-                                </div>
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </form:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SearchBar end-->
+            <!--                    Category start-->
+            <div class="panel panel-default ">
+                <div class="panel-heading" role="tab" id="categoryHeader">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#category" aria-expanded="true" aria-controls="category">
+                            Category&raquo;
+                        </a>
+                    </h4>
+                </div>
+                <div id="category" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="categoryHeader">
+                    <div class="panel-body">
+                        <div class=" col-sm-3 col-md-2">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Hout
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Metaal
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">IJzer 
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--                    Category end-->
-                <!--                    Establishment start-->
-                <div class="panel panel-default ">
-                    <div class="panel-heading" role="tab" id="establishmentHeader">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#establishment" aria-expanded="false" aria-controls="establishment">
-                                Establishment&raquo;
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="establishment" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="establishmentHeader">
-                        <div class="panel-body">
-                            <div class=" col-sm-3 col-md-2">
+            </div>
+            <!--                    Category end-->
+            <!--                    Establishment start-->
+            <div class="panel panel-default ">
+                <div class="panel-heading" role="tab" id="establishmentHeader">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#establishment" aria-expanded="false" aria-controls="establishment">
+                            Establishment&raquo;
+                        </a>
+                    </h4>
+                </div>
+                <div id="establishment" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="establishmentHeader">
+                    <div class="panel-body">
+                        <div class=" col-sm-3 col-md-2">
                             <c:forEach var="establishment" items="${establishments}">
                                 <div class="checkbox">
-                                <label>
-                                    <input type="checkbox">${establishment.name}
-                                </label>
+                                    <label>
+                                        <input type="checkbox">${establishment.name}
+                                    </label>
                                 </div>
                             </c:forEach>
                         </div>

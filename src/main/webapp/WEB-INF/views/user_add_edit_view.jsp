@@ -223,7 +223,7 @@
                                     <script>activeMenu("users");</script>
                                 </c:when>
                                 <c:when test="${addEditOrView eq 'view'}">
-                                    <c:if test="${currentUser.permissionLevel>1}"><a href="${pageContext.request.contextPath}/user/list" class="btn btn-default">Back</a></c:if>
+                                    <c:if test="${currentUser.permissionLevel>1}"><a href="${pageContext.request.contextPath}/index" class="btn btn-default">Back</a></c:if>
                                     <a href="${pageContext.request.contextPath}/user/edit/${user.id}" class="btn btn-primary">Edit information</a>
                                     <!--Javascript menu activator-->
                                     <script>activeMenu("users");</script>

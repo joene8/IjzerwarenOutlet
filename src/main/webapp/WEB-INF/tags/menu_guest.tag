@@ -49,12 +49,6 @@
                             <li id="contact">
                                 <a href="${pageContext.request.contextPath}/contact">Contact</a>
                             </li>
-                            <form:form class="navbar-form navbar-left"  action="${pageContext.request.contextPath}/product/search"  method="GET" role="search">
-                                <div class="form-group">
-                                    <input type="text" id="search" name="search" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form:form>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li id="login">
