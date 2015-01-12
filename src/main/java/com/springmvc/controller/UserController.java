@@ -8,6 +8,7 @@ import com.springmvc.service.TimeLogService;
 import com.springmvc.service.UserService;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -258,7 +260,119 @@ public class UserController {
         model.addAttribute("pageDescription", "Add, edit, delete or view a user.<br>You can also give a user new permissions or change their establishment.");
         return "user_list";
     }
+    
+    // SEARCH USER
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(@RequestParam(value = "search") String search, Model model) throws IOException {
+        List<User> users = userService.getUsers();
+        List<User> foundUsers = new ArrayList<User>();
+        for (User u : users) {
+            if (u.getFirstName().toLowerCase().contains(search.toLowerCase())) {
+                foundUsers.add(u);
+            } else if (u.getLastName().toLowerCase().contains(search.toLowerCase())) {
+                foundUsers.add(u);
+            }
+        }
 
+        model.addAttribute("users", foundUsers);
+        String message = "";
+        if (foundUsers.isEmpty()) {
+            message = "No user with the name containing \"" + search + "\" was found";
+            model.addAttribute("type", "warning");
+        } else {
+            String extraS = "";
+            String plural = "was";
+            if (foundUsers.size() != 1) {
+                extraS = "s";
+                plural = "were";
+            }
+            message = foundUsers.size() + " user" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            model.addAttribute("type", "success");
+
+        }
+        model.addAttribute("pageTitle", "Users");
+        model.addAttribute("pageDescription", "All the users that matched your search criteria.");
+        model.addAttribute("message", message);
+
+        return "user_list";
+    }
+
+    //SEARCH EMPLOYEE
+    @RequestMapping(value = "/search_employee", method = RequestMethod.GET)
+    public String searchEmployee(@RequestParam(value = "search_employee") String search, Model model) throws IOException {
+        List<User> users = userService.getUsers();
+        List<User> foundUsers = new ArrayList<User>();
+        for (User u : users) {
+            if (u.getPermissionLevel() > 1) {
+                if (u.getFirstName().toLowerCase().contains(search.toLowerCase())) {
+                    foundUsers.add(u);
+                } else if (u.getLastName().toLowerCase().contains(search.toLowerCase())) {
+                    foundUsers.add(u);
+                }
+            }
+        }
+
+        model.addAttribute("users", foundUsers);
+        String message = "";
+        if (foundUsers.isEmpty()) {
+            message = "No employee with the name containing \"" + search + "\" was found";
+            model.addAttribute("type", "warning");
+        } else {
+            String extraS = "";
+            String plural = "was";
+            if (foundUsers.size() != 1) {
+                extraS = "s";
+                plural = "were";
+            }
+            message = foundUsers.size() + " employee" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            model.addAttribute("type", "success");
+
+        }
+        model.addAttribute("pageTitle", "Users");
+        model.addAttribute("pageDescription", "All the employees that matched your search criteria.");
+        model.addAttribute("message", message);
+
+        return "user_list";
+    }
+
+    // SEARCH CUSTOMER
+    @RequestMapping(value = "/search_customer", method = RequestMethod.GET)
+    public String searchCustomer(@RequestParam(value = "search_customer") String search, Model model) throws IOException {
+        List<User> users = userService.getUsers();
+        List<User> foundUsers = new ArrayList<User>();
+        for (User u : users) {
+            if (u.getPermissionLevel() <= 1) {
+                if (u.getFirstName().toLowerCase().contains(search.toLowerCase())) {
+                    foundUsers.add(u);
+                } else if (u.getLastName().toLowerCase().contains(search.toLowerCase())) {
+                    foundUsers.add(u);
+                }
+            }
+        }
+
+        model.addAttribute("users", foundUsers);
+        String message = "";
+        if (foundUsers.isEmpty()) {
+            message = "No customer with the name containing \"" + search + "\" was found";
+            model.addAttribute("type", "warning");
+        } else {
+            String extraS = "";
+            String plural = "was";
+            if (foundUsers.size() != 1) {
+                extraS = "s";
+                plural = "were";
+            }
+            message = foundUsers.size() + " customer" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            model.addAttribute("type", "success");
+
+        }
+        model.addAttribute("pageTitle", "Users");
+        model.addAttribute("pageDescription", "All the customers that matched your search criteria.");
+        model.addAttribute("message", message);
+
+        return "user_list";
+    }
+    
     // VALIDATE USER
     public Model validate(Model model, User user) {
         boolean anyErrors = false;
