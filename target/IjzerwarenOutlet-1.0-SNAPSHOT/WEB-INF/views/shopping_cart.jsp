@@ -48,7 +48,9 @@
                             <td><a href="${pageContext.request.contextPath}/product/info/${product.id}">${product.name}</a></td>
                             <td>${product.price}</td>
                             <td>${product.location}</td>
-                            <td> </td>
+                            <td> 
+                                <a href="${pageContext.request.contextPath}/itemOrder/add_step_1/${product.id}">Order</a>
+                            </td>
                             
                             <td>
                                 <a href="${pageContext.request.contextPath}/cart/remove/${product.id}">Delete</a>
