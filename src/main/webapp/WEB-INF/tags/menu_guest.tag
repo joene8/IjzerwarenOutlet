@@ -49,6 +49,9 @@
                             <li id="contact">
                                 <a href="${pageContext.request.contextPath}/contact">Contact</a>
                             </li>
+                            <li id="cart">
+                                <a href="${pageContext.request.contextPath}/shopping_cart">Cart</a>
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li id="login">

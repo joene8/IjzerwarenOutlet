@@ -22,7 +22,7 @@ public class Cart implements Serializable {
     private int id;
     @NotNull
     @OneToMany
-    private List<Product> productList;
+    private List<Item> itemList;
     private double totalPrice;
     @ManyToOne
     private User client;
@@ -30,9 +30,9 @@ public class Cart implements Serializable {
     
     
 
-    public Cart(int id, List<Product> productList, double totalPrice, User client) {
+    public Cart(int id, List<Item> itemList, double totalPrice, User client) {
         this.id = id; 
-        this.productList = productList;
+        this.itemList = itemList;
         this.totalPrice = totalPrice;
         this.client = client;
     }
@@ -48,12 +48,12 @@ public class Cart implements Serializable {
         this.id = id;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Item> getItemList() {
+        return itemList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
         calculateTotalPrice();
     }
 
@@ -77,9 +77,9 @@ public class Cart implements Serializable {
     
         double totalPrice=0;
         
-        for(int i=0;i<this.productList.size();i++){
-            Product product = this.productList.get(i);
-            totalPrice += product.getStandardSalePrice();
+        for(int i=0;i<this.itemList.size();i++){
+            Item item = this.itemList.get(i);
+            totalPrice += item.getChosenPrice();
         }
         
         this.totalPrice=totalPrice;

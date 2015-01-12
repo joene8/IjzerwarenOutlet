@@ -182,13 +182,12 @@ public class ProductController {
 
     // PRODUCT INFO LIST
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public ModelAndView productInfo(@PathVariable int id) {
+    public String productInfo(@PathVariable int id, Model model, Item item) throws IOException{
+        
+        model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id));
+        model.addAttribute("product", itemService.getItem(id));
 
-        ModelAndView productInfoView = new ModelAndView("productInfo");
-        productInfoView.addObject("paginaTitel", "Dit is product A");
-        productInfoView.addObject("product", productService.getProduct(id));
-
-        return productInfoView;
+        return "product_info";
     }
 
     // SEARCH

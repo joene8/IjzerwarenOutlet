@@ -1,8 +1,9 @@
 package com.springmvc.controller;
 
 import com.springmvc.model.Cart;
+import com.springmvc.model.Item;
 import com.springmvc.model.Product;
-import com.springmvc.service.ProductService;
+import com.springmvc.service.ItemService;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,69 +22,76 @@ import org.springframework.web.servlet.ModelAndView;
 public class CartController {
 
     @Autowired
-    private ProductService productService;
+    private ItemService itemService;
 
     private final String pageTitle = "Shopping cart";
 
+    
+    @RequestMapping(value = "/shopping_cart")
+    public String cart(Model model, HttpServletRequest request) throws IOException {
+        model.addAttribute("pageTitle", pageTitle);
+        
+        return "shopping_cart";
+    }
+    
     @RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
-    public ModelAndView productAddToCart(HttpServletRequest request, @PathVariable int id) throws IOException {
+    public String submitAdd(@PathVariable int id, Model model, HttpServletRequest request ) {
 
         HttpSession session = request.getSession();
         Cart cart = new Cart();
-        List<Product> productList = new LinkedList<Product>();
+        List<Item> itemList = new LinkedList<Item>();
 
         if (session.getAttribute("cart") != null) {
             cart = (Cart) session.getAttribute("cart");
 
-            Product prdct = productService.getProduct(id);
+            Item itm = itemService.getItem(id);
 
-            productList = cart.getProductList();
-            productList.add(prdct);
-            cart.setProductList(productList);
+            itemList = cart.getItemList();
+            itemList.add(itm);
+            cart.setItemList(itemList);
 
         } else {
 
-            Product prdct = productService.getProduct(id);
-            productList.add(prdct);
-            cart.setProductList(productList);
+            Item itm = itemService.getItem(id);
+            itemList.add(itm);
+            cart.setItemList(itemList);
 
         }
         session.setAttribute("cart", cart);
+        
+        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("cart", cart);
 
-        ModelAndView productAddCartView = new ModelAndView("shoppingCart");
-        productAddCartView.addObject("paginaTitel", pageTitle);
-        productAddCartView.addObject("cart", cart);
-
-        return productAddCartView;
+        return "shopping_cart";
 
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
-    public ModelAndView productRemoveFromCart(HttpServletRequest request, @PathVariable int id) throws IOException {
+    public String itemRemoveFromCart(Model model, HttpServletRequest request, @PathVariable int id) throws IOException {
         HttpSession session = request.getSession();
 
         Cart cart = new Cart();
-        List<Product> productList = new LinkedList<Product>();
+        List<Item> itemList = new LinkedList<Item>();;
 
         if (session.getAttribute("cart") != null) {
             cart = (Cart) session.getAttribute("cart");
 
-            productList = cart.getProductList();
+            itemList = cart.getItemList();
 
-            for (int i = 0; i < productList.size(); i++) {
+            for (int i = 0; i < itemList.size(); i++) {
 
-                if (productList.get(i).getId() == id) {
+                if (itemList.get(i).getId() == id) {
 
-                    productList.remove(productList.get(i));
+                    itemList.remove(itemList.get(i));
                 }
             }
-            cart.setProductList(productList);
+            cart.setItemList(itemList);
 
         }
         
-         ModelAndView removeProductFromCartView = new ModelAndView("shoppingCart");
-        removeProductFromCartView.addObject("paginaTitel", pageTitle);
-        removeProductFromCartView.addObject("cart", cart);
-        return removeProductFromCartView;
+        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("cart", cart);
+        
+        return "shopping_cart";
     }
 }
