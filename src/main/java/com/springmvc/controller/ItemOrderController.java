@@ -1,6 +1,5 @@
 package com.springmvc.controller;
 
-
 import com.springmvc.model.Item;
 import com.springmvc.model.ItemOrder;
 import com.springmvc.model.TimeLog;
@@ -24,31 +23,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author gebak_000
  */
-
 @Controller
 @RequestMapping(value = "/itemOrder")
 public class ItemOrderController {
 
     @Autowired
     private ItemOrderService itemOrderService;
-    
+
     @Autowired
     private UserService userService;
-   
+
     @Autowired
     private TimeLogService timeLogService;
-    
+
     TimeLog t = new TimeLog();
-    // HISTORY
-    @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public String history(Model model) throws IOException {
-        model.addAttribute("pageTitle", "ItemOrder History");
-        model.addAttribute("pageDescription", "View or delete your itemOrders.");
-//        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
-        model.addAttribute("itemOrders", new ArrayList<ItemOrder>());
-        return "itemOrder_history";
-    }
-    
+
     // ADD STEP 1 LOAD
     @RequestMapping(value = "/add_step_1/{id}", method = RequestMethod.GET)
     public String loadAdd(Model model, HttpServletRequest request) throws IOException {
@@ -88,7 +77,7 @@ public class ItemOrderController {
             model.addAttribute("pageDescription", "Choose where the items should be delivered.");
             model.addAttribute("message", "User was successfully validated.");
             model.addAttribute("type", "success");
-            
+
             model.addAttribute("itemOrder", new ItemOrder());
             return "order_add_step_2/{id}";
         }
@@ -97,7 +86,7 @@ public class ItemOrderController {
         model.addAttribute("message", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("pageDescription", "Choose where the items should be delivered.");
         model.addAttribute("type", "success");
-        
+
         model.addAttribute("itemOrder", new ItemOrder());
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
@@ -105,7 +94,7 @@ public class ItemOrderController {
 
         return "order_add_step_2/{id}";
     }
-    
+
     // ADD STEP 2 SUBMIT
     @RequestMapping(value = "/add_step_2/{id}", method = RequestMethod.POST)
     public String submitAddStep2(ItemOrder itemOrder, Model model, HttpServletRequest request) throws IOException {
@@ -121,17 +110,17 @@ public class ItemOrderController {
         }
         itemOrder.setUser((User) request.getSession().getAttribute("currentUser"));
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
-        if(request.getSession().getAttribute("delivery")=="true")
+        if (request.getSession().getAttribute("delivery") == "true") {
             itemOrder.setDelivery(true);
-        else
+        } else {
             itemOrder.setDelivery(false);
+        }
         itemOrder.setDestination((String) request.getSession().getAttribute("Destination"));
         itemOrder.setItem(null);
         itemOrder.setShippingCosts(0);
         itemOrder.setTotalPrice((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"));
         itemOrder.setAmount((Integer) request.getSession().getAttribute("Stock"));
 
-        
         itemOrderService.addItemOrder(itemOrder);
         model.addAttribute("pageTitle", "Home");
         model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
@@ -139,7 +128,7 @@ public class ItemOrderController {
         model.addAttribute("type", "success");
         return "product_list";
     }
-    
+
     // VALIDATE USER
     public Model validate(Model model, User user) {
         boolean anyErrors = false;
@@ -176,13 +165,13 @@ public class ItemOrderController {
             model.addAttribute("errorPhoneNumber", true);
             anyErrors = true;
         }
-        
+
         if (anyErrors) {
             model.addAttribute("anyErrors", anyErrors);
         }
         return model;
     }
-    
+
     // VALIDATE ITEM STEP 2
     public Model validateStep2(Model model, ItemOrder itemOrder) {
         boolean anyErrors = false;
@@ -190,10 +179,48 @@ public class ItemOrderController {
             model.addAttribute("destionationError", true);
             anyErrors = true;
         }
-        
+
         if (anyErrors) {
             model.addAttribute("anyErrors", anyErrors);
         }
         return model;
     }
+
+    // HISTORY
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
+    public String history(Model model) throws IOException {
+
+        model.addAttribute("pageTitle", "Order History");
+        model.addAttribute("pageDescription", "View your order history.");
+        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+
+        return "itemOrder_history";
+    }
+
+    // VIEW
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    public String view(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+
+        model.addAttribute("pageTitle", "View Order");
+        model.addAttribute("pageDescription", "View your order.");
+        model.addAttribute("itemOrder", (itemOrderService.getItemOrder(id)));
+
+        return "itemOrder_view";
+    }
+
+    // DELETE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String remove(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+
+        itemOrderService.deleteItemOrder(id);
+
+        model.addAttribute("message", "Order was succesfully deleted.");
+        model.addAttribute("type", "success");
+        model.addAttribute("pageTitle", "Order History");
+        model.addAttribute("pageDescription", "View your order history.");
+        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+
+        return "itemOrder_history";
+    }
+
 }
