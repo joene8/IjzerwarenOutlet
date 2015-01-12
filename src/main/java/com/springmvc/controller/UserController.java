@@ -3,6 +3,7 @@ package com.springmvc.controller;
 import com.springmvc.model.TimeLog;
 import com.springmvc.model.User;
 import com.springmvc.model.Validation;
+import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.TimeLogService;
 import com.springmvc.service.UserService;
 import java.io.IOException;
@@ -25,7 +26,9 @@ public class UserController {
     private UserService userService;
     @Autowired
     private TimeLogService timeLogService;
-
+    @Autowired
+    private EstablishmentService establishmentService;
+    
     TimeLog t = new TimeLog();
 
     // LOGIN LOAD
@@ -94,6 +97,7 @@ public class UserController {
 
         model.addAttribute("user", new User());
         model.addAttribute("addEditOrView", "add");
+        model.addAttribute("establishmentList", establishmentService.getEstablishments());
         return "user_add_edit_view";
     }
 
@@ -114,6 +118,7 @@ public class UserController {
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             model.addAttribute("addEditOrView", "add");
+            model.addAttribute("establishmentList", establishmentService.getEstablishments());
             return "user_add_edit_view";
         }
         // VALIDATION END
@@ -150,6 +155,7 @@ public class UserController {
         }
         model.addAttribute("user", userService.getUser(id));
         model.addAttribute("addEditOrView", "edit");
+        model.addAttribute("establishmentList", establishmentService.getEstablishments());
         return "user_add_edit_view";
     }
 
@@ -170,6 +176,7 @@ public class UserController {
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             model.addAttribute("addEditOrView", "edit");
+            model.addAttribute("establishmentList", establishmentService.getEstablishments());
             return "user_add_edit_view";
         }
         // VALIDATION END
@@ -185,6 +192,7 @@ public class UserController {
         model.addAttribute("message", "Information was succesfully updated.");
         model.addAttribute("type", "success");
         model.addAttribute("addEditOrView", "view");
+        model.addAttribute("establishmentList", establishmentService.getEstablishments());
         return "user_add_edit_view";
     }
 
