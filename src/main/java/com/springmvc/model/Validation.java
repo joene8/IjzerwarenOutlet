@@ -70,6 +70,10 @@ public class Validation {
     public static boolean password(String password) {
         return password.matches("^.{6,}$");
     }
+    
+    public static boolean price(String price) {
+        return price.matches("^[(0-9)+.?(0-9)*]+$");
+    }
 
     public static boolean postalCode(String postalCode) {
         return postalCode.matches("^\\d{4} ?[a-zA-Z]{2}$");

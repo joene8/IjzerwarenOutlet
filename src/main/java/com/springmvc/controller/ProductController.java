@@ -1,15 +1,18 @@
 package com.springmvc.controller;
 
+import com.springmvc.model.Item;
 import com.springmvc.model.Product;
 import com.springmvc.model.StihoArtikel;
 import com.springmvc.model.User;
 import com.springmvc.model.Validation;
 import com.springmvc.service.EstablishmentService;
+import com.springmvc.service.ItemService;
 import com.springmvc.service.ProductService;
 import com.springmvc.service.StihoArtikelService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,9 +34,12 @@ public class ProductController {
 
     @Autowired
     private StihoArtikelService stihoArtikelService;
-    
+
     @Autowired
     private EstablishmentService establishmentService;
+
+    @Autowired
+    private ItemService itemService;
 
     // LIST THUMBNAILS
     @RequestMapping(value = "/list")
@@ -64,7 +70,7 @@ public class ProductController {
 
     // ADD STEP 1 SUBMIT
     @RequestMapping(value = "/add_step_1", method = RequestMethod.POST)
-    public String submitAddStep1(@RequestParam(value = "itemNumber") String itemNumber, Model model) throws IOException {
+    public String submitAddStep1(@RequestParam(value = "itemNumber") String itemNumber, Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Add product");
         int number = Integer.parseInt(itemNumber);
         StihoArtikel sa = stihoArtikelService.getStihoArtikel(number);
@@ -74,16 +80,19 @@ public class ProductController {
             model.addAttribute("type", "danger");
             return "product_add_step_1";
         }
+        request.getSession().setAttribute("sessionStihoArtikel", sa);
         Product p = new Product();
         List<Product> products = productService.getProducts();
         for (Product product : products) {
             if (product.getProductNumber().getArtikelnummer() == number) {
-                p = product;
-                model.addAttribute("existingProduct", true);
-                break;
+                model.addAttribute("pageDescription", "Enter all the information for this product.");
+                request.getSession().setAttribute("sessionProduct", product);
+                Item item = new Item();
+                model.addAttribute("item", item);
+                return "product_add_step_3";
             }
         }
-        if (p.getId()==0) {
+        if (p.getId() == 0) {
             p.setProductNumber(sa);
             p.setNetWidth(sa.getNettoBreedte());
             p.setProductLength(sa.getArtikelLengte());
@@ -95,20 +104,49 @@ public class ProductController {
         model.addAttribute("product", p);
         return "product_add_step_2";
     }
-    
+
     // ADD STEP 2 SUBMIT
     @RequestMapping(value = "/add_step_2", method = RequestMethod.POST)
-    public String submitAddStep2(Product product, Model model) throws IOException {
+    public String submitAddStep2(Product product, Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Add product");
-                // VALIDATION START
-        model = validate(model, product);
+        model.addAttribute("pageDescription", "Enter all the information for this product.");
+        // VALIDATION START
+        model = validateStep2(model, product);
         if (model.containsAttribute("anyErrors")) {
-            model.addAttribute("pageDescription", "Enter all the information for this product.");
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
             return "product_add_step_2";
         }
+        request.getSession().setAttribute("sessionProduct", product);
+        Item item = new Item();
+        model.addAttribute("item", item);
+        product.setProductNumber((StihoArtikel) request.getSession().getAttribute("sessionStihoArtikel"));
+        productService.addProduct(product);
         return "product_add_step_3";
+    }
+
+    // ADD STEP 3 SUBMIT
+    @RequestMapping(value = "/add_step_3", method = RequestMethod.POST)
+    public String submitAddStep3(Item item, Model model, HttpServletRequest request) throws IOException {
+
+        // VALIDATION START
+        model = validateStep3(model, item);
+        if (model.containsAttribute("anyErrors")) {
+            model.addAttribute("pageTitle", "Add product");
+            model.addAttribute("pageDescription", "Enter all the information for this product.");
+            model.addAttribute("message", "Not all fields were entered correctly.");
+            model.addAttribute("type", "danger");
+            return "product_add_step_3";
+        }
+        item.setProduct((Product) request.getSession().getAttribute("sessionProduct"));
+//        User currentUser = (User)request.getSession().getAttribute("currentUser");
+//        item.setEstablishment(currentUser.getEstablishment());
+        itemService.addItem(item);
+        model.addAttribute("pageTitle", "Home");
+        model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
+        model.addAttribute("message", item.getProduct().getName()+" was added successfully.");
+        model.addAttribute("type", "success");
+        return "product_list";
     }
 
     // ADD LOAD
@@ -131,18 +169,18 @@ public class ProductController {
         model.addAttribute("type", "success");
         return "product_list";
     }
-    
+
     // PRODUCT INFO LIST
-     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public ModelAndView productInfo(@PathVariable int id) {
 
         ModelAndView productInfoView = new ModelAndView("productInfo");
-        productInfoView.addObject("paginaTitel", "Dit is product A" );
+        productInfoView.addObject("paginaTitel", "Dit is product A");
         productInfoView.addObject("product", productService.getProduct(id));
 
         return productInfoView;
-    }     
-    
+    }
+
     // SEARCH
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(@RequestParam(value = "search") String search, Model model) throws IOException {
@@ -192,8 +230,8 @@ public class ProductController {
         model.addAttribute("message", product.getName() + " was succesfully edited.");
         model.addAttribute("type", "success");
         return "product_list";
-    }  
-    
+    }
+
     // DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable int id, Model model) {
@@ -206,8 +244,9 @@ public class ProductController {
         model.addAttribute("type", "success");
         return "product_list";
     }
-    // VALIDATE PRODUCT
-        public Model validate(Model model, Product product) {
+
+    // VALIDATE PRODUCT STEP 2
+    public Model validateStep2(Model model, Product product) {
         boolean anyErrors = false;
         if (!Validation.lettersMin(product.getName(), 2)) {
             model.addAttribute("nameError", true);
@@ -217,7 +256,31 @@ public class ProductController {
             model.addAttribute("descriptionError", true);
             anyErrors = true;
         }
-                if (anyErrors) {
+        if (anyErrors) {
+            model.addAttribute("anyErrors", anyErrors);
+        }
+        return model;
+    }
+
+    // VALIDATE ITEM STEP 3
+    public Model validateStep3(Model model, Item item) {
+        boolean anyErrors = false;
+        if (!Validation.price(item.getChosenPrice() + "")) {
+            model.addAttribute("chosenPriceError", true);
+            anyErrors = true;
+        }
+        if (!Validation.numbersMin(item.getStock() + "",1)) {
+            model.addAttribute("stockError", true);
+            anyErrors = true;
+        }
+        
+        if (item.isAddition()) {
+            if (!Validation.allMin(item.getAdditionDescription(), 6)) {
+                model.addAttribute("additionDescriptionError", true);
+                anyErrors = true;
+            }
+        }
+        if (anyErrors) {
             model.addAttribute("anyErrors", anyErrors);
         }
         return model;
