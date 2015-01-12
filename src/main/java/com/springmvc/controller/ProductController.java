@@ -51,6 +51,16 @@ public class ProductController {
         return "product_list";
     }
 
+    //LIST ESTABLISHMENT PRODUCTS
+    @RequestMapping(value = "/establishment_products", method = RequestMethod.POST)
+    public String establishmentProducts(Model model, @RequestParam(value = "choice") String choice, HttpServletRequest request) throws IOException {
+        model.addAttribute("pageTitle", "Products");
+        model.addAttribute("pageDescription", "Browse through all of our poducts here.");
+        model.addAttribute("products", productService.getProducts());
+        request.getSession().setAttribute("currentEstablishment", choice);
+        return "product_list";
+    }
+
     // LIST TABLE
     @RequestMapping(value = "/table")
     public String listTable(Model model) throws IOException {
@@ -144,7 +154,7 @@ public class ProductController {
         itemService.addItem(item);
         model.addAttribute("pageTitle", "Home");
         model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
-        model.addAttribute("message", item.getProduct().getName()+" was added successfully.");
+        model.addAttribute("message", item.getProduct().getName() + " was added successfully.");
         model.addAttribute("type", "success");
         return "product_list";
     }
@@ -269,11 +279,11 @@ public class ProductController {
             model.addAttribute("chosenPriceError", true);
             anyErrors = true;
         }
-        if (!Validation.numbersMin(item.getStock() + "",1)) {
+        if (!Validation.numbersMin(item.getStock() + "", 1)) {
             model.addAttribute("stockError", true);
             anyErrors = true;
         }
-        
+
         if (item.isAddition()) {
             if (!Validation.allMin(item.getAdditionDescription(), 6)) {
                 model.addAttribute("additionDescriptionError", true);

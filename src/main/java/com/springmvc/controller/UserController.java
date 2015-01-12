@@ -70,13 +70,14 @@ public class UserController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(Model model, HttpServletRequest request) throws IOException {
         request.getSession().removeAttribute("currentUser");
+        request.getSession().removeAttribute("currentEstablishment");
         model.addAttribute("user", new User());
         model.addAttribute("pageTitle", "Login");
         model.addAttribute("message", "Succesfully logged out.");
         model.addAttribute("type", "success");
         //REGISTER LOGOUT
         timeLogService.updateLogout(t);
-        
+
         return "user_login";
     }
 
