@@ -30,7 +30,7 @@ public class UserController {
     private TimeLogService timeLogService;
     @Autowired
     private EstablishmentService establishmentService;
-    
+
     TimeLog t = new TimeLog();
 
     // LOGIN LOAD
@@ -210,6 +210,7 @@ public class UserController {
         }
         model.addAttribute("user", (userService.getUser(id)));
         model.addAttribute("addEditOrView", "view");
+        model.addAttribute("establishmentList", establishmentService.getEstablishments());
         return "user_add_edit_view";
     }
 
@@ -260,7 +261,7 @@ public class UserController {
         model.addAttribute("pageDescription", "Add, edit, delete or view a user.<br>You can also give a user new permissions or change their establishment.");
         return "user_list";
     }
-    
+
     // SEARCH USER
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(@RequestParam(value = "search") String search, Model model) throws IOException {
@@ -372,7 +373,7 @@ public class UserController {
 
         return "user_list";
     }
-    
+
     // VALIDATE USER
     public Model validate(Model model, User user) {
         boolean anyErrors = false;
