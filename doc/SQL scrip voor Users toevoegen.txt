@@ -1,0 +1,25 @@
+INSERT INTO `db_webshop`.`user`(`id`,`city`,`email`,`firstName`,`lastName`,`password`,`permissionLevel`,`phoneNumber`,
+`postalCode`,`streetName`,
+`streetNumber`,`streetNumberSuffix`,`establishment_id`,`role_roleId`)
+
+VALUES
+
+(1,'Amsterdam','keeskaas@hotmail.com','Kees','Kaas','customer',1,'0252123456','2161XA','kaasstraat',  34,
+NULL,
+NULL,
+NULL),
+
+(2,'Amsterdam','employee@stiho.nl','Employee','Kaasje','employee',2,'0252987654','leukestraat','2161XS',  1,
+NULL,
+NULL,
+NULL),
+
+(3,'Amsterdam','manager@stiho.nl','Manager','Hans','manager',3,'0252456123','2161KL','handigestraat',  300,
+NULL,
+NULL,
+NULL),
+
+(4,'Amsterdam','admin1@stiho.nl','Admin','Beheerder','admin1',4,'0252564789','2161MN','apartestraat',  20,
+NULL,
+NULL,
+NULL);

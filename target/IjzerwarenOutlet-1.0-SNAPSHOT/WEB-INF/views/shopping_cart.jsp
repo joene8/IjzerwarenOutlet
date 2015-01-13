@@ -8,7 +8,8 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <% String s = (String) request.getAttribute("message"); %>
 <% request.setAttribute("succes", s);%>
@@ -41,19 +42,19 @@
                         </td>
                         
                     </tr>
-                    <c:forEach var="product" items="${cart.getProductList()}">
+                    <c:forEach var="item" items="${cart.getItemList()}">
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                         <tr>
                             
-                            <td><a href="${pageContext.request.contextPath}/product/info/${product.id}">${product.name}</a></td>
+                            <td><a href="${pageContext.request.contextPath}/item/info/${item.id}">${item.name}</a></td>
                             <td>${product.price}</td>
                             <td>${product.location}</td>
                             <td> 
-                                <a href="${pageContext.request.contextPath}/itemOrder/add_step_1/${product.id}">Order</a>
+                                <a href="${pageContext.request.contextPath}/itemOrder/add_step_1/${item.id}">Order</a>
                             </td>
                             
                             <td>
-                                <a href="${pageContext.request.contextPath}/cart/remove/${product.id}">Delete</a>
+                                <a href="${pageContext.request.contextPath}/cart/remove/${item.id}">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -68,10 +69,6 @@
                 Your shopping cart is empty
             </c:otherwise>
         </c:choose>
-        <p>
-            <a href="${pageContext.request.contextPath}/product/add">Add new product</a>
-        </p>
-
         <p>
             <a href="${pageContext.request.contextPath}/index">Return to index</a>
         </p>
