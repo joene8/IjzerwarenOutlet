@@ -16,6 +16,18 @@
 
     }
 
+    function checkRange(min, max) {
+
+        var val = document.getElementById("chosenPrice").value;
+        if (val >= min && val <= max) {
+            document.getElementById("field_chosenPrice").className = "form-group has-success has-feedback";
+            document.getElementById("glyph_chosenPrice").className = "glyphicon glyphicon-ok form-control-feedback";
+        } else {
+            document.getElementById("field_chosenPrice").className = "form-group has-error has-feedback";
+            document.getElementById("glyph_chosenPrice").className = "glyphicon glyphicon-remove form-control-feedback";
+        }
+    }
+
     function checkAddition() {
         var buttons = document.getElementsByName("addition");
         if (buttons[0].checked) {
@@ -38,21 +50,22 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <span class="input-group-addon">&euro;</span>
-                                <form:input path="chosenPrice" onblur="validate(\"chosenPrice\",/^[(0-9)+.?(0-9)*]+$/)" class="form-control" id="chosenPrice" /> 
+                                <form:input type="number"  max="${sessionProduct.standardSalePrice}" step="0.1" path="chosenPrice" onblur=" checkRange(${minPrice},${sessionProduct.standardSalePrice})" class="form-control" id="chosenPrice" min="${minPrice}"/> 
                                 <span id="glyph_chosenPrice" class=""></span>
-                                <c:if test="${chosenPriceError}"><span class="help-block">Must be an valid price.</span></c:if>
-                                </div>
                             </div>
+                            <c:if test="${chosenPriceError}"><span class="help-block">Must be an valid price within the range.</span></c:if>
+                            <span class="help-block">Min: ${minPrice} Max: ${sessionProduct.standardSalePrice}</span>
                         </div>
-                        <!--Chosen price end-->
+                    </div>
+                    <!--Chosen price end-->
 
-                        <!--Stock begin-->
-                        <div id="field_stock" class="form-group <c:if test="${stockError}">has-error</c:if>">
-                            <label for="stock" class="col-sm-2 control-label">Stock</label>
+                    <!--Stock begin-->
+                    <div id="field_stock" class="form-group <c:if test="${stockError}">has-error</c:if>">
+                            <label type="number" for="stock" class="col-sm-2 control-label">Stock</label>
                             <div class="col-sm-3">
-                                    <form:input path="stock" onblur="validate(\"stock\",/^\\d{1,}$/)" class="form-control" id="stock" /> 
-                                    <span id="glyph_stock" class=""></span>
-                                <c:if test="${stockError}"><span class="help-block">Must be an valid number.</span></c:if>
+                            <form:input type="number" min="1" path="stock" onblur="validate(\"stock\",/^\\d{1,}$/)" class="form-control" id="stock" /> 
+                            <span id="glyph_stock" class=""></span>
+                            <c:if test="${stockError}"><span class="help-block">Must be an valid number.</span></c:if>
                             </div>
                         </div>
                         <!--Stock end-->
@@ -99,7 +112,7 @@
                     <!--Addition end-->
 
 
-
+                    <input type="hidden" name="minPrice" value="${minPrice}">
 
 
                     <div class="form-group">

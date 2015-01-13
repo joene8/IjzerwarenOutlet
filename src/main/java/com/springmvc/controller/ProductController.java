@@ -95,6 +95,22 @@ public class ProductController {
         List<Product> products = productService.getProducts();
         for (Product product : products) {
             if (product.getProductNumber().getArtikelnummer() == number) {
+                List<Item> items = itemService.getItems();
+                double min = product.getStandardSalePrice() / 2;
+                boolean itemFound = false;
+                for (Item i : items) {
+                    if (i.getProduct().getId()==product.getId() && i.getStock() > 0) {
+                        itemFound = true;
+                        if (i.getChosenPrice() < min) {
+                            min = i.getChosenPrice();
+                        }
+                    }
+                }
+                if (itemFound) {
+                    model.addAttribute("message", "An item with this item number has already been added previously. You are not allowed to choose a price lower than that price of &euro;" + min);
+                    model.addAttribute("type", "info");
+                }
+                model.addAttribute("minPrice", min);
                 model.addAttribute("pageDescription", "Enter all the information for this product.");
                 request.getSession().setAttribute("sessionProduct", product);
                 Item item = new Item();
@@ -137,7 +153,7 @@ public class ProductController {
 
     // ADD STEP 3 SUBMIT
     @RequestMapping(value = "/add_step_3", method = RequestMethod.POST)
-    public String submitAddStep3(Item item, Model model, HttpServletRequest request) throws IOException {
+    public String submitAddStep3(Item item, Model model, HttpServletRequest request,@RequestParam(value = "minPrice") String minPrice) throws IOException {
 
         // VALIDATION START
         model = validateStep3(model, item);
@@ -146,11 +162,12 @@ public class ProductController {
             model.addAttribute("pageDescription", "Enter all the information for this product.");
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
+            model.addAttribute("minPrice", minPrice);
             return "product_add_step_3";
         }
         item.setProduct((Product) request.getSession().getAttribute("sessionProduct"));
-//        User currentUser = (User)request.getSession().getAttribute("currentUser");
-//        item.setEstablishment(currentUser.getEstablishment());
+        User currentUser = (User)request.getSession().getAttribute("currentUser");
+        item.setEstablishment(currentUser.getEstablishment());
         itemService.addItem(item);
         model.addAttribute("pageTitle", "Home");
         model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
@@ -182,8 +199,8 @@ public class ProductController {
 
     // PRODUCT INFO LIST
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public String productInfo(@PathVariable int id, Model model, Item item) throws IOException{
-        
+    public String productInfo(@PathVariable int id, Model model, Item item) throws IOException {
+
         model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id));
         model.addAttribute("product", itemService.getItem(id));
 
