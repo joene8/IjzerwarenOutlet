@@ -49,7 +49,7 @@
                         <c:choose>
                             <c:when test="${itemOrders.size() != 0}">
                                 <c:forEach var="itemOrder" items="${itemOrders}">
-                                    <c:if test="${itemOrder.user_id == currentUser.id}">
+                                    <c:if test="${itemOrder.user.id == currentUser.id}">
                                         <tr>
                                             <td>${itemOrder.id}</td>
                                             <td>${itemOrder.date}</td>
@@ -66,7 +66,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td><em>Total orders: ${itemOrders.size()}</em></td>       
+                            <td colspan="5"><em>Total orders: ${itemOrders.size()}</em></td>       
                         </tr>
                     </tfoot>
                 </table> 

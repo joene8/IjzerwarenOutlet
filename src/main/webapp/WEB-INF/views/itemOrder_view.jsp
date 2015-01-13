@@ -65,7 +65,7 @@
                     <div id="field_establishment" class="form-group">
                         <label for="establishment" class="col-sm-3 control-label">establishment</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">${itemOrder.establishment}</p>
+                            <p class="form-control-static">${itemOrder.item.establishment.name}</p>
                         </div>
                     </div>
                     <!--establishment end-->
@@ -92,7 +92,7 @@
                     <div id="field_user" class="form-group">
                         <label for="user" class="col-sm-3 control-label">user</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">${itemOrder.user}</p>
+                            <p class="form-control-static">${itemOrder.user.name}</p>
                         </div>
                     </div>
                     <!--user end-->
