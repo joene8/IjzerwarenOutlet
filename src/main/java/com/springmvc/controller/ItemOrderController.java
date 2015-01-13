@@ -39,7 +39,7 @@ public class ItemOrderController {
     TimeLog t = new TimeLog();
 
     // ADD STEP 1 LOAD
-    @RequestMapping(value = "/add_step_1/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/add_step_1", method = RequestMethod.GET)
     public String loadAdd(Model model, HttpServletRequest request) throws IOException {
         if (request.getSession().getAttribute("currentUser") != null) {
             model.addAttribute("pageTitle", "Check user information");
@@ -50,7 +50,7 @@ public class ItemOrderController {
         }
 
         model.addAttribute("user", new User());
-        return "order_add_step_1/{id}";
+        return "order_add_step_1";
     }
 
     // ADD STEP 1 SUBMIT
@@ -110,16 +110,16 @@ public class ItemOrderController {
         }
         itemOrder.setUser((User) request.getSession().getAttribute("currentUser"));
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
-        if (request.getSession().getAttribute("delivery") == "true") {
+        if ((Boolean) request.getSession().getAttribute("delivery") == true) {
             itemOrder.setDelivery(true);
-        } else {
+        }else {
             itemOrder.setDelivery(false);
         }
         itemOrder.setDestination((String) request.getSession().getAttribute("Destination"));
-        itemOrder.setItem(null);
+        itemOrder.setItem((Item) request.getSession().getAttribute(null));
         itemOrder.setShippingCosts(0);
         itemOrder.setTotalPrice((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"));
-        itemOrder.setAmount((Integer) request.getSession().getAttribute("Stock"));
+        itemOrder.setAmount(0);
 
         itemOrderService.addItemOrder(itemOrder);
         model.addAttribute("pageTitle", "Home");
