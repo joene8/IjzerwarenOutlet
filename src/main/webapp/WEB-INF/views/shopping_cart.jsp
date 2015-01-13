@@ -46,9 +46,9 @@
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                         <tr>
                             
-                            <td><a href="${pageContext.request.contextPath}/item/info/${item.id}">${item.name}</a></td>
-                            <td>${product.price}</td>
-                            <td>${product.location}</td>
+                            <td><a href="${pageContext.request.contextPath}/item/info/${item.id}">${item.product.name}</a></td>
+                            <td>${item.chosenPrice}</td>
+                            <td>${item.establishment.name}</td>
                             <td> 
                                 <a href="${pageContext.request.contextPath}/itemOrder/add_step_1/${item.id}">Order</a>
                             </td>

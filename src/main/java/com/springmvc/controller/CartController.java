@@ -2,7 +2,6 @@ package com.springmvc.controller;
 
 import com.springmvc.model.Cart;
 import com.springmvc.model.Item;
-import com.springmvc.model.Product;
 import com.springmvc.service.ItemService;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/cart")
