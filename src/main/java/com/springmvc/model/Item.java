@@ -5,6 +5,7 @@
  */
 package com.springmvc.model;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -33,8 +35,8 @@ public class Item implements Serializable {
     private Product product;
     @ManyToOne
     private Establishment establishment;
-    
-    @OneToMany(mappedBy="item")
+
+    @OneToMany(mappedBy = "item")
     private Set<ItemOrder> itemOrder;
 
     public Item() {
@@ -112,4 +114,16 @@ public class Item implements Serializable {
         this.itemOrder = itemOrder;
     }
 
+    public double getActualPrice() {
+        double actualPrice;
+        if (isAddition()) {
+            return actualPrice = (chosenPrice * (100 - getDiscountPercentage())) / 100;
+        } else {
+            return actualPrice = getChosenPrice();
+        }
+    }
+    
+    public int getDiscount(){
+        return (int) (((getActualPrice()/getProduct().getStandardSalePrice())-1)*-100);
+    }
 }

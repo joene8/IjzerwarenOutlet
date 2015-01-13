@@ -83,7 +83,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="5"><a href="${pageContext.request.contextPath}/user/add" class="btn btn-sm btn-danger">Add user</a></td>
-                            <td><em>Total users: ${users.size()}</em></td>       
+                            <td colspan="2"><em>Total users: ${users.size()}</em></td>       
                         </tr>
                     </tfoot>
                 </table>
