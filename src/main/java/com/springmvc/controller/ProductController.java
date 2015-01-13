@@ -43,24 +43,11 @@ public class ProductController {
 
     // LIST THUMBNAILS
     @RequestMapping(value = "/list")
-    public String list(Model model, HttpServletRequest request) throws IOException {
+    public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "Products");
         model.addAttribute("pageDescription", "Browse through all of our poducts here.");
+        model.addAttribute("products", productService.getProducts());
         model.addAttribute("establishments", establishmentService.getEstablishments());
-        Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
-        if (currentEstablishment != null) {
-            String es = (String) currentEstablishment;
-            int establishmentId = Integer.parseInt(es);
-            List<Item> itemList = itemService.getItems();
-            List<Item> list = new ArrayList<Item>();
-            for (Item i : itemList) {
-                if (establishmentId == i.getEstablishment().getId()) {
-                    list.add(i);
-                }
-            }
-            model.addAttribute("items", list);
-        }
-
         return "product_list";
     }
 
@@ -71,19 +58,6 @@ public class ProductController {
         model.addAttribute("pageDescription", "Browse through all of our poducts here.");
         model.addAttribute("products", productService.getProducts());
         request.getSession().setAttribute("currentEstablishment", choice);
-        Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
-        if (currentEstablishment != null) {
-            String es = (String) currentEstablishment;
-            int establishmentId = Integer.parseInt(es);
-            List<Item> itemList = itemService.getItems();
-            List<Item> list = new ArrayList<Item>();
-            for (Item i : itemList) {
-                if (establishmentId == i.getEstablishment().getId()) {
-                    list.add(i);
-                }
-            }
-            model.addAttribute("items", list);
-        }
         return "product_list";
     }
 
@@ -208,8 +182,8 @@ public class ProductController {
 
     // PRODUCT INFO LIST
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public String productInfo(@PathVariable int id, Model model, Item item) throws IOException {
-
+    public String productInfo(@PathVariable int id, Model model, Item item) throws IOException{
+        
         model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id));
         model.addAttribute("product", itemService.getItem(id));
 

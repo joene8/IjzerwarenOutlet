@@ -1,4 +1,3 @@
-<%@page import="com.springmvc.model.Item"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -9,7 +8,6 @@
 
 <t:menu>
     <jsp:body>
-
         <c:choose>
             <c:when test="${currentEstablishment == null}">
                 <div class="panel panel-gray" id="title">
@@ -119,22 +117,18 @@
                 </div>
                 <!--            Filter end-->
                 <c:choose>
-                    <c:when test="${items.size() != 0}">
+                    <c:when test="${products.size() != 0}">
                         <!-- When there are products, they will be shown below -->
 
-                        <c:forEach var="item" items="${items}">
+                        <c:forEach var="product" items="${products}">
                             <div class=" col-sm-6 col-md-3">
                                 <div class="thumbnail">
-                                    <img src="https://dl.dropboxusercontent.com/u/35106986/img/${item.product.picture}" data-src="holder.js/200x200" alt="...">
+                                    <img src="https://dl.dropboxusercontent.com/u/35106986/img/${product.picture}" data-src="holder.js/200x200" alt="...">
                                     <div class="caption">
-                                        <h3>${item.product.name}</h3>
-                                        <p>${item.product.description}</p>
-                                        <h3><span class="oldPrice">&euro;${item.product.standardSalePrice}</span>  
-                                            <div style="font-size:12px">you save ${item.getDiscount()}%</div><br>
-                                            <span>&euro;${item.getActualPrice()}</span><c:if test="${item.isAddition()}">
-                                                <span data-toggle="tooltip" data-placement="right" title="${item.getAdditionDescription()}"><img src="http://png-5.findicons.com/files/icons/1156/fugue/16/wrench_screwdriver.png"</span></c:if></h3>
-                                        <p>Stock: ${item.stock}</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Add to cart</a></p>
+                                        <h3>${product.name}</h3>
+                                        <p>${product.description}</p>
+                                        <h3><span class="oldPrice">&euro;${product.chosenPrice*2}</span><br>&euro;${product.chosenPrice}</h3>
+                                        <p><a href="#" class="btn btn-default" role="button">Check stock</a> <a href="${pageContext.request.contextPath}/product/info/${product.id}" class="btn btn-primary" role="button">Add to cart</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -154,10 +148,6 @@
         <!--Javascript menu activator-->
         <script>activeMenu("products");</script>
         <t:footer/>
-        <script>
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        </script>
+
     </jsp:body>
 </t:menu>
