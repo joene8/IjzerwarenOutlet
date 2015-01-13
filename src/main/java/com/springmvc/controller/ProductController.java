@@ -41,23 +41,48 @@ public class ProductController {
     @Autowired
     private ItemService itemService;
 
-    // LIST THUMBNAILS
+      // LIST THUMBNAILS
     @RequestMapping(value = "/list")
-    public String list(Model model) throws IOException {
+    public String list(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Products");
         model.addAttribute("pageDescription", "Browse through all of our poducts here.");
-        model.addAttribute("products", productService.getProducts());
         model.addAttribute("establishments", establishmentService.getEstablishments());
-        return "product_list";
-    }
+        Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
+        if (currentEstablishment != null) {
+            String es = (String) currentEstablishment;
+            int establishmentId = Integer.parseInt(es);
+            List<Item> itemList = itemService.getItems();
+            List<Item> list = new ArrayList<Item>();
+            for (Item i : itemList) {
+                if (establishmentId == i.getEstablishment().getId()) {
+                    list.add(i);
+                }
+            }
+            model.addAttribute("items", list);
+        }
 
-    //LIST ESTABLISHMENT PRODUCTS
+        return "product_list";
+    }   
+ //LIST ESTABLISHMENT PRODUCTS
     @RequestMapping(value = "/establishment_products", method = RequestMethod.POST)
     public String establishmentProducts(Model model, @RequestParam(value = "choice") String choice, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Products");
         model.addAttribute("pageDescription", "Browse through all of our poducts here.");
         model.addAttribute("products", productService.getProducts());
         request.getSession().setAttribute("currentEstablishment", choice);
+        Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
+        if (currentEstablishment != null) {
+            String es = (String) currentEstablishment;
+            int establishmentId = Integer.parseInt(es);
+            List<Item> itemList = itemService.getItems();
+            List<Item> list = new ArrayList<Item>();
+            for (Item i : itemList) {
+                if (establishmentId == i.getEstablishment().getId()) {
+                    list.add(i);
+                }
+            }
+            model.addAttribute("items", list);
+        }
         return "product_list";
     }
 
