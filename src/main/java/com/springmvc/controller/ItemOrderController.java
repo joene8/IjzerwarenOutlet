@@ -1,6 +1,5 @@
 package com.springmvc.controller;
 
-import com.springmvc.model.Item;
 import com.springmvc.model.ItemOrder;
 import com.springmvc.model.TimeLog;
 import com.springmvc.model.User;
@@ -11,6 +10,7 @@ import com.springmvc.service.UserService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -188,11 +188,19 @@ public class ItemOrderController {
 
     // HISTORY
     @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public String history(Model model) throws IOException {
+    public String history(Model model, HttpServletRequest request) throws IOException {
+        
+        List<ItemOrder> itemOrders = itemOrderService.getItemOrders();
+        List<ItemOrder> userItemOrders = new ArrayList<ItemOrder>();
+        for (ItemOrder i : itemOrders) {
+            if (i.getUser().getId() == ((User) request.getSession().getAttribute("currentUser")).getId()) {
+                userItemOrders.add(i);
+            }
+        }
 
         model.addAttribute("pageTitle", "Order History");
         model.addAttribute("pageDescription", "View your order history.");
-        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+        model.addAttribute("itemOrders", userItemOrders);
 
         return "itemOrder_history";
     }
@@ -207,20 +215,4 @@ public class ItemOrderController {
 
         return "itemOrder_view";
     }
-
-    // DELETE
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String remove(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
-
-        itemOrderService.deleteItemOrder(id);
-
-        model.addAttribute("message", "Order was succesfully deleted.");
-        model.addAttribute("type", "success");
-        model.addAttribute("pageTitle", "Order History");
-        model.addAttribute("pageDescription", "View your order history.");
-        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
-
-        return "itemOrder_history";
-    }
-
 }

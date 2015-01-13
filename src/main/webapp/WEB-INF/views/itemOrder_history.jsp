@@ -49,7 +49,6 @@
                         <c:choose>
                             <c:when test="${itemOrders.size() != 0}">
                                 <c:forEach var="itemOrder" items="${itemOrders}">
-                                    <c:if test="${itemOrder.user.id == currentUser.id}">
                                         <tr>
                                             <td>${itemOrder.id}</td>
                                             <td>${itemOrder.date}</td>
@@ -59,7 +58,6 @@
                                                 <a href="${pageContext.request.contextPath}/itemOrder/view/${itemOrder.id}" class="btn btn-xs btn-default">View</a>
                                             </td>
                                         </tr>
-                                    </c:if>
                                 </c:forEach>
                             </c:when>
                         </c:choose>
