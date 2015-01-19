@@ -279,7 +279,7 @@ public class UserController {
         String message = "";
         if (foundUsers.isEmpty()) {
             message = "No user with the name containing \"" + search + "\" was found";
-            model.addAttribute("type", "warning");
+            model.addAttribute("type", "danger");
         } else {
             String extraS = "";
             String plural = "was";
@@ -317,7 +317,7 @@ public class UserController {
         String message = "";
         if (foundUsers.isEmpty()) {
             message = "No employee with the name containing \"" + search + "\" was found";
-            model.addAttribute("type", "warning");
+            model.addAttribute("type", "danger");
         } else {
             String extraS = "";
             String plural = "was";
@@ -355,7 +355,7 @@ public class UserController {
         String message = "";
         if (foundUsers.isEmpty()) {
             message = "No customer with the name containing \"" + search + "\" was found";
-            model.addAttribute("type", "warning");
+            model.addAttribute("type", "danger");
         } else {
             String extraS = "";
             String plural = "was";
