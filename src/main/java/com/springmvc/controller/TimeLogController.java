@@ -29,18 +29,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "/timelog")
 public class TimeLogController {
-    
+
     @Autowired
     private TimeLogService timeLogService;
-    
+
     // LIST
     @RequestMapping(value = "/list")
     public String list(Model model) throws IOException {
         model.addAttribute("pageTitle", "TimeLogs");
         model.addAttribute("timelogs", timeLogService.getTimeLogs());
+        model.addAttribute("pageDescription", "List of all login sessions and durations <br>You can sort and delete time logs as well");
         return "timelog_list";
     }
-    
+
     // DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable int id, Model model, HttpServletRequest request) {
@@ -76,10 +77,10 @@ public class TimeLogController {
             model.addAttribute("message", message);
             return "timelog_list";
         }
-        
+
         Timestamp beginDate = new Timestamp(new SimpleDateFormat("MM/dd/yyyy").parse(fromDate).getTime());
         Timestamp endDate = new Timestamp(new SimpleDateFormat("MM/dd/yyyy").parse(toDate).getTime());
-        
+
         if (beginDate.after(endDate)) {
             model.addAttribute("pageTitle", "TimeLogs");
             model.addAttribute("pageDescription", "List of all login sessions and durations <br>You can sort and delete time logs as well");
@@ -121,19 +122,19 @@ public class TimeLogController {
     // SELECTION DELETE
     @RequestMapping(value = "/selection")
     public String selection(Model model, HttpServletRequest request) throws IOException {
-        String[] selectedTimeLogIds = request.getParameterValues("selection");
 
         String message = "";
 
-        if (selectedTimeLogIds.length == 0) {
+        if (request.getParameterValues("selection") == null) {
             model.addAttribute("pageTitle", "TimeLogs");
             model.addAttribute("pageDescription", "List of all login sessions and durations <br>You can sort and delete time logs as well");
             model.addAttribute("type", "danger");
             message = "Please make a selection before deleting";
             model.addAttribute("message", message);
+            model.addAttribute("timelogs", timeLogService.getTimeLogs());
             return "timelog_list";
         } else {
-
+            String[] selectedTimeLogIds = request.getParameterValues("selection");
             for (String s : selectedTimeLogIds) {
                 timeLogService.deleteTimeLog(Integer.parseInt(s));
             }
@@ -148,5 +149,5 @@ public class TimeLogController {
 
         return "timelog_list";
     }
-    
+
 }
