@@ -64,7 +64,14 @@ public class TimeLogDAO {
         
         getCurrentSession().update(timeLogToUpdate);
     }
-
+    
+    public void deleteTimeLog(int id) {
+        TimeLog timeLog = getTimeLog(id);
+        if (timeLog != null) {
+            getCurrentSession().delete(timeLog);
+        }
+    }
+    
     public TimeLog getTimeLog(int id) {
         TimeLog timeLog = (TimeLog) getCurrentSession().get(TimeLog.class, id);
         return timeLog;
