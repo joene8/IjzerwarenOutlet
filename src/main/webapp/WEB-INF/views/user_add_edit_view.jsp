@@ -85,47 +85,58 @@
                     </div>
                     <!--Email end-->
                     
-                    <!--Permission level start-->
-                    <div id="field_permissionLevel" class="form-group <c:if test="${errorPermissionLevel}">has-error</c:if>">
-                            <label for="permissionLevel" class="col-sm-3 control-label">Permission level</label>
-                            <div class="col-sm-3">
-                            <c:choose>
-                                <c:when test="${user.permissionLevel==4}">
-                                    <form:select path="permissionLevel" class="form-control" disabled="${true}"> 
-                                        <form:option value="4" label="Admin (Unselectable)" />
-                                    </form:select>
-                                </c:when>
-                                <c:otherwise>
-                                    <form:select path="permissionLevel" class="form-control">
-                                        <form:option value="1" label="User"  />
-                                        <form:option value="2" label="Employee" />
-                                        <form:option value="3" label="Manager" />
-                                        <form:option value="4" label="Admin (Unselectable)" disabled="${true}" />
-                                    </form:select>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
-                    <!--Permission level end-->
                     
-                    <!--Establishment start-->
-                    <div id="field_establishment" class="form-group <c:if test="${errorEstablishment}">has-error</c:if>">
-                            <label for="establishment" class="col-sm-3 control-label">Establishment</label>
-                            <div class="col-sm-3">
-                            <c:choose>
-                                <c:when test="${user.permissionLevel==1}">
-                                    <form:select path="establishment.id" class="form-control" disabled="${true}"> 
-                                        <form:option value="0" label="Unavailable)" />
-                                    </form:select>
-                                </c:when>
-                                <c:otherwise>
-                                    <form:select path="establishment.id" class="form-control">
-                                        <form:options items="${establishmentList}" itemValue="id" itemLabel="name"/>
-                                    </form:select>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
+                    <!--Permission level start-->
+                    <c:choose>
+                        <c:when test="${currentUser.permissionLevel==4}">
+                            <!--Permission level start-->
+                            <div id="field_permissionLevel" class="form-group <c:if test="${errorPermissionLevel}">has-error</c:if>">
+                                    <label for="permissionLevel" class="col-sm-3 control-label">Permission level</label>
+                                    <div class="col-sm-3">
+                                    <c:choose>
+                                        <c:when test="${user.permissionLevel==4}">
+                                            <form:select path="permissionLevel" class="form-control" disabled="${true}"> 
+                                                <form:option value="4" label="Admin (Unselectable)" />
+                                            </form:select>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <form:select path="permissionLevel" class="form-control">
+                                                <form:option value="1" label="User"  />
+                                                <form:option value="2" label="Employee" />
+                                                <form:option value="3" label="Manager" />
+                                                <form:option value="4" label="Admin (Unselectable)" disabled="${true}" />
+                                            </form:select>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
+                            <!--Permission level end-->
+
+                            <!--Establishment start-->
+                            <div id="field_establishment" class="form-group <c:if test="${errorEstablishment}">has-error</c:if>">
+                                    <label for="establishment" class="col-sm-3 control-label">Establishment</label>
+                                    <div class="col-sm-3">
+                                    <c:choose>
+                                        <c:when test="${user.permissionLevel==1}">
+                                            <form:select path="establishment.id" class="form-control" disabled="${true}"> 
+                                                <form:option value="0" label="Unavailable)" />
+                                            </form:select>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <form:select path="establishment.id" class="form-control">
+                                                <form:options items="${establishmentList}" itemValue="id" itemLabel="name"/>
+                                            </form:select>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
+                            <!--Establishment end-->
+                        </c:when>
+                        <c:otherwise>
+
+                        </c:otherwise>
+
+                    </c:choose>
                     <!--Establishment end-->
                     
                     <!--Street name start-->
