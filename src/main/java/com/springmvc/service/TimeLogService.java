@@ -37,6 +37,10 @@ public class TimeLogService {
         timeLogDAO.updateLogout(timeLog);
     }
     
+    public void deleteTimeLog(int id){
+        timeLogDAO.deleteTimeLog(id);
+    }
+    
     public TimeLog getTimeLog(int id){
         return timeLogDAO.getTimeLog(id);
     }
