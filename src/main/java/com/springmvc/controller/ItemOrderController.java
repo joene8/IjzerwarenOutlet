@@ -11,7 +11,9 @@ import com.springmvc.service.UserService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import static jdk.nashorn.internal.objects.NativeString.search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -112,7 +114,7 @@ public class ItemOrderController {
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
         if ((Boolean) request.getSession().getAttribute("delivery") == true) {
             itemOrder.setDelivery(true);
-        }else {
+        } else {
             itemOrder.setDelivery(false);
         }
         itemOrder.setDestination((String) request.getSession().getAttribute("Destination"));
@@ -188,11 +190,19 @@ public class ItemOrderController {
 
     // HISTORY
     @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public String history(Model model) throws IOException {
+    public String history(Model model, HttpServletRequest request) throws IOException {
+
+        List<ItemOrder> itemOrders = itemOrderService.getItemOrders();
+        List<ItemOrder> foundItemOrder = new ArrayList<ItemOrder>();
+        for (ItemOrder i : itemOrders) {
+            if (i.getUser().getId() == ((User) request.getSession().getAttribute("currentUser")).getId()) {
+                foundItemOrder.add(i);
+            }
+        }
 
         model.addAttribute("pageTitle", "Order History");
         model.addAttribute("pageDescription", "View your order history.");
-        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+        model.addAttribute("itemOrders", foundItemOrder);
 
         return "itemOrder_history";
     }
@@ -207,20 +217,4 @@ public class ItemOrderController {
 
         return "itemOrder_view";
     }
-
-    // DELETE
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String remove(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
-
-        itemOrderService.deleteItemOrder(id);
-
-        model.addAttribute("message", "Order was succesfully deleted.");
-        model.addAttribute("type", "success");
-        model.addAttribute("pageTitle", "Order History");
-        model.addAttribute("pageDescription", "View your order history.");
-        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
-
-        return "itemOrder_history";
-    }
-
 }
