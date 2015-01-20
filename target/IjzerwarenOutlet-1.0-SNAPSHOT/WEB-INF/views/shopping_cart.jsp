@@ -17,7 +17,7 @@
 
 <t:menu>
     <jsp:body>
-        <h1>${paginaTitel}</h1>
+        <h1>${pageTitle}</h1>
         <c:if test="${not empty succes}"><font color="green"><b>${succes}</b></font></c:if>
 
                 <c:choose>
@@ -67,6 +67,7 @@
             <c:otherwise>
                 <!-- Als er geen gebruikers zijn, wordt deze melding getoond -->
                 Your shopping cart is empty
+                ${cart.getCartAmount()}
             </c:otherwise>
         </c:choose>
         <p>

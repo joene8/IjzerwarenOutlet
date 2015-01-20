@@ -34,10 +34,13 @@
                             <strong>Price</strong>
                         </td>
                         <td>
-                            <strong>Location</strong>
+                            <strong>Establishment</strong>
                         </td>
                         <td>
-                            <strong>Weight</strong>
+                            <strong>Gross Weight</strong>
+                        </td>
+                        <td>
+                            <strong>Stock</strong>
                         </td>
                         <td>
                             <strong>Description</strong>
@@ -49,11 +52,12 @@
                     
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                         <tr>
-                           <td>${product.name}</td>
-                            <td>${product.price}</td>
-                            <td>${product.location}</td>
-                            <td>${product.weight}</td>
-                            <td>${product.description}</td>
+                           <td>${item.product.name}</td>
+                            <td>${item.chosenPrice}</td>
+                            <td>${item.establishment.id}</td>
+                            <td>${item.product.grossWeight}</td>
+                            <td>${item.stock}</td>
+                            <td>${item.product.description}</td>
                             
                             <td>
                                 <a href="${pageContext.request.contextPath}/cart/add/${product.id}">Add To Cart</a>
@@ -64,7 +68,7 @@
             </c:when>
             <c:otherwise>
                 <!-- Als er geen gebruikers zijn, wordt deze melding getoond -->
-                Er zijn geen producten gevonden.
+                Het product is uitverkocht of bestaat niet
             </c:otherwise>
         </c:choose>
         <p>
