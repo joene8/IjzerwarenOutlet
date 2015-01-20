@@ -385,7 +385,7 @@ public class UserController {
             }
 
             if (search.equals("")) {
-                message = foundUsers.size() + " employee" + extraS + " " + plural + " found.";
+                message = foundUsers.size() + " customer" + extraS + " " + plural + " found.";
             } else {
                 message = foundUsers.size() + " customer" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
             }
