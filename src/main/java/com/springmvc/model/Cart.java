@@ -7,10 +7,8 @@ import javax.validation.constraints.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +24,7 @@ public class Cart implements Serializable {
     private double totalPrice;
     @ManyToOne
     private User client;
+    private int cartAmount;
     //private boolean status;
     
     
@@ -72,7 +71,15 @@ public class Cart implements Serializable {
     public void setClient(User client) {
         this.client = client;
     }
+    public int getCartamount() {
+        return cartAmount;
+    }
 
+    public void setCartamount(int cartamount) {
+        this.cartAmount = cartamount;
+        calculateCartAmount();
+    }
+    
     public void calculateTotalPrice(){
     
         double totalPrice=0;
@@ -83,6 +90,10 @@ public class Cart implements Serializable {
         }
         
         this.totalPrice=totalPrice;
+    }
+    public void calculateCartAmount(){
+        int cartAmount = 0;
+//        cartAmount = this.itemList.size();
     }
 
 
