@@ -81,7 +81,10 @@ public class UserController {
         model.addAttribute("message", "Succesfully logged out.");
         model.addAttribute("type", "success");
         //REGISTER LOGOUT
-        timeLogService.updateLogout(t);
+
+        if (timeLogService.getTimeLog(t.getId()) != null) {
+            timeLogService.updateLogout(t);
+        }
 
         return "user_login";
     }
