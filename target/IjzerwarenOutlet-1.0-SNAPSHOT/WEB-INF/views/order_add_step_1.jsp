@@ -30,42 +30,44 @@
                     <button onclick="checkButton()" name="button" path="button" class="btn btn-primary">Continue</button>
                 </div>
                 </c:if>
-                <form:form method="POST" class="form-horizontal" role="form" commandName="itemOrder" action="${pageContext.request.contextPath}/itemOrder/add_step_1/${product.id}">
+                <form:form method="POST" class="form-horizontal" role="form" commandName="itemOrder" action="${pageContext.request.contextPath}/itemOrder/add_step_1">
                     
                             <div id="hidden" style="visibility:hidden;">
                                 
                                 <!--first name start-->
-                                <div id="field_firstName" class="form-group <c:if test="${errorFirstName}">has-error</c:if>">
-                                    <label for="firstName" class="col-sm-3 control-label">First name</label>
+                                <div id="field_firstName" class="form-group <c:if test="${nameError}">has-error</c:if>">
+                                    <label for="firstName" class="col-sm-2 control-label">First name</label>
                                     <div class="col-sm-3">
-                                    <c:choose>
-                                        <c:when test="${currentUser != null}">
-                                        <p class="form-control-static">${user.firstName}</p>
-                                        </c:when>
+                                        <c:if test="${currentUser != null}">
+                                            <form:input path="firstName" onblur="validate(\"name\",/^[a-zA-Z]{2,}$/)" class="form-control" id="firstName" readonly="true" />
+                                            <span id="glyph_name" class=""></span>
+                                            <c:if test="${nameError}"><span class="help-block">Must be at least two characters long.</span></c:if>
                                         <c:otherwise>
                                             <form:input  required="required"  onblur="validate(\"firstName\",/^[a-zA-Z]{2,}$/)" path="firstName" class="form-control" id="firstName" />
                                             <span id="glyph_firstName" class=""></span>
                                             <c:if test="${errorFirstName}"><span class="help-block">Must be at least two characters long.</span></c:if>
                                         </c:otherwise>
-                                    </c:choose>
+                                        </c:if>
+                                        
                                     </div>
                                 </div>
                                 <!--first name end-->
                                 
                                 <!--last name start-->
-                                <div id="field_lastName" class="form-group <c:if test="${errorLastName}">has-error</c:if>">
-                                    <label for="lastName" class="col-sm-3 control-label">Last name</label>
+                                <div id="field_lastName" class="form-group <c:if test="${nameError}">has-error</c:if>">
+                                    <label for="lastName" class="col-sm-2 control-label">Last name</label>
                                     <div class="col-sm-3">
-                                    <c:choose>
-                                        <c:when test="${currentUser != null}">
-                                            <p class="form-control-static">${user.lastName}</p>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <form:input required="required" onblur="validate(\"lastName\",/^[a-zA-Z]{2,}$/)" path="lastName" class="form-control" id="lastName" /> 
+                                        <c:if test="${currentUser != null}">
+                                            <form:input path="lastName" onblur="validate(\"name\",/^[a-zA-Z]{2,}$/)" class="form-control" id="lastName" readonly="true" />
                                             <span id="glyph_lastName" class=""></span>
-                                            <c:if test="${errorLastName}"><span class="help-block">Must be at least 2 characters long.</span></c:if>
+                                            <c:if test="${nameError}"><span class="help-block">Must be at least two characters long.</span></c:if>
+                                        <c:otherwise>
+                                            <form:input  required="required"  onblur="validate(\"lastName\",/^[a-zA-Z]{2,}$/)" path="lastName" class="form-control" id="lastName" />
+                                            <span id="glyph_lastName" class=""></span>
+                                            <c:if test="${errorFirstName}"><span class="help-block">Must be at least two characters long.</span></c:if>
                                         </c:otherwise>
-                                    </c:choose>
+                                        </c:if>
+                                        
                                     </div>
                                 </div>
                                 <!--last name end-->
