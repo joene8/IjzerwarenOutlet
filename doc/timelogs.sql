@@ -1,0 +1,9 @@
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('1', '00d:03h:30m:20s', '2015-01-09 16:52:25', '2015-01-21 16:52:45', '3');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('2', '00d:03h:30m:20s', '2015-01-09 16:52:25', '2015-01-21 16:52:45', '3');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('3', '00d:00h:00m:20s', '2015-01-11 16:52:25', '2015-01-21 16:52:45', '1');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('4', '00d:00h:02m:20s', '2015-01-14 16:52:25', '2015-01-21 16:52:45', '3');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('5', '00d:02h:20m:20s', '2015-01-23 16:52:25', '2015-01-21 16:52:45', '2');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('6', '00d:00h:09m:20s', '2015-01-24 16:52:25', '2015-01-21 16:52:45', '4');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('7', '00d:00h:03m:20s', '2015-01-26 16:52:25', '2015-01-21 16:52:45', '1');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('8', '00d:00h:30m:20s', '2015-01-27 16:52:25', '2015-01-21 16:52:45', '2');
+INSERT INTO `db_webshop`.`timelog` (`id`, `duration`, `login`, `logout`, `user_id`) VALUES ('9', '00d:00h:60m:20s', '2015-01-28 16:52:25', '2015-01-21 16:52:45', '3');

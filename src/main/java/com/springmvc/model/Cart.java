@@ -87,7 +87,7 @@ public class Cart implements Serializable {
         double totalPrice=0;
         for(int i=0;i<this.itemList.size();i++){
             Item item = this.itemList.get(i);
-            totalPrice += item.getChosenPrice();
+            totalPrice += item.getActualPrice();
         }
         
         this.totalPrice=totalPrice;
