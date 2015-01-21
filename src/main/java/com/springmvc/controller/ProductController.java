@@ -59,7 +59,7 @@ public class ProductController {
             List<Item> itemList = itemService.getItems();
             List<Item> list = new ArrayList<Item>();
             for (Item i : itemList) {
-                if (establishmentId == i.getEstablishment().getId()) {
+                if (establishmentId == i.getEstablishment().getId() && i.getStock() > 0) {
                     list.add(i);
                 }
             }
@@ -86,7 +86,7 @@ public class ProductController {
             List<Item> itemList = itemService.getItems();
             List<Item> list = new ArrayList<Item>();
             for (Item i : itemList) {
-                if (establishmentId == i.getEstablishment().getId()) {
+                if (establishmentId == i.getEstablishment().getId() && i.getStock() > 0) {
                     list.add(i);
                 }
             }
@@ -108,7 +108,7 @@ public class ProductController {
             List<Item> itemList = itemService.getItems();
             List<Item> list = new ArrayList<Item>();
             for (Item i : itemList) {
-                if (establishmentId == i.getEstablishment().getId()) {
+                if (establishmentId == i.getEstablishment().getId() && i.getStock() > 0) {
                     list.add(i);
                 }
             }
