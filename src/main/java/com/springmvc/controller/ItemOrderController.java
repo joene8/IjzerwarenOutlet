@@ -37,9 +37,9 @@ public class ItemOrderController {
 
     @Autowired
     private TimeLogService timeLogService;
-    
+
     @Autowired
-    private EstablishmentService establishmentService;        
+    private EstablishmentService establishmentService;
 
     TimeLog t = new TimeLog();
 
@@ -72,12 +72,12 @@ public class ItemOrderController {
 //            return "order_add_step_1";
 //        }
 //        // VALIDATION END
-        if (userService.getUser(user.getId())==null) {
+        if (userService.getUser(user.getId()) == null) {
             model.addAttribute("pageTitle", "Delivery method");
             model.addAttribute("pageDescription", "Choose where the items should be delivered.");
             model.addAttribute("message", "User was successfully created.");
             model.addAttribute("type", "success");
-            model.addAttribute("establishments", establishmentService.getEstablishments());            
+            model.addAttribute("establishments", establishmentService.getEstablishments());
             model.addAttribute("itemOrder", new ItemOrder());
             return "order_add_step_2";
         }
@@ -87,7 +87,7 @@ public class ItemOrderController {
         model.addAttribute("message", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("pageDescription", "Choose where the items should be delivered.");
         model.addAttribute("type", "success");
-        model.addAttribute("establishments", establishmentService.getEstablishments());  
+        model.addAttribute("establishments", establishmentService.getEstablishments());
         model.addAttribute("itemOrder", new ItemOrder());
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
@@ -135,10 +135,10 @@ public class ItemOrderController {
         model.addAttribute("type", "success");
         return "order_add_step_3";
     }
-    
+
     // ADD STEP 3 LOAD
     @RequestMapping(value = "/add_step_3", method = RequestMethod.GET)
-    public String LoadAddStep3(Model model, ItemOrder itemOrder) throws IOException{
+    public String LoadAddStep3(Model model, ItemOrder itemOrder) throws IOException {
 
         return "order_add_step_3";
     }
@@ -218,7 +218,7 @@ public class ItemOrderController {
 
         return "itemOrder_history";
     }
-    
+
     // LIST
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) throws IOException {
@@ -239,5 +239,41 @@ public class ItemOrderController {
         model.addAttribute("itemOrder", (itemOrderService.getItemOrder(id)));
 
         return "itemOrder_view";
+    }
+
+    // READY
+    @RequestMapping(value = "/ready/{id}", method = RequestMethod.GET)
+    public String ready(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+
+        ItemOrder itemOrder = itemOrderService.getItemOrder(id);
+        itemOrder.setReady(true);
+        itemOrderService.updateItemOrder(itemOrder);
+
+        model.addAttribute("message", "Order has been set to ready.");
+        model.addAttribute("pageTitle", "Order List");
+        model.addAttribute("pageDescription", "Order List");
+        model.addAttribute("message", "Order has been set to ready.");
+        model.addAttribute("type", "success");
+        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+
+        return "itemOrder_list";
+    }
+    
+    // UNREADY
+    @RequestMapping(value = "/unready/{id}", method = RequestMethod.GET)
+    public String unready(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+
+        ItemOrder itemOrder = itemOrderService.getItemOrder(id);
+        itemOrder.setReady(false);
+        itemOrderService.updateItemOrder(itemOrder);
+
+        model.addAttribute("message", "Order has been set to unready.");
+        model.addAttribute("pageTitle", "Order List");
+        model.addAttribute("pageDescription", "Order List");
+        model.addAttribute("message", "Order has been set to ready.");
+        model.addAttribute("type", "success");
+        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+
+        return "itemOrder_list";
     }
 }
