@@ -10,6 +10,7 @@ import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.ItemService;
 import com.springmvc.service.ProductService;
 import com.springmvc.service.StihoArtikelService;
+import com.springmvc.service.UserService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class ProductController {
     @Autowired
     private ItemService itemService;
 
+
     // LIST THUMBNAILS
     @RequestMapping(value = "/list")
     public String list(Model model, HttpServletRequest request) throws IOException {
@@ -49,7 +51,7 @@ public class ProductController {
         Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
         if (currentEstablishment != null) {
             Establishment establishmentName = establishmentService.getEstablishment(Integer.parseInt((String) request.getSession().getAttribute("currentEstablishment")));
-            model.addAttribute("pageDescription", "These are all the products from " + establishmentName.getName()  + " .");
+            model.addAttribute("pageDescription", "These are all the products from " + establishmentName.getName() + " .");
         } else {
             model.addAttribute("pageDescription", "You can browse to all of our products here.");
         }
@@ -97,22 +99,36 @@ public class ProductController {
 
     // LIST TABLE
     @RequestMapping(value = "/table")
-    public String listTable(Model model) throws IOException {
+    public String listTable(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Products");
         model.addAttribute("pageDescription", "Add, edit, delete or view a product.");
         model.addAttribute("products", productService.getProducts());
+        User user = (User) request.getSession().getAttribute("currentUser");
+        Establishment establishment = user.getEstablishment();
+        if (establishment != null) {
+            int establishmentId = establishment.getId();
+            List<Item> itemList = itemService.getItems();
+            List<Item> list = new ArrayList<Item>();
+            for (Item i : itemList) {
+                if (establishmentId == i.getEstablishment().getId()) {
+                    list.add(i);
+                }
+            }
+            model.addAttribute("items", list);
+        }
+
         return "product_list_table";
     }
 
-    // ADD STEP 1 LOAD
+// ADD STEP 1 LOAD
     @RequestMapping(value = "/add_step_1", method = RequestMethod.GET)
     public String loadAddStep1(Model model) throws IOException {
         model.addAttribute("pageTitle", "Add product");
         model.addAttribute("pageDescription", "Enter the item number of the product you would like to add.");
         return "product_add_step_1";
     }
+// ADD STEP 1 SUBMIT
 
-    // ADD STEP 1 SUBMIT
     @RequestMapping(value = "/add_step_1", method = RequestMethod.POST)
     public String submitAddStep1(@RequestParam(value = "itemNumber") String itemNumber, Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Add product");
@@ -129,6 +145,22 @@ public class ProductController {
         List<Product> products = productService.getProducts();
         for (Product product : products) {
             if (product.getProductNumber().getArtikelnummer() == number) {
+                List<Item> items = itemService.getItems();
+                double min = product.getStandardSalePrice() / 2;
+                boolean itemFound = false;
+                for (Item i : items) {
+                    if (i.getProduct().getId() == product.getId() && i.getStock() > 0) {
+                        itemFound = true;
+                        if (i.getChosenPrice() < min) {
+                            min = i.getChosenPrice();
+                        }
+                    }
+                }
+                if (itemFound) {
+                    model.addAttribute("message", "An item with this item number has already been added previously. You are not allowed to choose a price lower than that price of &euro;" + min);
+                    model.addAttribute("type", "info");
+                }
+                model.addAttribute("minPrice", min);
                 model.addAttribute("pageDescription", "Enter all the information for this product.");
                 request.getSession().setAttribute("sessionProduct", product);
                 Item item = new Item();
@@ -148,13 +180,13 @@ public class ProductController {
         model.addAttribute("product", p);
         return "product_add_step_2";
     }
+// ADD STEP 2 SUBMIT
 
-    // ADD STEP 2 SUBMIT
     @RequestMapping(value = "/add_step_2", method = RequestMethod.POST)
     public String submitAddStep2(Product product, Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Add product");
         model.addAttribute("pageDescription", "Enter all the information for this product.");
-        // VALIDATION START
+// VALIDATION START
         model = validateStep2(model, product);
         if (model.containsAttribute("anyErrors")) {
             model.addAttribute("message", "Not all fields were entered correctly.");
@@ -168,22 +200,24 @@ public class ProductController {
         productService.addProduct(product);
         return "product_add_step_3";
     }
+// ADD STEP 3 SUBMIT
 
-    // ADD STEP 3 SUBMIT
     @RequestMapping(value = "/add_step_3", method = RequestMethod.POST)
-    public String submitAddStep3(Item item, Model model, HttpServletRequest request) throws IOException {
-
-        // VALIDATION START
+    public String submitAddStep3(Item item, Model model, HttpServletRequest request, @RequestParam(value = "minPrice") String minPrice) throws IOException {
+// VALIDATION START
         model = validateStep3(model, item);
         if (model.containsAttribute("anyErrors")) {
             model.addAttribute("pageTitle", "Add product");
             model.addAttribute("pageDescription", "Enter all the information for this product.");
             model.addAttribute("message", "Not all fields were entered correctly.");
             model.addAttribute("type", "danger");
+            model.addAttribute("minPrice", minPrice);
             return "product_add_step_3";
         }
         item.setProduct((Product) request.getSession().getAttribute("sessionProduct"));
-        User currentUser = (User)request.getSession().getAttribute("currentUser");
+
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+
         item.setEstablishment(currentUser.getEstablishment());
         itemService.addItem(item);
         model.addAttribute("pageTitle", "Home");
@@ -192,8 +226,8 @@ public class ProductController {
         model.addAttribute("type", "success");
         return "product_list";
     }
+// ADD LOAD
 
-    // ADD LOAD
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String loadAdd(Model model) throws IOException {
         model.addAttribute("pageTitle", "Add product");
@@ -201,8 +235,8 @@ public class ProductController {
         model.addAttribute("product", new Product());
         return "product_add";
     }
+// ADD SUMBIT
 
-    // ADD SUMBIT
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String productAdd(Model model, @Valid Product product) throws IOException {
         productService.addProduct(product);
@@ -213,18 +247,16 @@ public class ProductController {
         model.addAttribute("type", "success");
         return "product_list";
     }
+// PRODUCT INFO LIST
 
-    // PRODUCT INFO LIST
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public String productInfo(@PathVariable int id, Model model, Item item) throws IOException {
-
-        model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id).getProduct().getName());
-        model.addAttribute("product", itemService.getItem(id).getProduct().getName());
-
+        model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id));
+        model.addAttribute("product", itemService.getItem(id));
         return "product_info";
     }
+// SEARCH
 
-    // SEARCH
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(@RequestParam(value = "search") String search, Model model) throws IOException {
         List<Product> products = productService.getProducts();
@@ -246,15 +278,14 @@ public class ProductController {
             }
             message = foundProducts.size() + " product" + extraS + " with \"" + search + "\" were found.";
             model.addAttribute("type", "success");
-
         }
         model.addAttribute("pageTitle", "Products");
         model.addAttribute("pageDescription", "All the products that matched your search criteria.");
         model.addAttribute("message", message);
         return "product_list";
     }
+// EDIT LOAD
 
-    // EDIT LOAD
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editLoad(@PathVariable int id, Model model) {
         model.addAttribute("pageTitle", "Edit product");
@@ -262,8 +293,8 @@ public class ProductController {
         model.addAttribute("product", productService.getProduct(id));
         return "product_edit";
     }
+// EDIT SUBMIT
 
-    // EDIT SUBMIT
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editSubmit(@ModelAttribute("product") Product product, Model model) {
         productService.updateProduct(product);
@@ -274,8 +305,8 @@ public class ProductController {
         model.addAttribute("type", "success");
         return "product_list";
     }
+// DELETE
 
-    // DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable int id, Model model) {
         Product product = productService.getProduct(id);
@@ -287,8 +318,8 @@ public class ProductController {
         model.addAttribute("type", "success");
         return "product_list";
     }
+// VALIDATE PRODUCT STEP 2
 
-    // VALIDATE PRODUCT STEP 2
     public Model validateStep2(Model model, Product product) {
         boolean anyErrors = false;
         if (!Validation.lettersMin(product.getName(), 2)) {
@@ -304,8 +335,8 @@ public class ProductController {
         }
         return model;
     }
+// VALIDATE ITEM STEP 3
 
-    // VALIDATE ITEM STEP 3
     public Model validateStep3(Model model, Item item) {
         boolean anyErrors = false;
         if (!Validation.price(item.getChosenPrice() + "")) {
@@ -316,7 +347,6 @@ public class ProductController {
             model.addAttribute("stockError", true);
             anyErrors = true;
         }
-
         if (item.isAddition()) {
             if (!Validation.allMin(item.getAdditionDescription(), 6)) {
                 model.addAttribute("additionDescriptionError", true);
