@@ -30,6 +30,7 @@ public class CartController {
     @RequestMapping(value = "/shopping_cart")
     public String cart(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("pageDescription", "This is the shopping cart filled with the products from your chosen establishment.");
         
         return "shopping_cart";
     }
@@ -38,7 +39,6 @@ public class CartController {
     public String submitAdd(@PathVariable int id, Model model, HttpServletRequest request ) {
 
         HttpSession session = request.getSession();
-        Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
         
         Cart cart = new Cart();
         List<Item> itemList = new LinkedList<Item>();
@@ -94,6 +94,7 @@ public class CartController {
         
         model.addAttribute("pageTitle", pageTitle);
         model.addAttribute("cart", cart);
+        model.addAttribute("pageDescription", "This is the shopping cart filled with the products from your chosen establishment.");
         
         return "shopping_cart";
     }

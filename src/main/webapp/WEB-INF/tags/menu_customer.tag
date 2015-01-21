@@ -10,6 +10,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
     <head>
@@ -55,7 +56,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${currentUser.firstName} <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="${pageContext.request.contextPath}/cart/shopping_cart">Cart</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/cart/shopping_cart">Cart(<fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="0" value="${cart.getCartAmount()}" />)</a></li>
                                     <li><a href="${pageContext.request.contextPath}/user/view/${currentUser.id}">My account</a></li>
                                     <li><a href="${pageContext.request.contextPath}/itemOrder/history">My order history</a></li>
                                     <li class="divider"></li>

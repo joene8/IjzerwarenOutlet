@@ -22,18 +22,19 @@ public class Cart implements Serializable {
     @OneToMany
     private List<Item> itemList;
     private double totalPrice;
+    private int cartAmount;
     @ManyToOne
     private User client;
-    private int cartAmount;
     //private boolean status;
     
     
 
-    public Cart(int id, List<Item> itemList, double totalPrice, User client) {
+    public Cart(int id, List<Item> itemList, double totalPrice, User client, int cartAmount) {
         this.id = id; 
         this.itemList = itemList;
         this.totalPrice = totalPrice;
         this.client = client;
+        this.cartAmount = cartAmount;
     }
 
     public Cart() {
@@ -54,6 +55,7 @@ public class Cart implements Serializable {
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
         calculateTotalPrice();
+        calculateCartAmount();
     }
 
     public double getTotalPrice() {
@@ -71,19 +73,18 @@ public class Cart implements Serializable {
     public void setClient(User client) {
         this.client = client;
     }
-    public int getCartamount() {
+
+    public double getCartAmount() {
         return cartAmount;
     }
 
-    public void setCartamount(int cartamount) {
-        this.cartAmount = cartamount;
-        calculateCartAmount();
+    public void setCartAmount(int cartAmount) {
+        this.cartAmount = cartAmount;
     }
     
     public void calculateTotalPrice(){
     
         double totalPrice=0;
-        
         for(int i=0;i<this.itemList.size();i++){
             Item item = this.itemList.get(i);
             totalPrice += item.getChosenPrice();
@@ -91,9 +92,15 @@ public class Cart implements Serializable {
         
         this.totalPrice=totalPrice;
     }
-    public void calculateCartAmount(){
-        int cartAmount = 0;
-//        cartAmount = this.itemList.size();
+    
+        public void calculateCartAmount(){
+    
+        int cartAmount=0;
+        for(int i=0;i<this.itemList.size();i++){
+            cartAmount+=1;
+        }
+        
+        this.cartAmount=cartAmount;
     }
 
 
