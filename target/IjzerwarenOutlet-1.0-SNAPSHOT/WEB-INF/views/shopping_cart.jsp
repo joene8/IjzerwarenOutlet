@@ -22,7 +22,7 @@
         <c:if test="${not empty succes}"><font color="green"><b>${succes}</b></font></c:if>
             
                 <c:choose>
-                    <c:when test="${cart != null} && ${getCartAmount != 0}">
+                    <c:when test="${getCartAmount != 0}">
                 <!-- Wanneer er gebruikers opgeslagen zijn, worden ze hier getoond -->
 
                 

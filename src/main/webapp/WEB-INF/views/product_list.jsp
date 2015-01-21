@@ -126,6 +126,7 @@
                         </div>
                         <div id="establishment" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="establishmentHeader">
                             <div class="panel-body">
+                                <a style ="color:red; font-size:11px">Attention: When you change from establishment, your cart will be emptied!</a>
                                 <form action="${pageContext.request.contextPath}/product/establishment_products" method="POST">
                                     <select id="choice" name="choice">
                                         <option value="${currentEstablishment}"></option>
@@ -133,7 +134,7 @@
                                             <option value="${establishment.id}">${establishment.name}</option>
                                         </c:forEach>
                                     </select>
-                                    <button onclick="confirmBox()" type="submit" class="btn btn-default">Submit</button>
+                                    <button type="submit" class="btn btn-default">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -181,17 +182,6 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
-        </script>
-        <script>
-            function confirmBox() {
-                var x;
-                if (confirm("Are you sure you want to look at another establishment? <br> your cart will be emptied in the proces") === true) {
-                    x = "You pressed OK!";
-                } else {
-                    x = "You pressed Cancel!";
-                }
-                document.getElementById("demo").innerHTML = x;
-            }
         </script>
     </jsp:body>
 </t:menu>

@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 @RequestMapping(value = "/product")
 public class ProductController {
@@ -41,13 +40,18 @@ public class ProductController {
     @Autowired
     private ItemService itemService;
 
-      // LIST THUMBNAILS
+    // LIST THUMBNAILS
     @RequestMapping(value = "/list")
     public String list(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Products");
-        model.addAttribute("pageDescription", "Browse through all of our poducts here.");
         model.addAttribute("establishments", establishmentService.getEstablishments());
         Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
+        if (currentEstablishment != null) {
+            Establishment establishmentName = establishmentService.getEstablishment(Integer.parseInt((String) request.getSession().getAttribute("currentEstablishment")));
+            model.addAttribute("pageDescription", "These are all the products from " + establishmentName.getName()  + " .");
+        } else {
+            model.addAttribute("pageDescription", "You can browse to all of our products here.");
+        }
         if (currentEstablishment != null) {
             String es = (String) currentEstablishment;
             int establishmentId = Integer.parseInt(es);
@@ -62,8 +66,9 @@ public class ProductController {
         }
 
         return "product_list";
-    }   
- //LIST ESTABLISHMENT PRODUCTS
+    }
+
+    //LIST ESTABLISHMENT PRODUCTS
     @RequestMapping(value = "/establishment_products", method = RequestMethod.POST)
     public String establishmentProducts(Model model, @RequestParam(value = "choice") String choice, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Products");
@@ -72,6 +77,7 @@ public class ProductController {
         model.addAttribute("products", productService.getProducts());
         model.addAttribute("establishments", establishmentService.getEstablishments());
         request.getSession().setAttribute("currentEstablishment", choice);
+        request.getSession().removeAttribute("cart");
         Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
         if (currentEstablishment != null) {
             String es = (String) currentEstablishment;
@@ -209,8 +215,8 @@ public class ProductController {
 
     // PRODUCT INFO LIST
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public String productInfo(@PathVariable int id, Model model, Item item) throws IOException{
-        
+    public String productInfo(@PathVariable int id, Model model, Item item) throws IOException {
+
         model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id).getProduct().getName());
         model.addAttribute("product", itemService.getItem(id).getProduct().getName());
 
