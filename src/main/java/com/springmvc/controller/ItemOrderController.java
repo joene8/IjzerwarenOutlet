@@ -257,4 +257,40 @@ public class ItemOrderController {
 
         return "itemOrder_view";
     }
+
+    // READY
+    @RequestMapping(value = "/ready/{id}", method = RequestMethod.GET)
+    public String ready(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+
+        ItemOrder itemOrder = itemOrderService.getItemOrder(id);
+        itemOrder.setReady(true);
+        itemOrderService.updateItemOrder(itemOrder);
+
+        model.addAttribute("message", "Order has been set to ready.");
+        model.addAttribute("pageTitle", "Order List");
+        model.addAttribute("pageDescription", "Order List");
+        model.addAttribute("message", "Order has been set to ready.");
+        model.addAttribute("type", "success");
+        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+
+        return "itemOrder_list";
+    }
+    
+    // UNREADY
+    @RequestMapping(value = "/unready/{id}", method = RequestMethod.GET)
+    public String unready(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {
+
+        ItemOrder itemOrder = itemOrderService.getItemOrder(id);
+        itemOrder.setReady(false);
+        itemOrderService.updateItemOrder(itemOrder);
+
+        model.addAttribute("message", "Order has been set to unready.");
+        model.addAttribute("pageTitle", "Order List");
+        model.addAttribute("pageDescription", "Order List");
+        model.addAttribute("message", "Order has been set to ready.");
+        model.addAttribute("type", "success");
+        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+
+        return "itemOrder_list";
+    }
 }

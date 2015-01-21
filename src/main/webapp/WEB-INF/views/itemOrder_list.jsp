@@ -41,6 +41,9 @@
                             <th>
                                 Destination Address <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
                             </th>
+                            <th>
+                                Ready <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                            </th>
                         </tr>
                     </thead>
 
@@ -62,8 +65,16 @@
                                                 <td></td>
                                             </c:when> 
                                         </c:choose>
+                                        <c:choose>
+                                            <c:when test="${itemOrder.ready == true}">
+                                                <td>Yes</td>
+                                            </c:when>
+                                            <c:when test="${itemOrder.ready == false}">
+                                                <td>No</td> 
+                                            </c:when> 
+                                        </c:choose>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/itemOrder/view/${itemOrder.id}" class="btn btn-xs btn-default">View</a>
+                                            <a href="${pageContext.request.contextPath}/itemOrder/view/${itemOrder.id}" class="btn btn-xs btn-default">View</a> 
                                         </td>
                                     </tr>
 
@@ -75,7 +86,7 @@
                     <tfoot>
                         <tr>
                             <td>${itemOrders.size()}</td>
-                            <td colspan="4"></td>
+                            <td colspan="5"></td>
                         </tr>
                     </tfoot>
                 </table> 
