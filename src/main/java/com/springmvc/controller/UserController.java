@@ -78,10 +78,14 @@ public class UserController {
         request.getSession().removeAttribute("currentEstablishment");
         model.addAttribute("user", new User());
         model.addAttribute("pageTitle", "Login");
+        model.addAttribute("pageDescription", "Enter your email and password.");
         model.addAttribute("message", "Succesfully logged out.");
         model.addAttribute("type", "success");
         //REGISTER LOGOUT
-        timeLogService.updateLogout(t);
+
+        if (timeLogService.getTimeLog(t.getId()) != null) {
+            timeLogService.updateLogout(t);
+        }
 
         return "user_login";
     }
@@ -278,7 +282,11 @@ public class UserController {
         model.addAttribute("users", foundUsers);
         String message = "";
         if (foundUsers.isEmpty()) {
-            message = "No user with the name containing \"" + search + "\" was found";
+            if (search.equals("")) {
+                message = "No user was found.";
+            } else {
+                message = "No user with the name containing \"" + search + "\" was found";
+            }
             model.addAttribute("type", "danger");
         } else {
             String extraS = "";
@@ -287,7 +295,11 @@ public class UserController {
                 extraS = "s";
                 plural = "were";
             }
-            message = foundUsers.size() + " user" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            if (search.equals("")) {
+                message = foundUsers.size() + " user" + extraS + " " + plural + " found.";
+            } else {
+                message = foundUsers.size() + " user" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            }
             model.addAttribute("type", "success");
 
         }
@@ -316,7 +328,11 @@ public class UserController {
         model.addAttribute("users", foundUsers);
         String message = "";
         if (foundUsers.isEmpty()) {
-            message = "No employee with the name containing \"" + search + "\" was found";
+            if (search.equals("")) {
+                message = "No employee was found.";
+            } else {
+                message = "No employee with the name containing \"" + search + "\" was found";
+            }
             model.addAttribute("type", "danger");
         } else {
             String extraS = "";
@@ -325,7 +341,11 @@ public class UserController {
                 extraS = "s";
                 plural = "were";
             }
-            message = foundUsers.size() + " employee" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            if (search.equals("")) {
+                message = foundUsers.size() + " employee" + extraS + " " + plural + " found.";
+            } else {
+                message = foundUsers.size() + " employee" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            }
             model.addAttribute("type", "success");
 
         }
@@ -354,7 +374,11 @@ public class UserController {
         model.addAttribute("users", foundUsers);
         String message = "";
         if (foundUsers.isEmpty()) {
-            message = "No customer with the name containing \"" + search + "\" was found";
+            if (search.equals("")) {
+                message = "No customer was found.";
+            } else {
+                message = "No customer with the name containing \"" + search + "\" was found";
+            }
             model.addAttribute("type", "danger");
         } else {
             String extraS = "";
@@ -363,7 +387,12 @@ public class UserController {
                 extraS = "s";
                 plural = "were";
             }
-            message = foundUsers.size() + " customer" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+
+            if (search.equals("")) {
+                message = foundUsers.size() + " customer" + extraS + " " + plural + " found.";
+            } else {
+                message = foundUsers.size() + " customer" + extraS + " with name" + extraS + " containing \"" + search + "\" " + plural + " found.";
+            }
             model.addAttribute("type", "success");
 
         }

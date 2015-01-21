@@ -75,6 +75,7 @@ public class TimeLogController {
             model.addAttribute("type", "danger");
             message = "Please choose a starting date with an ending date.";
             model.addAttribute("message", message);
+            model.addAttribute("timelogs", timeLogService.getTimeLogs());
             return "timelog_list";
         }
 
@@ -87,6 +88,7 @@ public class TimeLogController {
             model.addAttribute("type", "danger");
             message = "Starting date cannot be after the ending date.";
             model.addAttribute("message", message);
+            model.addAttribute("timelogs", timeLogService.getTimeLogs());
             return "timelog_list";
         }
 
