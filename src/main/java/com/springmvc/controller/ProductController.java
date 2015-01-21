@@ -3,7 +3,6 @@ package com.springmvc.controller;
 import com.springmvc.model.Item;
 import com.springmvc.model.Product;
 import com.springmvc.model.StihoArtikel;
-import com.springmvc.model.User;
 import com.springmvc.model.Validation;
 import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.ItemService;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 @RequestMapping(value = "/product")
@@ -209,8 +208,8 @@ public class ProductController {
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public String productInfo(@PathVariable int id, Model model, Item item) throws IOException{
         
-        model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id));
-        model.addAttribute("product", itemService.getItem(id));
+        model.addAttribute("paginaTitel", "The item you are currently viewing is: " + itemService.getItem(id).getProduct().getName());
+        model.addAttribute("product", itemService.getItem(id).getProduct().getName());
 
         return "product_info";
     }

@@ -20,7 +20,7 @@
         <c:if test="${not empty succes}"><font color="green"><b>${succes}</b></font></c:if>
 
                 <c:choose>
-                    <c:when test="${products.size() != 0}">
+                    <c:when test="${items.size() != 0}">
                 <!-- Wanneer er gebruikers opgeslagen zijn, worden ze hier getoond -->
 
                 <table class="table table-striped">
@@ -51,16 +51,17 @@
                     </tr>
                     
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
+                        
                         <tr>
                            <td>${item.product.name}</td>
                             <td>${item.chosenPrice}</td>
-                            <td>${item.establishment_id.name}</td>
+                            <td>${item.establishment.name}</td>
                             <td>${item.product.grossWeight}</td>
                             <td>${item.stock}</td>
                             <td>${item.product.description}</td>
                             
                             <td>
-                                <a href="${pageContext.request.contextPath}/cart/add/${product.id}">Add To Cart</a>
+                                <a href="${pageContext.request.contextPath}/cart/add/${item.id}">Add To Cart</a>
                             </td>
                         </tr>
                     

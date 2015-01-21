@@ -134,7 +134,7 @@
                                             <span>&euro;${item.getActualPrice()}</span><c:if test="${item.isAddition()}">
                                                 <span data-toggle="tooltip" data-placement="right" title="${item.getAdditionDescription()}"><img src="http://png-5.findicons.com/files/icons/1156/fugue/16/wrench_screwdriver.png"</span></c:if></h3>
                                         <p>Stock: ${item.stock}</p>
-                                        <p><a href="${pageContext.request.contextPath}/product/info/${item.id}" class="btn btn-primary" role="button" method="POST">Add to cart</a></p>
+                                        <p><a href="${pageContext.request.contextPath}/cart/add/${item.id}" class="btn btn-primary" role="button" method="POST">Add to cart</a></p>
                                     </div>
                                 </div>
                             </div>

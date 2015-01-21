@@ -17,9 +17,9 @@
 
 <t:menu>
     <jsp:body>
-        <h1>${pageTitle}</h1>
+        <t:title_and_message />
         <c:if test="${not empty succes}"><font color="green"><b>${succes}</b></font></c:if>
-
+            
                 <c:choose>
                     <c:when test="${cart != null}">
                 <!-- Wanneer er gebruikers opgeslagen zijn, worden ze hier getoond -->
@@ -35,10 +35,7 @@
                             <strong>Price P.P</strong>
                         </td>
                         <td>
-                            <strong>Location</strong>
-                        </td>
-                        <td>
-                            <strong>Total Price</strong>
+                            <strong>Remove</strong>
                         </td>
                         
                     </tr>
@@ -46,20 +43,16 @@
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                         <tr>
                             
-                            <td><a href="${pageContext.request.contextPath}/item/info/${item.id}">${item.name}</a></td>
-                            <td>${product.price}</td>
-                            <td>${product.location}</td>
-                            <td> 
-                                <a href="${pageContext.request.contextPath}/itemOrder/add_step_1/${item.id}">Order</a>
-                            </td>
-                            
+                            <td><a href="${pageContext.request.contextPath}/product/info/${item.id}">${item.product.name}</a></td>
+                            <td>${item.getActualPrice()}</td>                            
                             <td>
                                 <a href="${pageContext.request.contextPath}/cart/remove/${item.id}">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
                         <tr>
-                            <td colspan="3"> </td>
+                            <td><strong>Total Price</strong></td>
+                            <td colspan="1"> </td>
                             <td>${cart.getTotalPrice()}</td>
                         </tr>
                 </table>
@@ -67,9 +60,47 @@
             <c:otherwise>
                 <!-- Als er geen gebruikers zijn, wordt deze melding getoond -->
                 Your shopping cart is empty
-                ${cart.getCartAmount()}
+                        <h1>${pageTitle}</h1>                
+                <table class="table table-striped">
+                    <tr>
+                       
+                        <td>
+                            <strong>Name</strong>
+                        </td>
+                        <td>
+                            <strong>Price P.P</strong>
+                        </td>
+                        <td>
+                            <strong>Location</strong>
+                        </td>
+                        <td>
+                            <strong>Remove</strong>
+                        </td>
+                        
+                    </tr>
+                    <c:forEach var="item" items="${cart.getItemList()}">
+                        <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
+                        <tr>
+                            
+                            <td><a href="${pageContext.request.contextPath}/product/info/${item.id}">${item.product.name}</a></td>
+                            <td>${item.getActualPrice()}</td>
+                            <td>${product.location}</td>
+
+                            
+                            <td>
+                                <a href="${pageContext.request.contextPath}/cart/remove/${item.id}">Delete</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                        <tr>
+                            <td><strong>Total Price</strong></td>
+                            <td colspan="2"> </td>
+                            <td>${cart.getTotalPrice()}</td>
+                        </tr>
+                </table>
             </c:otherwise>
         </c:choose>
+            <a href="${pageContext.request.contextPath}/itemOrder/add_step_1/${item.id}">Order</a>
         <p>
             <a href="${pageContext.request.contextPath}/index">Return to index</a>
         </p>
