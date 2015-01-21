@@ -1,5 +1,6 @@
 package com.springmvc.controller;
 
+import com.springmvc.model.Cart;
 import com.springmvc.model.Item;
 import com.springmvc.model.ItemOrder;
 import com.springmvc.model.TimeLog;
@@ -7,6 +8,7 @@ import com.springmvc.model.User;
 import com.springmvc.model.Validation;
 import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.ItemOrderService;
+import com.springmvc.service.ItemService;
 import com.springmvc.service.TimeLogService;
 import com.springmvc.service.UserService;
 import java.io.IOException;
@@ -34,12 +36,15 @@ public class ItemOrderController {
 
     @Autowired
     private UserService userService;
+    
+       @Autowired
+    private ItemService itemService;
 
     @Autowired
     private TimeLogService timeLogService;
-    
+
     @Autowired
-    private EstablishmentService establishmentService;        
+    private EstablishmentService establishmentService;
 
     TimeLog t = new TimeLog();
 
@@ -72,12 +77,12 @@ public class ItemOrderController {
 //            return "order_add_step_1";
 //        }
 //        // VALIDATION END
-        if (userService.getUser(user.getId())==null) {
+        if (userService.getUser(user.getId()) == null) {
             model.addAttribute("pageTitle", "Delivery method");
             model.addAttribute("pageDescription", "Choose where the items should be delivered.");
             model.addAttribute("message", "User was successfully created.");
             model.addAttribute("type", "success");
-            model.addAttribute("establishments", establishmentService.getEstablishments());            
+            model.addAttribute("establishments", establishmentService.getEstablishments());
             model.addAttribute("itemOrder", new ItemOrder());
             return "order_add_step_2";
         }
@@ -87,7 +92,7 @@ public class ItemOrderController {
         model.addAttribute("message", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("pageDescription", "Choose where the items should be delivered.");
         model.addAttribute("type", "success");
-        model.addAttribute("establishments", establishmentService.getEstablishments());  
+        model.addAttribute("establishments", establishmentService.getEstablishments());
         model.addAttribute("itemOrder", new ItemOrder());
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
@@ -109,11 +114,25 @@ public class ItemOrderController {
 //            model.addAttribute("type", "danger");
 //            return "order_add_step_2";
 //        }
-        float shippingCosts = 0;
-//        if(((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"))>300.0){
-//            shippingCosts = (float) 40.0;
-//        }    
-//        
+        float shippingCosts = 40;
+ 
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        if (cart.getTotalPrice() > 300.0 || itemOrder.isDelivery()==false) {
+            shippingCosts = 0;
+        }
+        List<Item> itemList = cart.getItemList();
+        Item currentItem = itemList.get(0);
+        itemList.remove(0);
+        cart.setItemList(itemList);
+        request.getSession().setAttribute("cart", cart);
+        itemOrder.setAmount(currentItem.getStock());
+        currentItem.setStock(0);
+        itemService.updateItem(currentItem);
+        itemOrder.setTotalPrice((float)currentItem.getActualPrice());
+        itemOrder.setItem(currentItem);
+        itemOrder.setShippingCosts(shippingCosts);
+        
+
         itemOrder.setUser((User) request.getSession().getAttribute("currentUser"));
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
 ////        if ((Boolean) request.getSession().getAttribute("delivery") == true) {
@@ -123,11 +142,9 @@ public class ItemOrderController {
 ////        }
 //        
 ////        itemOrder.setDestination((String) request.getSession().getAttribute("Destination"));
-        itemOrder.setItem((Item) request.getSession().getAttribute("currentItem"));
-//        itemOrder.setShippingCosts(shippingCosts);
+
 //        itemOrder.setTotalPrice((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"));
 //        itemOrder.setAmount(0);
-
         itemOrderService.addItemOrder(itemOrder);
         model.addAttribute("pageTitle", "Confirmation");
         model.addAttribute("pageDescription", "Check the information.");
@@ -135,10 +152,10 @@ public class ItemOrderController {
         model.addAttribute("type", "success");
         return "order_add_step_3";
     }
-    
+
     // ADD STEP 3 LOAD
     @RequestMapping(value = "/add_step_3", method = RequestMethod.GET)
-    public String LoadAddStep3(Model model, ItemOrder itemOrder) throws IOException{
+    public String LoadAddStep3(Model model, ItemOrder itemOrder) throws IOException {
 
         return "order_add_step_3";
     }
@@ -218,7 +235,7 @@ public class ItemOrderController {
 
         return "itemOrder_history";
     }
-    
+
     // LIST
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) throws IOException {

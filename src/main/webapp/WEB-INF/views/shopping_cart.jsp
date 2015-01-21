@@ -54,7 +54,7 @@
                         <tr>
                             <td><strong>Total Price</strong></td>
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${cart.getTotalPrice()}" /></td>
-                            <td><a href="${pageContext.request.contextPath}/itemOrder/add_step_1/${item.id}">Place order</a></td>
+                            <td><a href="${pageContext.request.contextPath}/itemOrder/add_step_1">Place order</a></td>
                         </tr>
                 </table>
             </c:when>

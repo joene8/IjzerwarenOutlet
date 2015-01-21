@@ -33,7 +33,7 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li id="products">
-                                <a href="${pageContext.request.contextPath}/product/list">Show Products</a>
+                                <a href="${pageContext.request.contextPath}/product/list">Products</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">STIHO Groep<span class="caret"></span></a>
