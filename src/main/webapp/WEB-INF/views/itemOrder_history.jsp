@@ -74,7 +74,8 @@
 
                     <tfoot>
                         <tr>
-                            <td><em>${itemOrders.size()}</em></td>
+                            <td>${itemOrders.size()}</td>
+                            <td colspan="4"></td>
                         </tr>
                     </tfoot>
                 </table> 
