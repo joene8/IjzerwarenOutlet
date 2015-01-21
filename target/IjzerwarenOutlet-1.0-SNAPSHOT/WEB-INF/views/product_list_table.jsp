@@ -39,7 +39,7 @@
                         <tr>
                             <td>${item.product.name}</td>
                             <td>${item.product.description}</td>
-                            <td>                                        <a href="${pageContext.request.contextPath}/product/view/${item.product.id}" class="btn btn-xs btn-default">View</a>
+                            <td>                                        
                                     <a href="${pageContext.request.contextPath}/product/edit/${item.product.id}" class="btn btn-xs btn-default">Edit</a>
                                     <a href="${pageContext.request.contextPath}/product/delete/${item.product.id}" class="btn btn-xs btn-danger">Delete</a>
                             </td>
