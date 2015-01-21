@@ -21,7 +21,6 @@
 
                         <form action="${pageContext.request.contextPath}/product/establishment_products" method="POST">
                             <select id="choice" name="choice">
-                                <option value="empty"></option>
                                 <c:forEach var="establishment" items="${establishments}">
                                     <option value="${establishment.id}">${establishment.name}</option>
                                 </c:forEach>
@@ -67,55 +66,79 @@
                     </div>
                     <!-- SearchBar end-->
                     <!--                    Category start-->
-                    <div class="panel panel-default ">
-                        <div class="panel-heading" role="tab" id="categoryHeader">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#category" aria-expanded="true" aria-controls="category">
-                                    Category&raquo;
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="category" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="categoryHeader">
-                            <div class="panel-body">
-                                <div class=" col-sm-3 col-md-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Hout
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">Metaal
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">IJzer 
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="categoryHeader">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" href="#category" aria-expanded="true" aria-controls="category">
+                                                        Category&raquo;
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="category" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="categoryHeader">
+                                                <div class="panel-body">
+                                                    <div class=" col-sm-3 col-md-2">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox">Hout
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox">Metaal
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox">IJzer 
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
                     <!--                    Category end-->
                     <!--                    Price start-->
+                    <!--                    <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="priceHeader">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" href="#price" aria-expanded="false" aria-controls="price">
+                                                        Price&raquo;
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="price" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="priceHeader">
+                                                <div class="panel-body">
+                                                    <div class=" col-sm-3 col-md-2">
+                                                        sdsds
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                    <!--                    Price end-->
+                    <!-- Switch from Establishment start -->
                     <div class="panel panel-default ">
-                        <div class="panel-heading" role="tab" id="priceHeader">
+                        <div class="panel-heading" role="tab" id="establishmentHeader">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#price" aria-expanded="false" aria-controls="price">
-                                    Price&raquo;
+                                <a data-toggle="collapse" href="#establishment" aria-expanded="false" aria-controls="establishment">
+                                    Change Establishment&raquo;
                                 </a>
                             </h4>
                         </div>
-                        <div id="price" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="priceHeader">
+                        <div id="establishment" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="establishmentHeader">
                             <div class="panel-body">
-                                <div class=" col-sm-3 col-md-2">
-                                    sdsds
-                                </div>
+                                <form action="${pageContext.request.contextPath}/product/establishment_products" method="POST">
+                                    <select id="choice" name="choice">
+                                        <option value="${currentEstablishment}"></option>
+                                        <c:forEach var="establishment" items="${establishments}">
+                                            <option value="${establishment.id}">${establishment.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <button onclick="confirmBox()" type="submit" class="btn btn-default">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <!--                    Price end-->
+                    <!-- Switch from Establishment end -->
                 </div>
                 <!--            Filter end-->
                 <c:choose>
@@ -134,7 +157,7 @@
                                             <span>&euro;${item.getActualPrice()}</span><c:if test="${item.isAddition()}">
                                                 <span data-toggle="tooltip" data-placement="right" title="${item.getAdditionDescription()}"><img src="http://png-5.findicons.com/files/icons/1156/fugue/16/wrench_screwdriver.png"</span></c:if></h3>
                                         <p>Stock: ${item.stock}</p>
-                                        <p><a href="${pageContext.request.contextPath}/product/info/${item.id}" class="btn btn-primary" role="button" method="POST">Add to cart</a></p>
+                                        <p><a href="${pageContext.request.contextPath}/cart/add/${item.id}" class="btn btn-primary" role="button" method="POST">Add to cart</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -158,6 +181,17 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
+        </script>
+        <script>
+            function confirmBox() {
+                var x;
+                if (confirm("Are you sure you want to look at another establishment? <br> your cart will be emptied in the proces") === true) {
+                    x = "You pressed OK!";
+                } else {
+                    x = "You pressed Cancel!";
+                }
+                document.getElementById("demo").innerHTML = x;
+            }
         </script>
     </jsp:body>
 </t:menu>

@@ -1,5 +1,6 @@
 package com.springmvc.controller;
 
+import com.springmvc.model.Establishment;
 import com.springmvc.model.Item;
 import com.springmvc.model.Product;
 import com.springmvc.model.StihoArtikel;
@@ -66,8 +67,10 @@ public class ProductController {
     @RequestMapping(value = "/establishment_products", method = RequestMethod.POST)
     public String establishmentProducts(Model model, @RequestParam(value = "choice") String choice, HttpServletRequest request) throws IOException {
         model.addAttribute("pageTitle", "Products");
-        model.addAttribute("pageDescription", "Browse through all of our poducts here.");
+        Establishment establishmentName = establishmentService.getEstablishment(Integer.parseInt(choice));
+        model.addAttribute("pageDescription", "These are all the products from " + establishmentName.getName() + " .");
         model.addAttribute("products", productService.getProducts());
+        model.addAttribute("establishments", establishmentService.getEstablishments());
         request.getSession().setAttribute("currentEstablishment", choice);
         Object currentEstablishment = request.getSession().getAttribute("currentEstablishment");
         if (currentEstablishment != null) {

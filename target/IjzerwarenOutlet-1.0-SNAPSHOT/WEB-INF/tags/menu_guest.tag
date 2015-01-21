@@ -10,6 +10,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
     <head>
@@ -49,11 +50,11 @@
                             <li id="contact">
                                 <a href="${pageContext.request.contextPath}/contact">Contact</a>
                             </li>
-                            <li id="cart">
-                                <a href="${pageContext.request.contextPath}/shopping_cart">Cart</a>
-                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            <li id="cart">
+                                <a href="${pageContext.request.contextPath}/cart/shopping_cart">Cart(<fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="0" value="${cart.getCartAmount()}" />)</a>
+                            </li>
                             <li id="login">
                                 <a href="${pageContext.request.contextPath}/user/login">Login</a>
                             </li>

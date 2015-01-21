@@ -76,6 +76,7 @@ public class UserController {
     public String logout(Model model, HttpServletRequest request) throws IOException {
         request.getSession().removeAttribute("currentUser");
         request.getSession().removeAttribute("currentEstablishment");
+        request.getSession().removeAttribute("cart");
         model.addAttribute("user", new User());
         model.addAttribute("pageTitle", "Login");
         model.addAttribute("pageDescription", "Enter your email and password.");
