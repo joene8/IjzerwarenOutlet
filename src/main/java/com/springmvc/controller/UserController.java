@@ -78,6 +78,7 @@ public class UserController {
         request.getSession().removeAttribute("currentEstablishment");
         model.addAttribute("user", new User());
         model.addAttribute("pageTitle", "Login");
+        model.addAttribute("pageDescription", "Enter your email and password.");
         model.addAttribute("message", "Succesfully logged out.");
         model.addAttribute("type", "success");
         //REGISTER LOGOUT
