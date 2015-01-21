@@ -53,10 +53,19 @@
                         </ul>
                         <!--Account begin-->
                         <ul class="nav navbar-nav navbar-right">
+                                                        <li id="cart">
+                                <a href="${pageContext.request.contextPath}/cart/shopping_cart">Cart <span class="badge">
+                                        <c:choose>
+                                            <c:when test="${not empty cart}">
+                                        <fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="0" value="${cart.getCartAmount()}" />
+                                            </c:when>
+                                            <c:otherwise>0</c:otherwise>
+                                        </c:choose>
+                                    </span></a>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${currentUser.firstName} <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="${pageContext.request.contextPath}/cart/shopping_cart">Cart(<fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="0" value="${cart.getCartAmount()}" />)</a></li>
                                     <li><a href="${pageContext.request.contextPath}/user/view/${currentUser.id}">My account</a></li>
                                     <li><a href="${pageContext.request.contextPath}/itemOrder/history">My order history</a></li>
                                     <li class="divider"></li>
