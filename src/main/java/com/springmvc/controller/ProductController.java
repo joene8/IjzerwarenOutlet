@@ -10,7 +10,6 @@ import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.ItemService;
 import com.springmvc.service.ProductService;
 import com.springmvc.service.StihoArtikelService;
-import com.springmvc.service.UserService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,6 @@ public class ProductController {
 
     @Autowired
     private ItemService itemService;
-
 
     // LIST THUMBNAILS
     @RequestMapping(value = "/list")
@@ -176,6 +174,7 @@ public class ProductController {
             p.setGrossWeight(sa.getBrutoGewicht());
             p.setStandardSalePrice(sa.getStandaardVerkoopprijs());
         }
+        model.addAttribute("minPrice", (p.getStandardSalePrice()/2));
         model.addAttribute("pageDescription", "Enter all the information for this product.");
         model.addAttribute("product", p);
         return "product_add_step_2";
@@ -197,6 +196,9 @@ public class ProductController {
         Item item = new Item();
         model.addAttribute("item", item);
         product.setProductNumber((StihoArtikel) request.getSession().getAttribute("sessionStihoArtikel"));
+        if(product.getPicture()== null){
+            product.setPicture("unavailable.png");
+        }
         productService.addProduct(product);
         return "product_add_step_3";
     }
@@ -220,11 +222,9 @@ public class ProductController {
 
         item.setEstablishment(currentUser.getEstablishment());
         itemService.addItem(item);
-        model.addAttribute("pageTitle", "Home");
-        model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
         model.addAttribute("message", item.getProduct().getName() + " was added successfully.");
         model.addAttribute("type", "success");
-        return "product_list";
+        return listTable(model, request);
     }
 // ADD LOAD
 

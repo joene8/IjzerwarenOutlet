@@ -2,6 +2,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
     function validate(field, reg) {
         if (reg.test(document.getElementById(field).value)) {
@@ -45,11 +46,11 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <span class="input-group-addon">&euro;</span>
-                                <form:input type="number" max="${sessionProduct.standardSalePrice}" step="0.1" path="chosenPrice" onblur=" checkRange(${minPrice},${sessionProduct.standardSalePrice})" class="form-control" id="chosenPrice" min="${minPrice}"/>
+                                <form:input type="number" max="${sessionProduct.standardSalePrice}" step="0.01" path="chosenPrice" onblur=" checkRange(${minPrice},${sessionProduct.standardSalePrice})" class="form-control" id="chosenPrice" min="${minPrice}"/>
                                 <span id="glyph_chosenPrice" class=""></span>
                             </div>
                             <c:if test="${chosenPriceError}"><span class="help-block">Must be an valid price within the range.</span></c:if>
-                            <span class="help-block">Min: ${minPrice} Max: ${sessionProduct.standardSalePrice}</span>
+                            <span class="help-block">Min: <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${minPrice}" /> Max: <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${sessionProduct.standardSalePrice}" /></span>
                         </div>
                     </div>
                     <!--Chosen price end-->

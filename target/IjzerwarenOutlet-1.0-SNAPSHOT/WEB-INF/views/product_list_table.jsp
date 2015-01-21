@@ -31,17 +31,17 @@
                 </thead>
                 <tbody>
             <c:choose>
-                <c:when test="${products.size() != 0}">
+                <c:when test="${items.size() != 0}">
                     <!-- When there are users, the will be shown below -->
 
-                    <c:forEach var="product" items="${products}">
+                    <c:forEach var="item" items="${items}">
                         <!-- Per product a row will be made with it's values -->
                         <tr>
-                            <td>${product.name}</td>
-                            <td>${product.description}</td>
-                            <td>                                        <a href="${pageContext.request.contextPath}/product/view/${product.id}" class="btn btn-xs btn-default">View</a>
-                                    <a href="${pageContext.request.contextPath}/product/edit/${product.id}" class="btn btn-xs btn-default">Edit</a>
-                                    <a href="${pageContext.request.contextPath}/product/delete/${product.id}" class="btn btn-xs btn-danger">Delete</a>
+                            <td>${item.product.name}</td>
+                            <td>${item.product.description}</td>
+                            <td>                                        <a href="${pageContext.request.contextPath}/product/view/${item.product.id}" class="btn btn-xs btn-default">View</a>
+                                    <a href="${pageContext.request.contextPath}/product/edit/${item.product.id}" class="btn btn-xs btn-default">Edit</a>
+                                    <a href="${pageContext.request.contextPath}/product/delete/${item.product.id}" class="btn btn-xs btn-danger">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -51,12 +51,11 @@
                 </tbody>
                         <tfoot>
             <tr>
-                <td colspan="2"><a href="${pageContext.request.contextPath}/product/add" class="btn btn-sm btn-danger">Add product</a></td>
-                <td><em>Total products: ${products.size()}</em></td>       
+                <td colspan="2"><a href="${pageContext.request.contextPath}/product/add_step_1" class="btn btn-sm btn-danger">Add product</a></td>
+                <td><em>Total products: ${items.size()}</em></td>       
             </tr>
             </tfoot>
         </table>
-            <a href="${pageContext.request.contextPath}/product/list" class="btn btn-xs-primary">Thumbnail View</a>
                             <!--Javascript menu activator-->
         <script>activeMenu("products");</script>
         <t:footer/>
