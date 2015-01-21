@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:menu>
     <jsp:body>
@@ -126,7 +127,7 @@
                         </div>
                         <div id="establishment" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="establishmentHeader">
                             <div class="panel-body">
-                                <a style ="color:red; font-size:11px">Attention: When you change from establishment, your cart will be emptied!</a>
+                                <a style ="color:red; font-size:11px">Attention: When you change establishment, your cart will be emptied!</a>
                                 <form action="${pageContext.request.contextPath}/product/establishment_products" method="POST">
                                     <select id="choice" name="choice">
                                         <option value="${currentEstablishment}"></option>
@@ -153,9 +154,9 @@
                                     <div class="caption">
                                         <h3>${item.product.name}</h3>
                                         <p>${item.product.description}</p>
-                                        <h3><span class="oldPrice">&euro;${item.product.standardSalePrice}</span>  
+                                        <h3><span class="oldPrice">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.product.standardSalePrice}" /></span>  
                                             <div style="font-size:12px">you save ${item.getDiscount()}%</div><br>
-                                            <span>&euro;${item.getActualPrice()}</span><c:if test="${item.isAddition()}">
+                                            <span>&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.getActualPrice()}" /></span><c:if test="${item.isAddition()}">
                                                 <span data-toggle="tooltip" data-placement="right" title="${item.getAdditionDescription()}"><img src="http://png-5.findicons.com/files/icons/1156/fugue/16/wrench_screwdriver.png"</span></c:if></h3>
                                         <p>Stock: ${item.stock}</p>
                                         <p><a href="${pageContext.request.contextPath}/cart/add/${item.id}" class="btn btn-primary" role="button" method="POST">Add to cart</a></p>

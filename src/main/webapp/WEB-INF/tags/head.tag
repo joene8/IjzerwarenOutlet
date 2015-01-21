@@ -33,3 +33,5 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>IJzerwaren Outlet</title> 
         <link href="<c:url value="/css/style.css" />" rel="stylesheet" >
+        
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>

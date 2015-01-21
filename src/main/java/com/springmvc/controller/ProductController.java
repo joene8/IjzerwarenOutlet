@@ -4,6 +4,7 @@ import com.springmvc.model.Establishment;
 import com.springmvc.model.Item;
 import com.springmvc.model.Product;
 import com.springmvc.model.StihoArtikel;
+import com.springmvc.model.User;
 import com.springmvc.model.Validation;
 import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.ItemService;
@@ -182,8 +183,8 @@ public class ProductController {
             return "product_add_step_3";
         }
         item.setProduct((Product) request.getSession().getAttribute("sessionProduct"));
-//        User currentUser = (User)request.getSession().getAttribute("currentUser");
-//        item.setEstablishment(currentUser.getEstablishment());
+        User currentUser = (User)request.getSession().getAttribute("currentUser");
+        item.setEstablishment(currentUser.getEstablishment());
         itemService.addItem(item);
         model.addAttribute("pageTitle", "Home");
         model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
