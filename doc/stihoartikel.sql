@@ -13,3 +13,4 @@ INSERT INTO `db_webshop`.`stihoartikel` (`artikelnummer`, `artikelLengte`, `brut
 INSERT INTO `db_webshop`.`stihoartikel` (`artikelnummer`, `artikelLengte`, `brutoGewicht`, `categorie`, `nettoBreedte`, `nettoDikte`, `standaardVerkoopprijs`) VALUES ('13', '43', '3', 'hard en zachthout', '3', '5', '2');
 INSERT INTO `db_webshop`.`stihoartikel` (`artikelnummer`, `artikelLengte`, `brutoGewicht`, `categorie`, `nettoBreedte`, `nettoDikte`, `standaardVerkoopprijs`) VALUES ('14', '5', '4', 'hard en zachthout', '3', '5', '34');
 INSERT INTO `db_webshop`.`stihoartikel` (`artikelnummer`, `artikelLengte`, `brutoGewicht`, `categorie`, `nettoBreedte`, `nettoDikte`, `standaardVerkoopprijs`) VALUES ('15', '2', '2', 'bouwmaterialen', '3', '1', '4');
+INSERT INTO `db_webshop`.`stihoartikel` (`artikelnummer`, `artikelLengte`, `brutoGewicht`, `categorie`, `nettoBreedte`, `nettoDikte`, `standaardVerkoopprijs`) VALUES ('16', '2', '2', 'bevestigingsmaterialen', '3', '1', '4');

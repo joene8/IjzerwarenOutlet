@@ -1,10 +1,10 @@
-INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('1', '1', 'Een hap eruit.', '20', '10', '5', '1', '1');
+INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('1', '1', 'Het hout heeft een lichte verkleuring. Hierdoor is er 10 procent extra korting verrekend.', '20', '10', '5', '1', '1');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('2', '0', '20', '0', '10', '2', '2');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('3', '0', '20', '0', '5', '3', '3');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('4', '0', '2', '0', '5', '4', '4');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('5', '0', '30', '0', '10', '5', '5');
-INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('6', '1', 'Heeft een krater.', '60', '30', '20', '6', '6');
-INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('7', '1', 'Werkt niet.', '30', '30', '5', '7', '7');
+INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('6', '1', 'Licht versleten. Hierdoor is er 30 procent extra korting verrekend.', '60', '30', '20', '6', '6');
+INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('7', '1', 'Heeft een kleine kras links boven in de hoek. Hierdoor is er 30 procent extra korting verrekend.', '30', '30', '5', '7', '7');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('8', '0', '2', '0', '5', '8', '8');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('9', '0', '5', '0', '20', '9', '9');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('10', '0', '4', '0', '20', '10', '10');
