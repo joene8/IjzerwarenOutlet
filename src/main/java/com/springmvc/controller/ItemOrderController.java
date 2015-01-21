@@ -5,6 +5,7 @@ import com.springmvc.model.ItemOrder;
 import com.springmvc.model.TimeLog;
 import com.springmvc.model.User;
 import com.springmvc.model.Validation;
+import com.springmvc.service.EstablishmentService;
 import com.springmvc.service.ItemOrderService;
 import com.springmvc.service.TimeLogService;
 import com.springmvc.service.UserService;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import static jdk.nashorn.internal.objects.NativeString.search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +37,9 @@ public class ItemOrderController {
 
     @Autowired
     private TimeLogService timeLogService;
+    
+    @Autowired
+    private EstablishmentService establishmentService;        
 
     TimeLog t = new TimeLog();
 
@@ -74,7 +77,7 @@ public class ItemOrderController {
             model.addAttribute("pageDescription", "Choose where the items should be delivered.");
             model.addAttribute("message", "User was successfully created.");
             model.addAttribute("type", "success");
-            
+            model.addAttribute("establishments", establishmentService.getEstablishments());            
             model.addAttribute("itemOrder", new ItemOrder());
             return "order_add_step_2";
         }
@@ -84,7 +87,7 @@ public class ItemOrderController {
         model.addAttribute("message", "Welcome " + user.getFirstName() + " " + user.getLastName());
         model.addAttribute("pageDescription", "Choose where the items should be delivered.");
         model.addAttribute("type", "success");
-
+        model.addAttribute("establishments", establishmentService.getEstablishments());  
         model.addAttribute("itemOrder", new ItemOrder());
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
@@ -106,30 +109,36 @@ public class ItemOrderController {
 //            model.addAttribute("type", "danger");
 //            return "order_add_step_2";
 //        }
+        float shippingCosts = 0;
+//        if(((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"))>300.0){
+//            shippingCosts = (float) 40.0;
+//        }    
+//        
         itemOrder.setUser((User) request.getSession().getAttribute("currentUser"));
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
-        if ((Boolean) request.getSession().getAttribute("delivery") == true) {
-            itemOrder.setDelivery(true);
-        } else {
-            itemOrder.setDelivery(false);
-        }
-        itemOrder.setDestination((String) request.getSession().getAttribute("Destination"));
-        itemOrder.setItem((Item) request.getSession().getAttribute(null));
-        itemOrder.setShippingCosts(0);
-        itemOrder.setTotalPrice((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"));
-        itemOrder.setAmount(0);
+////        if ((Boolean) request.getSession().getAttribute("delivery") == true) {
+////            itemOrder.setDelivery(true);
+////        } else {
+////            itemOrder.setDelivery(false);
+////        }
+//        
+////        itemOrder.setDestination((String) request.getSession().getAttribute("Destination"));
+        itemOrder.setItem((Item) request.getSession().getAttribute("currentItem"));
+//        itemOrder.setShippingCosts(shippingCosts);
+//        itemOrder.setTotalPrice((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"));
+//        itemOrder.setAmount(0);
 
         itemOrderService.addItemOrder(itemOrder);
-        model.addAttribute("pageTitle", "Home");
-        model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
-        model.addAttribute("message", itemOrder.getItem().getProduct().getName() + " was ordered successfully.");
+        model.addAttribute("pageTitle", "Confirmation");
+        model.addAttribute("pageDescription", "Check the information.");
+        model.addAttribute("message", "something was ordered successfully.");
         model.addAttribute("type", "success");
         return "order_add_step_3";
     }
     
     // ADD STEP 3 LOAD
     @RequestMapping(value = "/add_step_3", method = RequestMethod.GET)
-    public String productInfo(Model model, ItemOrder itemOrder) throws IOException{
+    public String LoadAddStep3(Model model, ItemOrder itemOrder) throws IOException{
 
         return "order_add_step_3";
     }

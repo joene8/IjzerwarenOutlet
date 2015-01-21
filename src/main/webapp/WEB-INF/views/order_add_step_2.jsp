@@ -21,7 +21,7 @@
         <t:title_and_message></t:title_and_message>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form:form method="POST" class="form-horizontal" role="form" commandName="itemOrder" action="${pageContext.request.contextPath}/order/add_step_2">  
+                    <form:form method="POST" class="form-horizontal" role="form" commandName="itemOrder" action="${pageContext.request.contextPath}/itemOrder/add_step_2">  
 
                         <div id="field_delivery" class="form-group">
                             <label for="delivery" class="col-sm-2 control-label"><c:if test="${errorDelivery}"></c:if>Method of delivery:</label>
@@ -29,10 +29,11 @@
                                 <br>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-primary">
-                                    <form:radiobutton onchange="checkDelivery()" name="delivery" path="delivery" value="false"/>Pickup</label>
+                                    <form:radiobutton name="delivery" path="delivery" value="false"/>Pickup</label>
                                     <label class="btn btn-primary active">
-                                    <form:radiobutton onchange="checkDelivery()" name="delivery" path="delivery" value="true"/>Delivery</label>
+                                    <form:radiobutton name="delivery" path="delivery" value="true"/>Delivery</label>
                                 </div>
+                                
                                 <br>
                             </div>
                         </div>
@@ -54,11 +55,6 @@
                         <!--Destination end-->
 
 
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Continue</button>
-                                </div>
-                            </div>
                         <!--</div>-->
 
                         <!--<div id="hidden2" style="visibility:hidden;">-->
@@ -68,7 +64,8 @@
                                 <div class="col-sm-4">
                                     <p class="form-control-static">${currentUser.streetName}</p>
                                 </div>
-                        </div>
+                            </div>
+                                
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-primary">Continue</button>
@@ -78,7 +75,7 @@
                         <!--</div>-->
                     </form:form>
                 </div>
-                
+            </div>    
         <t:footer/>
     </jsp:body>
 </t:menu>
