@@ -13,7 +13,6 @@
 <div class="jumbotron panel-default">
   <h1>Welcome to IJzerwarenOutlet</h1>
   <p>This site offers top quality products for affordable prices. Quickly check our products to see what we have to offer!</p>
-  <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/product/list" role="button">Products</a></p>
 </div>
 
         <t:footer/>
