@@ -8,10 +8,11 @@
 
 <script type="text/javascript">
     var checkflag = "false";
-    function selectToggle(toggle, form) {
+    function selectToggle(form) {
         var myForm = document.forms[form];
+        var masterCheckbox = document.getElementById('master');
         for (var i = 0; i < myForm.length; i++) {
-            if (toggle) {
+            if (masterCheckbox.checked) {
                 myForm.elements[i].checked = "checked";
             }
             else {
@@ -67,6 +68,7 @@
                     <thead>
                         <tr>
                             <th>
+                                <input type="checkbox" id="master" onclick="selectToggle('checkbox');">
                             </th>
                             <th>
                                 ID <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
@@ -116,7 +118,6 @@
                         </tfoot>
 
                         <br/><INPUT TYPE="SUBMIT" class="btn btn-sm btn-danger" VALUE="Delete Selection">
-                        Select <a class="btn btn-xs btn-default" href="javascript:selectToggle(true, 'checkbox');">All</a> | <a class="btn btn-xs btn-default" href="javascript:selectToggle(false, 'checkbox');">None</a><p>
                     </form>
                 </table>
             </div>
