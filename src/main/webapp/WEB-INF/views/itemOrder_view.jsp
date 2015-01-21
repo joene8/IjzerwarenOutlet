@@ -34,6 +34,15 @@
                     </div>
                     <!--amount end-->
 
+                    <!--productName start-->
+                    <div id="field_productName" class="form-group">
+                        <label for="productName" class="col-sm-3 control-label">Product Name</label>
+                        <div class="col-sm-3">
+                            <p class="form-control-static">${itemOrder.item.product.name}</p>
+                        </div>
+                    </div>
+                    <!--productName end-->
+
                     <!--date start-->
                     <div id="field_date" class="form-group">
                         <label for="date" class="col-sm-3 control-label">Date</label>
@@ -120,9 +129,16 @@
 
                     <!--back and print start-->
                     <div id="button_backAndPrint" class="form-group">
-                        <div class="col-sm-3">
-                            <a href="${pageContext.request.contextPath}/itemOrder/history" class="btn btn-xs btn-default">Back</a>
-                            <a href="${pageContext.request.contextPath}/itemOrder/history" class="btn btn-xs btn-default" onClick="window.print()">Print</a>
+                        <div class="col-sm-3">                            <c:choose>  
+                                <c:when test="${currentUser.permissionLevel == 1}">
+                                    <a href="${pageContext.request.contextPath}/itemOrder/history" class="btn btn-xs btn-default">Back</a>
+                                    <a href="${pageContext.request.contextPath}/itemOrder/history" class="btn btn-xs btn-default" onClick="window.print()">Print</a>
+                                </c:when>
+                                <c:when test="${currentUser.permissionLevel == 2}">
+                                    <a href="${pageContext.request.contextPath}/itemOrder/list" class="btn btn-xs btn-default">Back</a>
+                                    <a href="${pageContext.request.contextPath}/itemOrder/list" class="btn btn-xs btn-default" onClick="window.print()">Print</a>
+                                </c:when>      
+                            </c:choose>
                         </div>
                     </div>
                     <!--back and print end-->

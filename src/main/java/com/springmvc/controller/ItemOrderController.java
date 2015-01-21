@@ -206,6 +206,17 @@ public class ItemOrderController {
 
         return "itemOrder_history";
     }
+    
+    // LIST
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) throws IOException {
+
+        model.addAttribute("pageTitle", "Order List");
+        model.addAttribute("pageDescription", "Order List");
+        model.addAttribute("itemOrders", itemOrderService.getItemOrders());
+
+        return "itemOrder_list";
+    }
 
     // VIEW
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)

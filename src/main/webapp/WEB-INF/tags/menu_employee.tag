@@ -32,7 +32,7 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li id="orders">
-                                <a href="${pageContext.request.contextPath}/order/list">Orders</a>
+                                <a href="${pageContext.request.contextPath}/itemOrder/list">Orders</a>
                             </li>
                         </ul>
                         <!--Account begin-->
