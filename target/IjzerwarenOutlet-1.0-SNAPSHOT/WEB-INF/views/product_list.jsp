@@ -67,7 +67,7 @@
                     </div>
                     <!-- SearchBar end-->
                     <!--                    Category start-->
-                    <div class="panel panel-default ">
+<!--                    <div class="panel panel-default ">
                         <div class="panel-heading" role="tab" id="categoryHeader">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" href="#category" aria-expanded="true" aria-controls="category">
@@ -96,10 +96,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!--                    Category end-->
                     <!--                    Price start-->
-                    <div class="panel panel-default ">
+<!--                    <div class="panel panel-default ">
                         <div class="panel-heading" role="tab" id="priceHeader">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" href="#price" aria-expanded="false" aria-controls="price">
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!--                    Price end-->
                 </div>
                 <!--            Filter end-->
