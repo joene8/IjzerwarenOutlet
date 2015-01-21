@@ -56,33 +56,29 @@ public class ItemOrderController {
     }
 
     // ADD STEP 1 SUBMIT
-    @RequestMapping(value = "/add_step_1/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/add_step_1", method = RequestMethod.POST)
     public String submitAdd(Model model, User user, HttpServletRequest request) throws IOException {
-        // VALIDATION START
-        model = validate(model, user);
-        if (model.containsAttribute("anyErrors")) {
-            if (request.getSession().getAttribute("currentUser") != null) {
-                model.addAttribute("pageTitle", "Add user");
-                model.addAttribute("pageDescription", "Enter the information for the new user.");
-            } else {
-                model.addAttribute("pageTitle", "Register");
-                model.addAttribute("pageDescription", "Enter your information.");
-            }
-            user.setPassword("");
-            model.addAttribute("message", "Not all fields were entered correctly.");
-            model.addAttribute("type", "danger");
-            return "order_add_step_1/{id}";
-        }
-        // VALIDATION END
-        if (request.getSession().getAttribute("currentUser") != null) {
+//        // VALIDATION START
+//        model = validate(model, user);
+//        if (model.containsAttribute("anyErrors")) {
+//            model.addAttribute("pageTitle", "Guest information");
+//            model.addAttribute("pageDescription", "Enter the required information.");
+//            user.setPassword("");
+//            model.addAttribute("message", "Not all fields were entered correctly.");
+//            model.addAttribute("type", "danger");
+//            return "order_add_step_1";
+//        }
+//        // VALIDATION END
+        if (userService.getUser(user.getId())==null) {
             model.addAttribute("pageTitle", "Delivery method");
             model.addAttribute("pageDescription", "Choose where the items should be delivered.");
-            model.addAttribute("message", "User was successfully validated.");
+            model.addAttribute("message", "User was successfully created.");
             model.addAttribute("type", "success");
-
+            
             model.addAttribute("itemOrder", new ItemOrder());
-            return "order_add_step_2/{id}";
+            return "order_add_step_2";
         }
+//        userService.addUser(user);  
         request.getSession().setAttribute("currentUser", user);
         model.addAttribute("pageTitle", "Delivery method");
         model.addAttribute("message", "Welcome " + user.getFirstName() + " " + user.getLastName());
@@ -94,22 +90,22 @@ public class ItemOrderController {
         timeLogService.addTimeLog(t);
         timeLogService.updateLogin(t, user);
 
-        return "order_add_step_2/{id}";
+        return "order_add_step_2";
     }
 
     // ADD STEP 2 SUBMIT
-    @RequestMapping(value = "/add_step_2/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/add_step_2", method = RequestMethod.POST)
     public String submitAddStep2(ItemOrder itemOrder, Model model, HttpServletRequest request) throws IOException {
 
-        // VALIDATION START
-        model = validateStep2(model, itemOrder);
-        if (model.containsAttribute("anyErrors")) {
-            model.addAttribute("pageTitle", "Add product");
-            model.addAttribute("pageDescription", "Enter all the information for this product.");
-            model.addAttribute("message", "Not all fields were entered correctly.");
-            model.addAttribute("type", "danger");
-            return "order_add_step_2";
-        }
+//        // VALIDATION START
+//        model = validateStep2(model, itemOrder);
+//        if (model.containsAttribute("anyErrors")) {
+//            model.addAttribute("pageTitle", "Add product");
+//            model.addAttribute("pageDescription", "Enter all the information for this product.");
+//            model.addAttribute("message", "Not all fields were entered correctly.");
+//            model.addAttribute("type", "danger");
+//            return "order_add_step_2";
+//        }
         itemOrder.setUser((User) request.getSession().getAttribute("currentUser"));
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
         if ((Boolean) request.getSession().getAttribute("delivery") == true) {
@@ -128,7 +124,14 @@ public class ItemOrderController {
         model.addAttribute("pageDescription", "Welcome to our site, go to products to start browsing.");
         model.addAttribute("message", itemOrder.getItem().getProduct().getName() + " was ordered successfully.");
         model.addAttribute("type", "success");
-        return "product_list";
+        return "order_add_step_3";
+    }
+    
+    // ADD STEP 3 LOAD
+    @RequestMapping(value = "/add_step_3", method = RequestMethod.GET)
+    public String productInfo(Model model, ItemOrder itemOrder) throws IOException{
+
+        return "order_add_step_3";
     }
 
     // VALIDATE USER

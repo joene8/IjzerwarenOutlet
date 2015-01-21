@@ -166,6 +166,8 @@
                         </div>
                     </div>
                     <!--totalPrice end-->
+                    
+                    
             </div>
         </div>
                         <!--Javascript menu activator-->
