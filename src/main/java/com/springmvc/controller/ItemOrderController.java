@@ -80,8 +80,6 @@ public class ItemOrderController {
         if (userService.getUser(user.getId()) == null) {
             model.addAttribute("pageTitle", "Delivery method");
             model.addAttribute("pageDescription", "Choose where the items should be delivered.");
-            model.addAttribute("message", "User was successfully created.");
-            model.addAttribute("type", "success");
             model.addAttribute("establishments", establishmentService.getEstablishments());
             model.addAttribute("itemOrder", new ItemOrder());
             return "order_add_step_2";
@@ -93,7 +91,7 @@ public class ItemOrderController {
         model.addAttribute("pageDescription", "Choose where the items should be delivered.");
         model.addAttribute("type", "success");
         model.addAttribute("establishments", establishmentService.getEstablishments());
-        model.addAttribute("itemOrder", new ItemOrder());
+        
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
         timeLogService.updateLogin(t, user);
@@ -114,6 +112,16 @@ public class ItemOrderController {
 //            model.addAttribute("type", "danger");
 //            return "order_add_step_2";
 //        }
+        
+        model.addAttribute("pageTitle", "Confirmation");
+        model.addAttribute("pageDescription", "Check the information.");
+        model.addAttribute("itemOrder", new ItemOrder());
+        return "order_add_step_3";
+    }
+
+    // ADD STEP 3 SUBMIT
+    @RequestMapping(value = "/add_step_3", method = RequestMethod.POST)
+    public String submitAddStep3(Model model, ItemOrder itemOrder, HttpServletRequest request) throws IOException {
         float shippingCosts = 40;
  
         Cart cart = (Cart) request.getSession().getAttribute("cart");
@@ -131,33 +139,14 @@ public class ItemOrderController {
         itemOrder.setTotalPrice((float)currentItem.getActualPrice());
         itemOrder.setItem(currentItem);
         itemOrder.setShippingCosts(shippingCosts);
-        
-
         itemOrder.setUser((User) request.getSession().getAttribute("currentUser"));
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
-////        if ((Boolean) request.getSession().getAttribute("delivery") == true) {
-////            itemOrder.setDelivery(true);
-////        } else {
-////            itemOrder.setDelivery(false);
-////        }
-//        
-////        itemOrder.setDestination((String) request.getSession().getAttribute("Destination"));
-
-//        itemOrder.setTotalPrice((Float) request.getSession().getAttribute("${cart.getTotalPrice()}"));
-//        itemOrder.setAmount(0);
         itemOrderService.addItemOrder(itemOrder);
-        model.addAttribute("pageTitle", "Confirmation");
-        model.addAttribute("pageDescription", "Check the information.");
+        model.addAttribute("pageTitle", "Shopping Cart");
+        model.addAttribute("pageDescription", "This is the shopping cart filled with the products from your chosen establishment.");
         model.addAttribute("message", "something was ordered successfully.");
         model.addAttribute("type", "success");
-        return "order_add_step_3";
-    }
-
-    // ADD STEP 3 LOAD
-    @RequestMapping(value = "/add_step_3", method = RequestMethod.GET)
-    public String LoadAddStep3(Model model, ItemOrder itemOrder) throws IOException {
-
-        return "order_add_step_3";
+        return "shopping_cart";
     }
 
     // VALIDATE USER

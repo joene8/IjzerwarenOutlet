@@ -38,7 +38,7 @@
                             </div>
                         </div>
                                         
-<!--                        <div id="hidden" style="visibility:hidden;">        -->
+                        <!--<div id="hidden" style="visibility:hidden;">-->        
 
                         <!--Destination start-->
                         <div id="field_Destination" class="form-group <c:if test="${errorDestination}">has-error</c:if>">
@@ -55,14 +55,14 @@
                         <!--Destination end-->
 
 
-                        <!--</div>-->
+<!--                        </div>
 
-                        <!--<div id="hidden2" style="visibility:hidden;">-->
+                        <div id="hidden2" style="visibility:hidden;">-->
 
                             <div id="field_Destination" class="form-group <c:if test="${errorDestination}">has-error</c:if>">
                             <label for="Destination" class="col-sm-2 control-label">Destination</label>
                                 <div class="col-sm-4">
-                                    <p class="form-control-static">${currentUser.streetName}</p>
+                                    <p class="form-control-static">${currentUser.city}</p>
                                 </div>
                             </div>
                                 

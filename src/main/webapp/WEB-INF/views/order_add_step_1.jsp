@@ -31,8 +31,7 @@
                     <c:if test="${currentUser==null}">
                         <div class ="form-group">
                             <div class ="col-sm-3">    
-                                <a href="${pageContext.request.contextPath}/user/login">        Login</a> here.<br>    
-                                
+                                <a href="${pageContext.request.contextPath}/user/login">Login</a> here.<br>                                    
                             </div>
                         </div>    
                     </c:if>        
