@@ -4,8 +4,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 
 
 <t:menu>
@@ -16,27 +14,17 @@
                 Order information:
                     <!--orderID start-->
                         <div id="field_orderID" class="form-group">
-                            <label for="orderID" class="col-sm-3 control-label">Order ID:</label>
+                            <label for="orderID" class="col-sm-3 control-label">orderID</label>
                             <div class="col-sm-3">
                                 <p class="form-control-static">${itemOrder.id}</p>
                             </div>
                         </div>
                         <br>    
                     <!--orderID end-->
-                    
-                    <!--productName start-->
-                        <div id="field_productName" class="form-group">
-                            <label for="productName" class="col-sm-3 control-label">Product Name:</label>
-                            <div class="col-sm-3">
-                                <p class="form-control-static">${itemOrder.item.product.name}</p>
-                            </div>
-                        </div>
-                        <br>    
-                    <!--productName end-->
 
                     <!--date start-->
                     <div id="field_date" class="form-group">
-                        <label for="date" class="col-sm-3 control-label">Date:</label>
+                        <label for="date" class="col-sm-3 control-label">date</label>
                         <div class="col-sm-3">
                             <p class="form-control-static">${itemOrder.date}</p>
                         </div>
@@ -46,7 +34,7 @@
 
                     <!--delivery start-->
                     <div id="field_delivery" class="form-group">
-                        <label for="delivery" class="col-sm-3 control-label">Delivery:</label>
+                        <label for="delivery" class="col-sm-3 control-label">delivery</label>
                         <div class="col-sm-3">
                             <p class="form-control-static">${itemOrder.delivery}</p>
                         </div>
@@ -56,7 +44,7 @@
 
                     <!--destination start-->
                     <div id="field_destination" class="form-group">
-                        <label for="destination" class="col-sm-3 control-label">Destination:</label>
+                        <label for="destination" class="col-sm-3 control-label">destination</label>
                         <div class="col-sm-3">
                             <p class="form-control-static">${itemOrder.destination}</p>
                         </div>
@@ -66,7 +54,7 @@
 
                     <!--establishment start-->
                     <div id="field_establishment" class="form-group">
-                        <label for="establishment" class="col-sm-3 control-label">Establishment:</label>
+                        <label for="establishment" class="col-sm-3 control-label">establishment</label>
                         <div class="col-sm-3">
                             <p class="form-control-static">${itemOrder.item.establishment.name}</p>
                         </div>
@@ -76,9 +64,9 @@
 
                     <!--shippingCosts start-->
                     <div id="field_shippingCosts" class="form-group">
-                        <label for="shippingCosts" class="col-sm-3 control-label">Shipping costs:</label>
+                        <label for="shippingCosts" class="col-sm-3 control-label">shippingCosts</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemOrder.shippingCosts}"/></p>
+                            <p class="form-control-static">${itemOrder.shippingCosts}</p>
                         </div>
                     </div>
                     <br>    
@@ -86,7 +74,7 @@
                     
                     <!--amount start-->
                     <div id="field_amount" class="form-group">
-                        <label for="" class="col-sm-3 control-label">Amount:</label>
+                        <label for="" class="col-sm-3 control-label">amount</label>
                         <div class="col-sm-3">
                             <p class="form-control-static">${itemOrder.amount}</p>
                         </div>
@@ -96,17 +84,15 @@
                     
                     <!--totalPrice start-->
                     <div id="field_totalPrice" class="form-group">
-                        <label for="totalPrice" class="col-sm-3 control-label">Total price:</label>
+                        <label for="totalPrice" class="col-sm-3 control-label">totalPrice</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemOrder.totalPrice}"/></p>
+                            <p class="form-control-static">${itemOrder.totalPrice}</p>
                         </div>
                     </div>
                     <br>    
                     <!--totalPrice end-->
                     
-                    <div class="col-sm-3">
-                        <button type="submit" class="btn btn-primary">Confirm Order</button>
-                    </div>
+                    
             </div>
         </div>
                         <!--Javascript menu activator-->
