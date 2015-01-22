@@ -92,25 +92,25 @@
                             <div id="field_destination" class="form-group">
                                 <label for="destination" class="col-sm-3 control-label">Destination Address</label>
                                 <div class="col-sm-3">
-                                    <c:choose>
-                                        <c:when test="${itemOrder.delivery == true}">
-                                            <p class="form-control-static">${itemOrder.destination}</p>
-                                        </c:when>
-                                        <c:when test="${itemOrder.delivery == false}">
-                                            <p class="form-control-static"></p>
-                                        </c:when> 
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${itemOrder.delivery == true}">
+                                                ${currentUser.streetName} ${currentUser.streetNumber} ${currentUser.streetNumberSuffix}
+                                                </c:when>
+                                                <c:when test="${itemOrder.delivery == false}">
+                                                ${itemOrder.item.establishment.name}
+                                            </c:when> 
+                                        </c:choose>
                                 </div>
                             </div>
                             <!--destination end-->
 
                             <!--handledby start-->
-                            <div id="field_handledBy" class="form-group">
+<!--                            <div id="field_handledBy" class="form-group">
                                 <label for="handledBy" class="col-sm-3 control-label">Handled By</label>
                                 <div class="col-sm-3">
                                     <p class="form-control-static">${itemOrder.handledBy}</p>
                                 </div>
-                            </div>
+                            </div>-->
                             <!--handledby end-->
 
                             <!--shippingCosts start-->
@@ -227,14 +227,14 @@
                             <div id="field_destination" class="form-group">
                                 <label for="destination" class="col-sm-3 control-label">Destination Address</label>
                                 <div class="col-sm-3">
-                                    <c:choose>
-                                        <c:when test="${itemOrder.delivery == true}">
-                                            <p class="form-control-static">${itemOrder.destination}</p>
-                                        </c:when>
-                                        <c:when test="${itemOrder.delivery == false}">
-                                            <p class="form-control-static"></p>
-                                        </c:when> 
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${itemOrder.delivery == true}">
+                                                ${currentUser.streetName} ${currentUser.streetNumber} ${currentUser.streetNumberSuffix}
+                                                </c:when>
+                                                <c:when test="${itemOrder.delivery == false}">
+                                                ${itemOrder.item.establishment.name}
+                                            </c:when> 
+                                        </c:choose>
                                 </div>
                             </div>
                             <!--destination end-->

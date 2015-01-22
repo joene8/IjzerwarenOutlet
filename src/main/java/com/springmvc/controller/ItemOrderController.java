@@ -36,8 +36,8 @@ public class ItemOrderController {
 
     @Autowired
     private UserService userService;
-    
-       @Autowired
+
+    @Autowired
     private ItemService itemService;
 
     @Autowired
@@ -82,6 +82,10 @@ public class ItemOrderController {
             model.addAttribute("pageDescription", "Choose where the items should be delivered.");
             model.addAttribute("establishments", establishmentService.getEstablishments());
             model.addAttribute("itemOrder", new ItemOrder());
+            Cart cart = (Cart) request.getSession().getAttribute("cart");
+            List<Item> itemList = cart.getItemList();
+            Item currentItem = itemList.get(0);
+            model.addAttribute("establishment", currentItem.getEstablishment());
             return "order_add_step_2";
         }
 //        userService.addUser(user);  
@@ -91,11 +95,14 @@ public class ItemOrderController {
         model.addAttribute("pageDescription", "Choose where the items should be delivered.");
         model.addAttribute("type", "success");
         model.addAttribute("establishments", establishmentService.getEstablishments());
-        
+
         //REGISTER LOGIN
         timeLogService.addTimeLog(t);
         timeLogService.updateLogin(t, user);
-
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        List<Item> itemList = cart.getItemList();
+        Item currentItem = itemList.get(0);
+        model.addAttribute("establishment", currentItem.getEstablishment());
         return "order_add_step_2";
     }
 
@@ -103,19 +110,22 @@ public class ItemOrderController {
     @RequestMapping(value = "/add_step_2", method = RequestMethod.POST)
     public String submitAddStep2(ItemOrder itemOrder, Model model, HttpServletRequest request) throws IOException {
 
-//        // VALIDATION START
-//        model = validateStep2(model, itemOrder);
-//        if (model.containsAttribute("anyErrors")) {
-//            model.addAttribute("pageTitle", "Add product");
-//            model.addAttribute("pageDescription", "Enter all the information for this product.");
-//            model.addAttribute("message", "Not all fields were entered correctly.");
-//            model.addAttribute("type", "danger");
-//            return "order_add_step_2";
-//        }
-        
+        float shippingCosts = 40;
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        List<Item> itemList = cart.getItemList();
+        Item currentItem = itemList.get(0);
+        itemOrder.setAmount(currentItem.getStock());
+        itemOrder.setItem(currentItem);
+        if (currentItem.getBulkPrice() > 300.0 || itemOrder.isDelivery() == false) {
+            shippingCosts = 0;
+        }
+        itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
+        itemOrder.setShippingCosts(shippingCosts);
+        request.getSession().setAttribute("sessionDelivery", itemOrder.isDelivery());
+
         model.addAttribute("pageTitle", "Confirmation");
         model.addAttribute("pageDescription", "Check the information.");
-        model.addAttribute("itemOrder", new ItemOrder());
+        model.addAttribute("itemOrder", itemOrder);
         return "order_add_step_3";
     }
 
@@ -123,30 +133,29 @@ public class ItemOrderController {
     @RequestMapping(value = "/add_step_3", method = RequestMethod.POST)
     public String submitAddStep3(Model model, ItemOrder itemOrder, HttpServletRequest request) throws IOException {
         float shippingCosts = 40;
- 
+        itemOrder.setDelivery((Boolean) request.getSession().getAttribute("sessionDelivery"));
         Cart cart = (Cart) request.getSession().getAttribute("cart");
-        if (cart.getTotalPrice() > 300.0 || itemOrder.isDelivery()==false) {
-            shippingCosts = 0;
-        }
         List<Item> itemList = cart.getItemList();
         Item currentItem = itemList.get(0);
+        if (currentItem.getBulkPrice() > 300.0 || itemOrder.isDelivery() == false) {
+            shippingCosts = 0;
+        }
+
         itemList.remove(0);
         cart.setItemList(itemList);
         request.getSession().setAttribute("cart", cart);
         itemOrder.setAmount(currentItem.getStock());
         currentItem.setStock(0);
         itemService.updateItem(currentItem);
-        itemOrder.setTotalPrice((float)currentItem.getActualPrice());
+        itemOrder.setTotalPrice((float) currentItem.getActualPrice());
         itemOrder.setItem(currentItem);
         itemOrder.setShippingCosts(shippingCosts);
         itemOrder.setUser((User) request.getSession().getAttribute("currentUser"));
         itemOrder.setDate(new Date(request.getSession().getLastAccessedTime()));
         itemOrderService.addItemOrder(itemOrder);
-        model.addAttribute("pageTitle", "Shopping Cart");
-        model.addAttribute("pageDescription", "This is the shopping cart filled with the products from your chosen establishment.");
-        model.addAttribute("message", "something was ordered successfully.");
+        model.addAttribute("message", currentItem.getProduct().getName() + " was ordered successfully.");
         model.addAttribute("type", "success");
-        return "shopping_cart";
+        return history(model, request);
     }
 
     // VALIDATE USER
@@ -264,7 +273,7 @@ public class ItemOrderController {
 
         return "itemOrder_list";
     }
-    
+
     // UNREADY
     @RequestMapping(value = "/unready/{id}", method = RequestMethod.GET)
     public String unready(Model model, @PathVariable int id, HttpServletRequest request) throws IOException {

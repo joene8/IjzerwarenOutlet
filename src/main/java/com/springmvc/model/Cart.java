@@ -60,6 +60,7 @@ public class Cart implements Serializable {
 
     public double getTotalPrice() {
         return totalPrice;
+        
     }
 
     public void setTotalPrice(double totalPrice) {

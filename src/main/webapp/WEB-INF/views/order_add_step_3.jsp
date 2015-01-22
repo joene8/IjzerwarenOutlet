@@ -12,19 +12,10 @@
     <jsp:body>
         <t:title_and_message/>
         <div class="panel panel-default">
-            <div class="panel-body">
-                Order information:
-                    <!--orderID start-->
-                        <div id="field_orderID" class="form-group">
-                            <label for="orderID" class="col-sm-3 control-label">Order ID:</label>
-                            <div class="col-sm-3">
-                                <p class="form-control-static">${itemOrder.id}</p>
-                            </div>
-                        </div>
-                        <br>    
-                    <!--orderID end-->
-                    
+            <div class="panel-body">           
+                <form:form method="POST" class="form-horizontal" role="form" commandName="itemOrder" action="${pageContext.request.contextPath}/itemOrder/add_step_3">  
                     <!--productName start-->
+                    
                         <div id="field_productName" class="form-group">
                             <label for="productName" class="col-sm-3 control-label">Product Name:</label>
                             <div class="col-sm-3">
@@ -46,24 +37,35 @@
 
                     <!--delivery start-->
                     <div id="field_delivery" class="form-group">
-                        <label for="delivery" class="col-sm-3 control-label">Delivery:</label>
+                        <label for="delivery" class="col-sm-3 control-label">Pickup or delivery:</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">${itemOrder.delivery}</p>
+                            
+                    <c:choose>
+                        <c:when test="${itemOrder.delivery == true}">
+                            <p class="form-control-static">Delivery</p>
+                            </c:when>
+                            <c:otherwise> 
+                            <p class="form-control-static">Pickup</p>
+                            </c:otherwise>
+                            </c:choose>
+                        
                         </div>
                     </div>
                     <br>    
                     <!--delivery end-->
-
+                    <c:choose>
+                        <c:when test="${itemOrder.delivery == true}">
                     <!--destination start-->
                     <div id="field_destination" class="form-group">
-                        <label for="destination" class="col-sm-3 control-label">Destination:</label>
+                        <label for="destination" class="col-sm-3 control-label">Address:</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">${itemOrder.destination}</p>
+                            <p class="form-control-static">${currentUser.streetName} ${currentUser.streetNumber} ${currentUser.streetNumberSuffix}</p>
                         </div>
                     </div>
                     <br>    
                     <!--destination end-->
-
+                        </c:when>
+                        <c:otherwise>
                     <!--establishment start-->
                     <div id="field_establishment" class="form-group">
                         <label for="establishment" class="col-sm-3 control-label">Establishment:</label>
@@ -73,12 +75,13 @@
                     </div>
                     <br>    
                     <!--establishment end-->
-
+                    </c:otherwise>
+                    </c:choose>
                     <!--shippingCosts start-->
-                    <div id="field_shippingCosts" class="form-group">
-                        <label for="shippingCosts" class="col-sm-3 control-label">Shipping costs:</label>
+                    <div id="field_ActualPrice" class="form-group">
+                        <label for="ActualPrice" class="col-sm-3 control-label">Price per product:</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemOrder.shippingCosts}"/></p>
+                            <p class="form-control-static">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemOrder.item.getActualPrice()}"/></p>
                         </div>
                     </div>
                     <br>    
@@ -93,12 +96,20 @@
                     </div>
                     <br>    
                     <!--amount end-->
-                    
+                    <!--shippingCosts start-->
+                    <div id="field_shippingCosts" class="form-group">
+                        <label for="shippingCosts" class="col-sm-3 control-label">Shipping costs:</label>
+                        <div class="col-sm-3">
+                            <p class="form-control-static">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemOrder.shippingCosts}"/></p>
+                        </div>
+                    </div>
+                    <br>    
+                    <!--shippingCosts end-->                    
                     <!--totalPrice start-->
                     <div id="field_totalPrice" class="form-group">
                         <label for="totalPrice" class="col-sm-3 control-label">Total price:</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemOrder.totalPrice}"/></p>
+                            <p class="form-control-static">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemOrder.item.getBulkPrice() + itemOrder.shippingCosts}"/></p>
                         </div>
                     </div>
                     <br>    
@@ -109,6 +120,7 @@
                     </div>
             </div>
         </div>
+                        </form:form>
                         <!--Javascript menu activator-->
         <!--<script>activeMenu("NAME_OF_THE_ACTIVE_TAB_GOES_HERE");</script>-->
         <t:footer/>

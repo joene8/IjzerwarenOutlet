@@ -55,11 +55,11 @@
                                         <c:choose>
                                             <c:when test="${itemOrder.delivery == true}">
                                                 <td>Delivery</td>
-                                                <td>${itemOrder.destination}</td>
-                                            </c:when>
-                                            <c:when test="${itemOrder.delivery == false}">
+                                                <td>${currentUser.streetName} ${currentUser.streetNumber} ${currentUser.streetNumberSuffix}</td>
+                                                </c:when>
+                                                <c:when test="${itemOrder.delivery == false}">
                                                 <td>Pickup</td> 
-                                                <td></td>
+                                                <td>${itemOrder.item.establishment.name}</td>
                                             </c:when> 
                                         </c:choose>
                                         <td>

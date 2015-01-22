@@ -19,7 +19,7 @@
         <t:title_and_message />
             
                 <c:choose>
-                    <c:when test="${getCartAmount != 0}">
+                    <c:when test="${cart.getCartAmount() != 0}">
                 <!-- Wanneer er gebruikers opgeslagen zijn, worden ze hier getoond -->
 
                 
@@ -99,7 +99,7 @@
                         <tr>
                             <td><strong>Total Price</strong></td>
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${cart.getTotalPrice()}" /></td>
-                            <td colspan="1" />
+                            <td colspan="3" />
                         </tr>
                 </table>
             </c:otherwise>
