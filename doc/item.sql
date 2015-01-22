@@ -1,5 +1,6 @@
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('1', '1', 'Het hout heeft een lichte verkleuring. Hierdoor is er 10 procent extra korting verrekend.', '20', '10', '5', '1', '1');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `additionDescription`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('16', '0', 'Het hout heeft een lichte verkleuring. Hierdoor is er 10 procent extra korting verrekend.', '20', '10', '5', '1', '1');
+INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('17', '0', '253.99', '0', '10', '1', '13');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('2', '0', '20', '0', '10', '2', '2');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('3', '0', '20', '0', '5', '3', '3');
 INSERT INTO `db_webshop`.`item` (`id`, `addition`, `chosenPrice`, `discountPercentage`, `stock`, `establishment_id`, `product_id`) VALUES ('4', '0', '2', '0', '5', '4', '4');
