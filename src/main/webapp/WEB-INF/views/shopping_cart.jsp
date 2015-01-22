@@ -12,49 +12,53 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<% String s = (String) request.getAttribute("message"); %>
-<% request.setAttribute("succes", s);%>
 
 
 <t:menu>
     <jsp:body>
         <t:title_and_message />
-        <c:if test="${not empty succes}"><font color="green"><b>${succes}</b></font></c:if>
             
                 <c:choose>
                     <c:when test="${getCartAmount != 0}">
                 <!-- Wanneer er gebruikers opgeslagen zijn, worden ze hier getoond -->
 
                 
-                <table class="table table-striped">
+<table class="table table-striped">
                     <tr>
-                       
                         <td>
                             <strong>Name</strong>
-                        </td>
+                        </td>               
                         <td>
                             <strong>Price P.P</strong>
                         </td>
+                        </td>
+                        <td>
+                            <strong>Stock</strong>
+                        </td>
+                        <td>
+                            <strong>Totalprice</strong>
+                        </td>                        
                         <td>
                             <strong>Remove</strong>
                         </td>
-                        
                     </tr>
                     <c:forEach var="item" items="${cart.getItemList()}">
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                         <tr>
                             
-                            <td><a>${item.product.name}</a></td>
+                            <td>${item.product.name}</td>
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.getActualPrice()}" /></td>
+                            <td>${item.stock}</td>
+                            <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.getBulkPrice()}" /></td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/cart/remove/${item.id}">Delete</a>
+                                <a href="${pageContext.request.contextPath}/cart/remove/${item.id}"class="btn btn-xs btn-danger">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
                         <tr>
-                            <td><strong>Total Price</strong></td>
+                            <td colspan="3"><strong>Total Price</strong></td>
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${cart.getTotalPrice()}" /></td>
-                            <td><a href="${pageContext.request.contextPath}/itemOrder/add_step_1">Place order</a></td>
+                            <td><a href="${pageContext.request.contextPath}/itemOrder/add_step_1" class="btn btn-xs btn-default">Place order</a></td>
                         </tr>
                 </table>
             </c:when>
@@ -62,24 +66,31 @@
                 <!-- Als er geen gebruikers zijn, wordt deze melding getoond -->
 <table class="table table-striped">
                     <tr>
-                       
                         <td>
                             <strong>Name</strong>
-                        </td>
+                        </td>               
                         <td>
                             <strong>Price P.P</strong>
                         </td>
+                        </td>
+                        <td>
+                            <strong>Stock</strong>
+                        </td>
+                        <td>
+                            <strong>Totalprice</strong>
+                        </td>                        
                         <td>
                             <strong>Remove</strong>
                         </td>
-                        
                     </tr>
                     <c:forEach var="item" items="${cart.getItemList()}">
                         <!-- Per gebruiker wordt nu een rij aangemaakt met daarin zijn gegevens -->
                         <tr>
                             
-                            <td><a>${item.product.name}</a></td>
+                            <td>${item.product.name}</td>
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.getActualPrice()}" /></td>
+                            <td>${item.stock}</td>
+                            <td>${item.getBulkPrice()}</td>
                             <td>
                                 <a href="${pageContext.request.contextPath}/cart/remove/${item.id}">Delete</a>
                             </td>

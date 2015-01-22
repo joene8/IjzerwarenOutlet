@@ -47,9 +47,23 @@ public class CartController {
             cart = (Cart) session.getAttribute("cart");
 
             Item itm = itemService.getItem(id);
-
+            
             itemList = cart.getItemList();
+            for (Item i : itemList) {
+            if(i.getId()==itm.getId()){
+                
+                model.addAttribute("pageTitle", pageTitle);
+                model.addAttribute("cart", cart);
+                model.addAttribute("pageDescription", "This is the shopping cart filled with the products from your chosen establishment.");
+                model.addAttribute("message", "The item hasn't been added to your shopping cart because it's already in your shopping cart");
+                model.addAttribute("type", "danger");
+                return "shopping_cart";
+                
+            }                
+            }
+
             itemList.add(itm);
+            
             cart.setItemList(itemList);
 
         } else {

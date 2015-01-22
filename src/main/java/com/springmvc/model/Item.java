@@ -124,4 +124,7 @@ public class Item implements Serializable {
     public int getDiscount() {
         return (int) (((getActualPrice() / getProduct().getStandardSalePrice()) - 1) * -100);
     }
+    public double getBulkPrice(){
+        return getActualPrice()*getStock();
+    }
 }
