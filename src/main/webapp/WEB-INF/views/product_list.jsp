@@ -154,6 +154,11 @@
                                     <div class="caption">
                                         <h3>${item.product.name}</h3>
                                         <p>${item.product.description}</p>
+                                        <p>${item.product.productNumber.categorie}</p>
+                                        <p>${item.product.productLength}x${item.product.netWidth}x${item.product.netThickness} mm (LWH)</p>
+                                       <p>${item.product.grossWeight} kg</p>
+                                       
+                                       
                                         <h3><span class="oldPrice">&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.product.standardSalePrice}" /></span>  
                                             <div style="font-size:12px">you save ${item.getDiscount()}%</div><br>
                                             <span>&euro;<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.getActualPrice()}" /></span><c:if test="${item.isAddition()}">

@@ -308,15 +308,12 @@ public class ProductController {
 // DELETE
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String remove(@PathVariable int id, Model model) {
-        Product product = productService.getProduct(id);
-        productService.deleteProduct(id);
-        model.addAttribute("products", productService.getProducts());
-        model.addAttribute("pageTitle", "Products");
-        model.addAttribute("pageDescription", "Add, edit, delete or view a product.");
-        model.addAttribute("message", product.getName() + " was succesfully deleted.");
+    public String remove(@PathVariable int id, Model model, HttpServletRequest request) throws IOException {
+        Item item = itemService.getItem(id);
+        itemService.deleteItem(id);
+        model.addAttribute("message", item.getProduct().getName() + " was succesfully deleted.");
         model.addAttribute("type", "success");
-        return "product_list";
+        return listTable(model, request);
     }
 // VALIDATE PRODUCT STEP 2
 
